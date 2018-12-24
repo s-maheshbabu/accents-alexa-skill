@@ -1,0 +1,138 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "accents",
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "TalkLikeSomeoneIntent",
+          "slots": [
+            {
+              "name": "Language",
+              "type": "AMAZON.Language"
+            },
+            {
+              "name": "Gender",
+              "type": "Gender_SlotType"
+            }
+          ],
+          "samples": [
+            "talk like a {Language} {Gender}",
+            "talk like a {Language}",
+            "talk like an {Language} {Gender}",
+            "talk like an {Language}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "AMAZON.Language",
+          "values": [
+            {
+              "id": "it-IT",
+              "name": {
+                "value": "Italian"
+              }
+            },
+            {
+              "id": "en-IN",
+              "name": {
+                "value": "Indian",
+                "synonyms": ["Desi English", "Indian English", "Desi"]
+              }
+            },
+            {
+              "id": "en-AU",
+              "name": {
+                "value": "Australian English"
+              }
+            },
+            {
+              "id": "en-US",
+              "name": {
+                "value": "American English",
+                "synonyms": ["American"]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gender_SlotType",
+          "values": [
+            {
+              "id": "MALE",
+              "name": {
+                "value": "Male",
+                "synonyms": ["Boys", "Boy", "Man", "Men"]
+              }
+            },
+            {
+              "id": "FEMALE",
+              "name": {
+                "value": "Female",
+                "synonyms": ["Girls", "Girl", "Woman", "Women"]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "TalkLikeSomeoneIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Language",
+              "type": "AMAZON.Language",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1237418331118.1406199311523"
+              }
+            },
+            {
+              "name": "Gender",
+              "type": "Gender_SlotType",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1237418331118.1406199311523",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Who do you want me to speak like?"
+          }
+        ]
+      }
+    ]
+  }
+}

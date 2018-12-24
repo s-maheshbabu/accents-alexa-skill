@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "colorpicker",
+                "projectName": "colorpicker",
+                "workingDirectory": "/Users/maheshba/workspace/personal/accents-alexa-skill",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "colorpicker",
+                "projectName": "colorpicker",
+                "workingDirectory": "/Users/maheshba/workspace/personal/accents-alexa-skill",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}

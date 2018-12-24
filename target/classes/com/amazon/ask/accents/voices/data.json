@@ -1,0 +1,38 @@
+{
+  "it-IT": {
+    "female": ["Carla"],
+    "male": ["Giorgio"]
+  },
+  "de-DE": {
+    "female": ["Marlene", "Vicki"],
+    "male": ["Hans"]
+  },
+  "en-US": {
+    "female": ["Ivy", "Joanna", "Kendra", "Kimberly", "Salli"],
+    "male": ["Joey", "Justin", "Matthew"]
+  },
+  "en-IN": {
+    "female": ["Aditi"],
+    "male": ["Raveena"]
+  },
+  "en-AU": {
+    "female": ["Nicole"],
+    "male": ["Russell"]
+  },
+  "es-ES": {
+    "female": ["Conchita"],
+    "male": ["Enrique"]
+  },
+  "fr-FR": {
+    "female": ["Celine", "Lea"],
+    "male": ["Mathieu"]
+  },
+  "en-GB": {
+    "female": ["Amy", "Emma"],
+    "male": ["Brian"]
+  },
+  "ja-JP": {
+    "female": ["Mizuki"],
+    "male": ["Takumi"]
+  }
+}
