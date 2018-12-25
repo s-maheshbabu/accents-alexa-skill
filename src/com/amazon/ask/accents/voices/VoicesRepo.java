@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.amazon.ask.accents.errors.UnsupportedLanguageException;
+import com.amazon.ask.accents.model.Gender;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
@@ -48,8 +49,8 @@ public class VoicesRepo {
         if (gender != null) {
             applicableVoices = voicesByGenderMap.get(gender);
         } else {
-            applicableVoices = new ArrayList<>(voicesByGenderMap.get("male"));
-            applicableVoices.addAll(voicesByGenderMap.get("female"));
+            applicableVoices = new ArrayList<>(voicesByGenderMap.get(Gender.Male.name()));
+            applicableVoices.addAll(voicesByGenderMap.get(Gender.Female.name()));
         }
         // TODO: This block of code needs to be tested. We need to be able to inject
         // voicesMap from test class to be albe to test this because the real data has

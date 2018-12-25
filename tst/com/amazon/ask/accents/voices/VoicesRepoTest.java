@@ -26,7 +26,7 @@ public class VoicesRepoTest {
     public void getVoice() {
         // Arrange
         String language = "en-US";
-        String gender = "female";
+        String gender = "Female";
 
         int numberOfVoices = voicesMap.get(language).get(gender).size();
 
@@ -55,7 +55,7 @@ public class VoicesRepoTest {
      * that matches the given constraints.
      * 
      * TODO: This is a fragile test because if and when Amazon starts supporting
-     * more than once voice for the en-AU/female combination, this test will break.
+     * more than once voice for the en-AU/Female combination, this test will break.
      * This test class needs to be refactored to not use the real supported voices
      * but rather injec a mock mapping of languages->voices and inject it into
      * VoicesRepo class.
@@ -64,7 +64,7 @@ public class VoicesRepoTest {
     public void getVoice_OnlyOneVoice() {
         // Arrange
         String language = "en-AU";
-        String gender = "female";
+        String gender = "Female";
 
         // Act
         String actualVoice = unitUnderTest.getVoice(language, gender);
@@ -89,8 +89,8 @@ public class VoicesRepoTest {
         String actualVoice = unitUnderTest.getVoice(language, gender);
 
         // Assert
-        List<String> maleVoiceIds = voicesMap.get(language).get("male");
-        List<String> femaleVoiceIds = voicesMap.get(language).get("female");
+        List<String> maleVoiceIds = voicesMap.get(language).get("Male");
+        List<String> femaleVoiceIds = voicesMap.get(language).get("Female");
 
         List<String> allVoiceIds = new ArrayList<String>(maleVoiceIds);
         allVoiceIds.addAll(femaleVoiceIds);
@@ -142,49 +142,49 @@ public class VoicesRepoTest {
         Map<String, Map<String, List<String>>> map = new HashMap<>();
 
         Map<String, List<String>> en_USVoicesMapByGender = new HashMap<>();
-        en_USVoicesMapByGender.put("female",
+        en_USVoicesMapByGender.put("Female",
                 Collections.unmodifiableList(Arrays.asList("Ivy", "Joanna", "Kendra", "Kimberly", "Salli")));
-        en_USVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Joey", "Justin", "Matthew")));
+        en_USVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Joey", "Justin", "Matthew")));
         map.put("en-US", en_USVoicesMapByGender);
 
         Map<String, List<String>> en_AUVoicesMapByGender = new HashMap<>();
-        en_AUVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Nicole")));
-        en_AUVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Russell")));
+        en_AUVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Nicole")));
+        en_AUVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Russell")));
         map.put("en-AU", en_AUVoicesMapByGender);
 
         Map<String, List<String>> en_GBVoicesMapByGender = new HashMap<>();
-        en_GBVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Amy", "Emma")));
-        en_GBVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Brian")));
+        en_GBVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Amy", "Emma")));
+        en_GBVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Brian")));
         map.put("en-GB", en_GBVoicesMapByGender);
 
         Map<String, List<String>> en_INVoicesMapByGender = new HashMap<>();
-        en_INVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Aditi")));
-        en_INVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Raveena")));
+        en_INVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Aditi")));
+        en_INVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Raveena")));
         map.put("en-IN", en_INVoicesMapByGender);
 
         Map<String, List<String>> de_DEVoicesMapByGender = new HashMap<>();
-        de_DEVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Marlene", "Vicki")));
-        de_DEVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Hans")));
+        de_DEVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Marlene", "Vicki")));
+        de_DEVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Hans")));
         map.put("de-DE", de_DEVoicesMapByGender);
 
         Map<String, List<String>> es_ESVoicesMapByGender = new HashMap<>();
-        es_ESVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Conchita")));
-        es_ESVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Enrique")));
+        es_ESVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Conchita")));
+        es_ESVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Enrique")));
         map.put("es-ES", es_ESVoicesMapByGender);
 
         Map<String, List<String>> it_ITVoicesMapByGender = new HashMap<>();
-        it_ITVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Carla")));
-        it_ITVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Giorgio")));
+        it_ITVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Carla")));
+        it_ITVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Giorgio")));
         map.put("it-IT", it_ITVoicesMapByGender);
 
         Map<String, List<String>> ja_JPVoicesMapByGender = new HashMap<>();
-        ja_JPVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Mizuki")));
-        ja_JPVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Takumi")));
+        ja_JPVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Mizuki")));
+        ja_JPVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Takumi")));
         map.put("ja-JP", ja_JPVoicesMapByGender);
 
         Map<String, List<String>> fr_FRVoicesMapByGender = new HashMap<>();
-        fr_FRVoicesMapByGender.put("female", Collections.unmodifiableList(Arrays.asList("Celine", "Lea")));
-        fr_FRVoicesMapByGender.put("male", Collections.unmodifiableList(Arrays.asList("Mathieu")));
+        fr_FRVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Celine", "Lea")));
+        fr_FRVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Mathieu")));
         map.put("fr-FR", fr_FRVoicesMapByGender);
 
         voicesMap = Collections.unmodifiableMap(map);
