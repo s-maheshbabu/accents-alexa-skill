@@ -25,7 +25,6 @@ public class VoicesRepoTest {
     @Test
     public void getVoice() {
         // Arrange
-        System.out.println("$$$$$$$$$$$");
         String language = "en-US";
         String gender = "Female";
 
