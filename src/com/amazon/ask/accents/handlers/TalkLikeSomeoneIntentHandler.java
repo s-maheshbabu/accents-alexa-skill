@@ -18,9 +18,13 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 public class TalkLikeSomeoneIntentHandler implements RequestHandler {
     @Override
     public boolean canHandle(HandlerInput input) {
+        logger.info("Handler Input: " + input);
         return input.matches(intentName(Intents.TALK_LIKE_SOMEONE_INTENT));
     }
 
@@ -36,8 +40,10 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
 
         String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot), Gender.Female.name());
 
-        String speechText = String.format("<voice name=\"%s\">This is how %s %s speak.</voice>", voice,
+        String speechText = String.format("<voice name=\"%s\">This is how how %s %s speak.</voice>", voice,
                 languageSlot.getValue(), genderSlot.getValue());
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
     }
+
+    private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
 }

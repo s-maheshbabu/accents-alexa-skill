@@ -1,13 +1,10 @@
 package com.amazon.ask.accents.voices;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -68,7 +65,6 @@ public class VoicesRepo {
 
     private VoicesRepo() {
         URL url = getClass().getResource(VOICES_DATA);
-
         Type voicesMapType = new TypeToken<Map<String, Map<String, List<String>>>>() {
         }.getType();
         Map<String, Map<String, List<String>>> son = null;
@@ -83,13 +79,15 @@ public class VoicesRepo {
     }
 
     public static VoicesRepo getInstance() {
+        if (instance == null)
+            instance = new VoicesRepo();
         return instance;
     }
 
     // A mapping of supported languages and voices. Authoritative list at
     // https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html#voice
-    private static final String VOICES_DATA = "data.json";
+    private static final String VOICES_DATA = "/resources/data/supported_voices.json";
 
-    private static final VoicesRepo instance = new VoicesRepo();
+    private static VoicesRepo instance;
     private final Map<String, Map<String, List<String>>> voicesMap;
 }
