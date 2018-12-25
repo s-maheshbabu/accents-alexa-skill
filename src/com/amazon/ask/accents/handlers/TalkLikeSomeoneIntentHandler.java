@@ -5,6 +5,7 @@ import static com.amazon.ask.request.Predicates.intentName;
 import java.util.Map;
 import java.util.Optional;
 
+import com.amazon.ask.accents.model.Gender;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.util.IntentUtils;
@@ -33,7 +34,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Slot genderSlot = slots.get(Slots.GENDER_SLOT);
 
-        String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot), "female");
+        String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot), Gender.Female.name());
 
         String speechText = String.format("<voice name=\"%s\">This is how %s %s speak.</voice>", voice,
                 languageSlot.getValue(), genderSlot.getValue());
