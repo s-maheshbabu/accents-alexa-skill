@@ -38,7 +38,8 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Slot genderSlot = slots.get(Slots.GENDER_SLOT);
 
-        String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot), Gender.Female.name());
+        String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot),
+                IntentUtils.getSlotId(genderSlot));
 
         String speechText = String.format("<voice name=\"%s\">This is how how %s %s speak.</voice>", voice,
                 languageSlot.getValue(), genderSlot.getValue());

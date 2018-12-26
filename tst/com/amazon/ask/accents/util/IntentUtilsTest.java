@@ -21,7 +21,7 @@ public final class IntentUtilsTest {
     @Test
     public void testGetSlotId() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/ValidSlot.json");
+        Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
 
         // Act
         String slotId = IntentUtils.getSlotId(slot);
@@ -36,7 +36,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutions() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithoutResolutions.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -49,7 +49,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -62,7 +62,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_EmptyResolutionsPerAuthority() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -75,7 +75,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -88,7 +88,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_EmptyResolutionsPerAuthority_Values() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -101,7 +101,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -114,7 +114,7 @@ public final class IntentUtilsTest {
     @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id() {
         // Arrange
-        Slot slot = buildSlot("/resources/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
 
         // Act && Assert
         IntentUtils.getSlotId(slot);
@@ -122,6 +122,8 @@ public final class IntentUtilsTest {
 
     private Slot buildSlot(String slotResourcePath) {
         URL url = getClass().getResource(slotResourcePath);
+        System.out.println(url);
+        System.out.println("$$$$$$$$$$$");
         Type slotType = new TypeToken<Slot>() {
         }.getType();
         Slot slot;
