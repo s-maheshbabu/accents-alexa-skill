@@ -14,9 +14,6 @@ import java.util.Set;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-/**
- * Maintains a repo of utterances by language.
- */
 public class UtterancesRepoTest {
     /**
      * Test that a random set of utterances are returned for a given language.

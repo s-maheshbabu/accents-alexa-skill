@@ -14,6 +14,7 @@ import com.google.gson.stream.JsonReader;
 import org.apache.commons.lang3.Validate;
 
 /**
+ * Maintains a repo of utterances by language.
  */
 public class UtterancesRepo {
 
