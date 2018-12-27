@@ -4,8 +4,10 @@ import java.util.Optional;
 
 import com.amazon.ask.model.Slot;
 
-public final class IntentUtils {
-    public static String getSlotId(Slot slot) {
+public final class IntentUtils
+{
+    public static String getSlotId(Slot slot)
+    {
         Optional<String> slotId = Optional.ofNullable(slot).map(_slot -> _slot.getResolutions())
                 .map(resolutions -> resolutions.getResolutionsPerAuthority())
                 .map(resolutionsPerAuthority -> resolutionsPerAuthority.stream().findFirst().orElse(null))

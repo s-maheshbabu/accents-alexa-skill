@@ -1,8 +1,5 @@
 package com.amazon.ask.accents.handlers;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 
 import java.io.FileReader;
@@ -11,16 +8,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
-import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,13 +27,23 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
 
-public class TalkLikeSomeoneIntentHandlerTest {
+public class TalkLikeSomeoneIntentHandlerTest
+{
+
+    @InjectMocks
+    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+    @Mock
+    private VoicesRepo voicesRepo;
+    @Mock
+    private UtterancesRepo utterancesRepo;
 
     /*
      * Test that canHandle returns true when the right intent is passed.
      */
     @Test
-    public void testCanHandle_RightIntentName() {
+    public void testCanHandle_RightIntentName()
+    {
         // Arrange
         HandlerInput input = buildHandlerInput("/testdata/handlerInputs/talkLikeSomeoneIntent/ValidHandlerInput.json");
 
@@ -50,7 +58,8 @@ public class TalkLikeSomeoneIntentHandlerTest {
      * Test that canHandle returns true when the right intent is passed.
      */
     @Test
-    public void testCanHandle_IncorrectIntentName() {
+    public void testCanHandle_IncorrectIntentName()
+    {
         // Arrange
         HandlerInput input = buildHandlerInput(
                 "/testdata/handlerInputs/talkLikeSomeoneIntent/IncorrectIntentName.json");
@@ -66,7 +75,8 @@ public class TalkLikeSomeoneIntentHandlerTest {
      * Test that handle returns the right response in the happy case.
      */
     @Test
-    public void testHandle() {
+    public void testHandle()
+    {
         // Arrange
         HandlerInput input = buildHandlerInput("/testdata/handlerInputs/talkLikeSomeoneIntent/ValidHandlerInput.json");
 
@@ -85,30 +95,21 @@ public class TalkLikeSomeoneIntentHandlerTest {
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
-    private HandlerInput buildHandlerInput(String handlerInputResourcePath) {
+    private HandlerInput buildHandlerInput(String handlerInputResourcePath)
+    {
         URL url = getClass().getResource(handlerInputResourcePath);
 
-        ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        objectMapper.registerModule(new JavaTimeModule());
-
-        RequestEnvelope requestEnvelope = null;
-        try {
+        RequestEnvelope requestEnvelope;
+        try
+        {
             requestEnvelope = objectMapper.readValue(new FileReader(url.getPath()), RequestEnvelope.class);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new RuntimeException("Failed loading the handler inputs from test data files. This is a fatal error.",
                     e);
         }
 
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
-
-    @Mock
-    private VoicesRepo voicesRepo;
-
-    @Mock
-    private UtterancesRepo utterancesRepo;
-
-    @InjectMocks
-    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
 }

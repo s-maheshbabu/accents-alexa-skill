@@ -1,25 +1,24 @@
 package com.amazon.ask.accents.util;
 
-import static org.junit.Assert.assertEquals;
-
 import java.io.FileReader;
-import java.lang.reflect.Type;
 import java.net.URL;
 
+import static org.junit.Assert.assertEquals;
 import com.amazon.ask.model.Slot;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-public final class IntentUtilsTest {
+public final class IntentUtilsTest
+{
+
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
     /**
      * Test that the slot Id can be obtained in the happy case.
      */
     @Test
-    public void testGetSlotId() {
+    public void testGetSlotId()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
 
@@ -34,7 +33,8 @@ public final class IntentUtilsTest {
      * Test that an exception is raised if there are no resolutions in the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_MissigResolutions() {
+    public void testGetSlotId_MissigResolutions()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
 
@@ -47,7 +47,8 @@ public final class IntentUtilsTest {
      * the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_MissigResolutionsPerAuthority() {
+    public void testGetSlotId_MissigResolutionsPerAuthority()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
 
@@ -60,7 +61,8 @@ public final class IntentUtilsTest {
      * the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_EmptyResolutionsPerAuthority() {
+    public void testGetSlotId_EmptyResolutionsPerAuthority()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
 
@@ -73,7 +75,8 @@ public final class IntentUtilsTest {
      * resolutionsPerAuthorityValues in the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values() {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
 
@@ -86,7 +89,8 @@ public final class IntentUtilsTest {
      * empty in the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_EmptyResolutionsPerAuthority_Values() {
+    public void testGetSlotId_EmptyResolutionsPerAuthority_Values()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
 
@@ -99,7 +103,8 @@ public final class IntentUtilsTest {
      * resolutionsPerAuthorityValuesValue in the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value() {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
 
@@ -112,7 +117,8 @@ public final class IntentUtilsTest {
      * resolutionsPerAuthorityValuesValueId in the slot.
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id() {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id()
+    {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
 
@@ -120,19 +126,21 @@ public final class IntentUtilsTest {
         IntentUtils.getSlotId(slot);
     }
 
-    private Slot buildSlot(String slotResourcePath) {
+    private Slot buildSlot(String slotResourcePath)
+    {
         URL url = getClass().getResource(slotResourcePath);
 
-        Type slotType = new TypeToken<Slot>() {
-        }.getType();
         Slot slot;
-        try {
-            JsonReader reader = new JsonReader(new FileReader(url.getPath()));
-            slot = new Gson().fromJson(reader, slotType);
-        } catch (Exception e) {
+        try
+        {
+            slot = objectMapper.readValue(new FileReader(url.getPath()), Slot.class);
+        }
+        catch (Exception e)
+        {
             throw new RuntimeException("Failed loading the slots from test data files. This is a fatal error.", e);
         }
 
         return slot;
     }
+
 }

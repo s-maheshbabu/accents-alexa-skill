@@ -1,38 +1,83 @@
 {
   "it-IT": {
-    "Female": ["Carla"],
-    "Male": ["Giorgio"]
+    "Female": [
+      "Carla"
+    ],
+    "Male": [
+      "Giorgio"
+    ]
   },
   "de-DE": {
-    "Female": ["Marlene", "Vicki"],
-    "Male": ["Hans"]
+    "Female": [
+      "Marlene",
+      "Vicki"
+    ],
+    "Male": [
+      "Hans"
+    ]
   },
   "en-US": {
-    "Female": ["Ivy", "Joanna", "Kendra", "Kimberly", "Salli"],
-    "Male": ["Joey", "Justin", "Matthew"]
+    "Female": [
+      "Ivy",
+      "Joanna",
+      "Kendra",
+      "Kimberly",
+      "Salli"
+    ],
+    "Male": [
+      "Joey",
+      "Justin",
+      "Matthew"
+    ]
   },
   "en-IN": {
-    "Female": ["Aditi"],
-    "Male": ["Raveena"]
+    "Female": [
+      "Aditi"
+    ],
+    "Male": [
+      "Raveena"
+    ]
   },
   "en-AU": {
-    "Female": ["Nicole"],
-    "Male": ["Russell"]
+    "Female": [
+      "Nicole"
+    ],
+    "Male": [
+      "Russell"
+    ]
   },
   "es-ES": {
-    "Female": ["Conchita"],
-    "Male": ["Enrique"]
+    "Female": [
+      "Conchita"
+    ],
+    "Male": [
+      "Enrique"
+    ]
   },
   "fr-FR": {
-    "Female": ["Celine", "Lea"],
-    "Male": ["Mathieu"]
+    "Female": [
+      "Celine",
+      "Lea"
+    ],
+    "Male": [
+      "Mathieu"
+    ]
   },
   "en-GB": {
-    "Female": ["Amy", "Emma"],
-    "Male": ["Brian"]
+    "Female": [
+      "Amy",
+      "Emma"
+    ],
+    "Male": [
+      "Brian"
+    ]
   },
   "ja-JP": {
-    "Female": ["Mizuki"],
-    "Male": ["Takumi"]
+    "Female": [
+      "Mizuki"
+    ],
+    "Male": [
+      "Takumi"
+    ]
   }
 }

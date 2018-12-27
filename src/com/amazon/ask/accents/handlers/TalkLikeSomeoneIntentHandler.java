@@ -18,19 +18,25 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class TalkLikeSomeoneIntentHandler implements RequestHandler {
+public class TalkLikeSomeoneIntentHandler implements RequestHandler
+{
+    private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
+    private VoicesRepo voicesRepo = VoicesRepo.getInstance();
+    private UtterancesRepo utterancesRepo = UtterancesRepo.getInstance();
+
     @Override
-    public boolean canHandle(HandlerInput input) {
+    public boolean canHandle(HandlerInput input)
+    {
         logger.info("Handler Input: " + input);
         return input.matches(intentName(Intents.TALK_LIKE_SOMEONE_INTENT));
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input) {
+    public Optional<Response> handle(HandlerInput input)
+    {
         Request request = input.getRequestEnvelope().getRequest();
         IntentRequest intentRequest = (IntentRequest) request;
         Intent intent = intentRequest.getIntent();
@@ -46,9 +52,4 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         String speechText = String.format("<voice name=\"%s\">%s</voice>", voice, utterances.get(0));
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
     }
-
-    private VoicesRepo voicesRepo = VoicesRepo.getInstance();
-    private UtterancesRepo utterancesRepo = UtterancesRepo.getInstance();
-
-    private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
 }

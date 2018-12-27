@@ -14,7 +14,9 @@
     "Italian sentence - 4",
     "Italian sentence - 5"
   ],
-  "de-DE": ["German sentence - 1"],
+  "de-DE": [
+    "German sentence - 1"
+  ],
   "default": [
     "Default Language sentence - 1",
     "Default Language sentence - 2",

@@ -40,7 +40,9 @@
       "dpi": 160,
       "currentPixelWidth": 1024,
       "currentPixelHeight": 600,
-      "touch": ["SINGLE"]
+      "touch": [
+        "SINGLE"
+      ]
     }
   },
   "request": {
