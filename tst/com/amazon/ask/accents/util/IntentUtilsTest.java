@@ -130,10 +130,9 @@ public final class IntentUtilsTest {
             JsonReader reader = new JsonReader(new FileReader(url.getPath()));
             slot = new Gson().fromJson(reader, slotType);
         } catch (Exception e) {
-            throw new RuntimeException("Failed loading the mapping of languages to voices. This is a fatal error.", e);
+            throw new RuntimeException("Failed loading the slots from test data files. This is a fatal error.", e);
         }
 
         return slot;
     }
-
 }

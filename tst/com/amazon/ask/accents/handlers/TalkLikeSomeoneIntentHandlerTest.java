@@ -3,25 +3,28 @@ package com.amazon.ask.accents.handlers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.when;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.io.FileReader;
+import java.net.URL;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
-import com.amazon.ask.accents.model.Intents;
-import com.amazon.ask.accents.model.Slots;
+import com.amazon.ask.accents.utterances.UtterancesRepo;
+import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
-import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -34,7 +37,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
     @Test
     public void testCanHandle_RightIntentName() {
         // Arrange
-        HandlerInput input = buildHandlerInput(Intents.TALK_LIKE_SOMEONE_INTENT);
+        HandlerInput input = buildHandlerInput("/testdata/handlerInputs/talkLikeSomeoneIntent/ValidHandlerInput.json");
 
         // Act
         boolean actualValue = unitUnderTest.canHandle(input);
@@ -49,7 +52,8 @@ public class TalkLikeSomeoneIntentHandlerTest {
     @Test
     public void testCanHandle_IncorrectIntentName() {
         // Arrange
-        HandlerInput input = buildHandlerInput("someOtherIntent");
+        HandlerInput input = buildHandlerInput(
+                "/testdata/handlerInputs/talkLikeSomeoneIntent/IncorrectIntentName.json");
 
         // Act
         boolean actualValue = unitUnderTest.canHandle(input);
@@ -62,29 +66,49 @@ public class TalkLikeSomeoneIntentHandlerTest {
      * Test that handle returns the right response in the happy case.
      */
     @Test
-    @Ignore
     public void testHandle() {
         // Arrange
-        HandlerInput input = buildHandlerInput("someOtherIntent");
+        HandlerInput input = buildHandlerInput("/testdata/handlerInputs/talkLikeSomeoneIntent/ValidHandlerInput.json");
+
+        String voice = "nameOfVoice";
+        when(voicesRepo.getVoice("en-IN", "Male")).thenReturn(voice);
+
+        List<String> utterances = Arrays.asList("utterance-1", "utterance-2");
+        when(utterancesRepo.getUtterances("en-IN")).thenReturn(utterances);
 
         // Act
         Optional<Response> actualResponse = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + "<voice name=\"Kimberly\">This is how en-US female speak.</voice>" + "</speak>",
+        assertEquals("<speak>" + "<voice name=\"" + voice + "\">" + utterances.get(0) + "</voice></speak>",
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
-    private HandlerInput buildHandlerInput(String intentName) {
-        Map<String, Slot> slotsMap = new HashMap<>();
-        slotsMap.put(Slots.LANGUAGE_SLOT, Slot.builder().withValue("en-US").build());
-        slotsMap.put(Slots.GENDER_SLOT, Slot.builder().withValue("female").build());
-        Intent intent = Intent.builder().withName(intentName).withSlots(slotsMap).build();
-        Request request = IntentRequest.builder().withIntent(intent).build();
-        RequestEnvelope requestEnvelope = RequestEnvelope.builder().withRequest(request).build();
+    private HandlerInput buildHandlerInput(String handlerInputResourcePath) {
+        URL url = getClass().getResource(handlerInputResourcePath);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        objectMapper.registerModule(new JavaTimeModule());
+
+        RequestEnvelope requestEnvelope = null;
+        try {
+            requestEnvelope = objectMapper.readValue(new FileReader(url.getPath()), RequestEnvelope.class);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed loading the handler inputs from test data files. This is a fatal error.",
+                    e);
+        }
+
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
 
+    @Mock
+    private VoicesRepo voicesRepo;
+
+    @Mock
+    private UtterancesRepo utterancesRepo;
+
+    @InjectMocks
     private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
 }

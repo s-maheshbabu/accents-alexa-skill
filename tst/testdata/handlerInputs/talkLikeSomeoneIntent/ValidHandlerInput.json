@@ -1,0 +1,107 @@
+{
+  "version": "1.0",
+  "session": {
+    "new": true,
+    "sessionId": "amzn1.echo-api.session.23f490a3-52e3-44d5-96f6-1871fd021801",
+    "application": {
+      "applicationId": "amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc"
+    },
+    "user": {
+      "userId": "amzn1.ask.account.AGHAKF4Y2MNZMHCFQTNZNFO3WHLNLZG4KBX3YMIQVE657DPUGXC5YF6JANXG2SACGIJJMEZ3Q6GAQ7I2E2SRA5LUHDGJTYUKVGRIA6ACJD43BBTBKG2PQJGZMDJBCTZQ4J4Q4ADJQ6BX5AROQ6S6UNHX4UCN3JOMW2QY7K4VWJLXXXYSQCLVIKOINACWIYRAZMGJCTG45A53CGY"
+    }
+  },
+  "context": {
+    "System": {
+      "application": {
+        "applicationId": "amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc"
+      },
+      "user": {
+        "userId": "amzn1.ask.account.AGHAKF4Y2MNZMHCFQTNZNFO3WHLNLZG4KBX3YMIQVE657DPUGXC5YF6JANXG2SACGIJJMEZ3Q6GAQ7I2E2SRA5LUHDGJTYUKVGRIA6ACJD43BBTBKG2PQJGZMDJBCTZQ4J4Q4ADJQ6BX5AROQ6S6UNHX4UCN3JOMW2QY7K4VWJLXXXYSQCLVIKOINACWIYRAZMGJCTG45A53CGY"
+      },
+      "device": {
+        "deviceId": "amzn1.ask.device.AEKIKZQMV4WGKJ4TSJ3CV3R3KSQYBS3I5T47VWVTKKGF3RO2Q45FM4WX5VSFGF56S2CLNWA3YZF4HUF4IZAM7T676VDMBO2BNMKGBNOJ2WKY3FRBDUSD7YBJ2XWZWUE6RAZVQOJPCAN72T2BNUID4MODOH4A",
+        "supportedInterfaces": {}
+      },
+      "apiEndpoint": "https://api.amazonalexa.com",
+      "apiAccessToken": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IjEifQ.eyJhdWQiOiJodHRwczovL2FwaS5hbWF6b25hbGV4YS5jb20iLCJpc3MiOiJBbGV4YVNraWxsS2l0Iiwic3ViIjoiYW16bjEuYXNrLnNraWxsLjc1YWJmZGY0LWE4YzAtNDQ1YS04NDEzLTlhMDhhZTBkOGZiYyIsImV4cCI6MTU0NTg4MTQ0NiwiaWF0IjoxNTQ1ODc3ODQ2LCJuYmYiOjE1NDU4Nzc4NDYsInByaXZhdGVDbGFpbXMiOnsiY29uc2VudFRva2VuIjpudWxsLCJkZXZpY2VJZCI6ImFtem4xLmFzay5kZXZpY2UuQUVLSUtaUU1WNFdHS0o0VFNKM0NWM1IzS1NRWUJTM0k1VDQ3VldWVEtLR0YzUk8yUTQ1Rk00V1g1VlNGR0Y1NlMyQ0xOV0EzWVpGNEhVRjRJWkFNN1Q2NzZWRE1CTzJCTk1LR0JOT0oyV0tZM0ZSQkRVU0Q3WUJKMlhXWldVRTZSQVpWUU9KUENBTjcyVDJCTlVJRDRNT0RPSDRBIiwidXNlcklkIjoiYW16bjEuYXNrLmFjY291bnQuQUdIQUtGNFkyTU5aTUhDRlFUTlpORk8zV0hMTkxaRzRLQlgzWU1JUVZFNjU3RFBVR1hDNVlGNkpBTlhHMlNBQ0dJSkpNRVozUTZHQVE3STJFMlNSQTVMVUhER0pUWVVLVkdSSUE2QUNKRDQzQkJUQktHMlBRSkdaTURKQkNUWlE0SjRRNEFESlE2Qlg1QVJPUTZTNlVOSFg0VUNOM0pPTVcyUVk3SzRWV0pMWFhYWVNRQ0xWSUtPSU5BQ1dJWVJBWk1HSkNURzQ1QTUzQ0dZIn19.fNw_f_MG1mB5XLMMxwX2HWQ6sjv2JCOubfddyZ8KFHpcjHq4kMY4U5hDLfK5GGJLx8PpLNoDibSCYuBv1Q5WkL1wweH7Y2-0BrxwLyOvUxzshPNS4vssN4y3EN72MOCc3Lhi41AH6gIkDbLpxh-6ELBiqhEHjY2d02MfofHxLMUajUizi1jeZu8EHjfueFX7oaMv0c9NtLxRuhVxre93qX0wF6flK50WG4cUXmu6GaDZXl43fEoIM5GtgCfgGb76WRDvdKPyEvjTqnYuI1DL0uHsFOPSeKY-5kNISUHGe-hhiPOMMsBKLbPeCPo45tgMT8nxF6zYEiW0RzH9dvWjug"
+    },
+    "Viewport": {
+      "experiences": [
+        {
+          "arcMinuteWidth": 246,
+          "arcMinuteHeight": 144,
+          "canRotate": false,
+          "canResize": false
+        }
+      ],
+      "shape": "RECTANGLE",
+      "pixelWidth": 1024,
+      "pixelHeight": 600,
+      "dpi": 160,
+      "currentPixelWidth": 1024,
+      "currentPixelHeight": 600,
+      "touch": ["SINGLE"]
+    }
+  },
+  "request": {
+    "type": "IntentRequest",
+    "requestId": "amzn1.echo-api.request.44ff1112-074d-4894-9ecc-e2dbd5aeb694",
+    "timestamp": "2018-12-27T02:30:46Z",
+    "locale": "en-US",
+    "intent": {
+      "name": "TalkLikeSomeoneIntent",
+      "confirmationStatus": "NONE",
+      "slots": {
+        "Language": {
+          "name": "Language",
+          "value": "Indian",
+          "resolutions": {
+            "resolutionsPerAuthority": [
+              {
+                "authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc.AMAZON.Language",
+                "status": {
+                  "code": "ER_SUCCESS_MATCH"
+                },
+                "values": [
+                  {
+                    "value": {
+                      "name": "Indian",
+                      "id": "en-IN"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "confirmationStatus": "NONE",
+          "source": "USER"
+        },
+        "Gender": {
+          "name": "Gender",
+          "value": "man",
+          "resolutions": {
+            "resolutionsPerAuthority": [
+              {
+                "authority": "amzn1.er-authority.echo-sdk.amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc.Gender_SlotType",
+                "status": {
+                  "code": "ER_SUCCESS_MATCH"
+                },
+                "values": [
+                  {
+                    "value": {
+                      "name": "Male",
+                      "id": "Male"
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "confirmationStatus": "NONE",
+          "source": "USER"
+        }
+      }
+    },
+    "dialogState": "STARTED"
+  }
+}

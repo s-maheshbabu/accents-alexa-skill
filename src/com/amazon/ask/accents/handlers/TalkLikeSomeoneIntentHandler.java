@@ -39,16 +39,16 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Optional<Slot> genderSlot = Optional.of(slots.get(Slots.GENDER_SLOT));
 
-        String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot),
+        String voice = voicesRepo.getVoice(IntentUtils.getSlotId(languageSlot),
                 IntentUtils.getSlotId(genderSlot.orElse(null)));
+        List<String> utterances = utterancesRepo.getUtterances(IntentUtils.getSlotId(languageSlot));
 
-        List<String> utterances = UtterancesRepo.getInstance().getUtterances(IntentUtils.getSlotId(languageSlot));
-        String speechText = String.format(
-                "<voice name=\"%s\">%s. This is <amazon:effect name=\"whispered\">how how</amazon:effect> %s %s speak.</voice>",
-                voice, utterances.get(0), languageSlot.getValue(),
-                genderSlot.isPresent() ? genderSlot.get().getValue() : "unknown gender");
+        String speechText = String.format("<voice name=\"%s\">%s</voice>", voice, utterances.get(0));
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
     }
+
+    private VoicesRepo voicesRepo = VoicesRepo.getInstance();
+    private UtterancesRepo utterancesRepo = UtterancesRepo.getInstance();
 
     private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
 }
