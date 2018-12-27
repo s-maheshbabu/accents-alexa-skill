@@ -1,0 +1,26 @@
+{
+  "en-IN": [
+    "Indian sentence - 1",
+    "Indian sentence - 2",
+    "Indian sentence - 3",
+    "Indian sentence - 4",
+    "Indian sentence - 5",
+    "Indian sentence - 6"
+  ],
+  "it-IT": [
+    "Italian sentence - 1",
+    "Italian sentence - 2",
+    "Italian sentence - 3",
+    "Italian sentence - 4",
+    "Italian sentence - 5"
+  ],
+  "de-DE": ["German sentence - 1"],
+  "default": [
+    "Default Language sentence - 1",
+    "Default Language sentence - 2",
+    "Default Language sentence - 3",
+    "Default Language sentence - 4",
+    "Default Language sentence - 5",
+    "Default Language sentence - 6"
+  ]
+}

@@ -122,8 +122,7 @@ public final class IntentUtilsTest {
 
     private Slot buildSlot(String slotResourcePath) {
         URL url = getClass().getResource(slotResourcePath);
-        System.out.println(url);
-        System.out.println("$$$$$$$$$$$");
+
         Type slotType = new TypeToken<Slot>() {
         }.getType();
         Slot slot;

@@ -2,13 +2,14 @@ package com.amazon.ask.accents.handlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import com.amazon.ask.accents.model.Gender;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.util.IntentUtils;
+import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
@@ -36,13 +37,16 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         Map<String, Slot> slots = intent.getSlots();
 
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
-        Slot genderSlot = slots.get(Slots.GENDER_SLOT);
+        Optional<Slot> genderSlot = Optional.of(slots.get(Slots.GENDER_SLOT));
 
         String voice = VoicesRepo.getInstance().getVoice(IntentUtils.getSlotId(languageSlot),
-                IntentUtils.getSlotId(genderSlot));
+                IntentUtils.getSlotId(genderSlot.orElse(null)));
 
-        String speechText = String.format("<voice name=\"%s\">This is how how %s %s speak.</voice>", voice,
-                languageSlot.getValue(), genderSlot.getValue());
+        List<String> utterances = UtterancesRepo.getInstance().getUtterances(IntentUtils.getSlotId(languageSlot));
+        String speechText = String.format(
+                "<voice name=\"%s\">%s. This is <amazon:effect name=\"whispered\">how how</amazon:effect> %s %s speak.</voice>",
+                voice, utterances.get(0), languageSlot.getValue(),
+                genderSlot.isPresent() ? genderSlot.get().getValue() : "unknown gender");
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
     }
 
