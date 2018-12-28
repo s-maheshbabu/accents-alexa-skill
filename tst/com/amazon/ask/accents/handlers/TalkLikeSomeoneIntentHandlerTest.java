@@ -41,24 +41,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 public class TalkLikeSomeoneIntentHandlerTest
 {
 
-    @InjectMocks
-    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
-    @Mock
-    private VoicesRepo voicesRepo;
-    @Mock
-    private UtterancesRepo utterancesRepo;
-
-    private static final String languageSlotRawValue = "languageSlotRawValue";
-    private static final String languageSlotResolvedValue = "languageSlotResolvedValue";
-    private static final String languageSlotId = "languageSlotId";
-
-    private static final String genderSlotRawValue = "genderSlotRawValue";
-    private static final String genderSlotResolvedValue = "genderSlotResolvedValue";
-    private static final String genderSlotId = "genderSlotId";
-
-    private static final String voice = "nameOfVoice";
-
     /*
      * Test that canHandle returns true when the right intent is passed.
      */
@@ -117,7 +99,12 @@ public class TalkLikeSomeoneIntentHandlerTest
         Optional<Response> actualResponse = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + "<voice name=\"" + voice + "\">" + utterances.get(0) + "</voice></speak>",
+        String combinedUtterance = "";
+        for (String utterance : utterances)
+        {
+            combinedUtterance += utterance + ". ";
+        }
+        assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
@@ -138,14 +125,19 @@ public class TalkLikeSomeoneIntentHandlerTest
 
         when(voicesRepo.getVoice(languageSlotId, null)).thenReturn(voice);
 
-        List<String> utterances = Arrays.asList("utterance-1", "utterance-2");
+        List<String> utterances = Arrays.asList("utterance-1", "utterance-2", "utterance-3");
         when(utterancesRepo.getUtterances(languageSlotId)).thenReturn(utterances);
 
         // Act
         Optional<Response> actualResponse = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + "<voice name=\"" + voice + "\">" + utterances.get(0) + "</voice></speak>",
+        String combinedUtterance = "";
+        for (String utterance : utterances)
+        {
+            combinedUtterance += utterance + ". ";
+        }
+        assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
@@ -176,6 +168,11 @@ public class TalkLikeSomeoneIntentHandlerTest
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
 
+    private String ssmlize(String input)
+    {
+        return "<speak>" + input + "</speak>";
+    }
+
     private HandlerInput buildHandlerInput(String handlerInputResourcePath)
     {
         URL url = getClass().getResource(handlerInputResourcePath);
@@ -193,4 +190,19 @@ public class TalkLikeSomeoneIntentHandlerTest
 
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
+
+    @InjectMocks
+    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
+    private static final String languageSlotRawValue = "languageSlotRawValue";
+    private static final String languageSlotResolvedValue = "languageSlotResolvedValue";
+    private static final String languageSlotId = "languageSlotId";
+    private static final String genderSlotRawValue = "genderSlotRawValue";
+    private static final String genderSlotResolvedValue = "genderSlotResolvedValue";
+    private static final String genderSlotId = "genderSlotId";
+    private static final String voice = "nameOfVoice";
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+    @Mock
+    private VoicesRepo voicesRepo;
+    @Mock
+    private UtterancesRepo utterancesRepo;
 }

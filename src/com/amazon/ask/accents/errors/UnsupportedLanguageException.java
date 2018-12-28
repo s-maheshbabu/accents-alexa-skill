@@ -6,8 +6,6 @@ package com.amazon.ask.accents.errors;
 public class UnsupportedLanguageException extends RuntimeException
 {
 
-    private static final long serialVersionUID = 1L;
-
     public UnsupportedLanguageException(final String message)
     {
         super(message);
@@ -17,5 +15,7 @@ public class UnsupportedLanguageException extends RuntimeException
     {
         super(message, cause);
     }
+
+    private static final long serialVersionUID = 1L;
 
 }

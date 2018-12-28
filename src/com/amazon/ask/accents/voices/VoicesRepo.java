@@ -21,13 +21,6 @@ import org.apache.commons.lang3.Validate;
 public class VoicesRepo
 {
 
-    // A mapping of supported languages and voices. Authoritative list at
-    // https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html#voice
-    private static final String VOICES_DATA = "/resources/data/supported_voices.json";
-    private static VoicesRepo instance;
-    private final Map<String, Map<String, List<String>>> voicesMap;
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
-
     private VoicesRepo()
     {
         URL url = getClass().getResource(VOICES_DATA);
@@ -43,13 +36,6 @@ public class VoicesRepo
         }
 
         voicesMap = Collections.unmodifiableMap(son);
-    }
-
-    public static VoicesRepo getInstance()
-    {
-        if (instance == null)
-            instance = new VoicesRepo();
-        return instance;
     }
 
     /**
@@ -98,4 +84,18 @@ public class VoicesRepo
         Collections.shuffle(applicableVoices);
         return applicableVoices.get(0);
     }
+
+    public static VoicesRepo getInstance()
+    {
+        if (instance == null)
+            instance = new VoicesRepo();
+        return instance;
+    }
+
+    // A mapping of supported languages and voices. Authoritative list at
+    // https://developer.amazon.com/docs/custom-skills/speech-synthesis-markup-language-ssml-reference.html#voice
+    private static final String VOICES_DATA = "/resources/data/supported_voices.json";
+    private static VoicesRepo instance;
+    private final Map<String, Map<String, List<String>>> voicesMap;
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 }

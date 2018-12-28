@@ -17,16 +17,6 @@ import org.apache.commons.lang3.Validate;
 public class UtterancesRepo
 {
 
-    public static final int MAX_NUMBER_UTTERANCES = 5;
-    public static final String DEFAULT_LANGUAGE_KEY = "default";
-    // Utterances by language. Any utterance would work for any language but the
-    // data set is constructed to have some cultural significance. For ex,
-    // utterances for en-IN might talk about Cricket.
-    private static final String UTTERANCES_DATA = "/resources/data/utterances.json";
-    private static UtterancesRepo instance;
-    private final Map<String, List<String>> utterancesMap;
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
-
     private UtterancesRepo()
     {
         URL url = getClass().getResource(UTTERANCES_DATA);
@@ -43,13 +33,6 @@ public class UtterancesRepo
         }
 
         utterancesMap = Collections.unmodifiableMap(son);
-    }
-
-    public static UtterancesRepo getInstance()
-    {
-        if (instance == null)
-            instance = new UtterancesRepo();
-        return instance;
     }
 
     /**
@@ -73,4 +56,21 @@ public class UtterancesRepo
 
         return allUtterances.subList(0, Math.min(allUtterances.size(), MAX_NUMBER_UTTERANCES));
     }
+
+    public static UtterancesRepo getInstance()
+    {
+        if (instance == null)
+            instance = new UtterancesRepo();
+        return instance;
+    }
+
+    public static final int MAX_NUMBER_UTTERANCES = 5;
+    public static final String DEFAULT_LANGUAGE_KEY = "default";
+    // Utterances by language. Any utterance would work for any language but the
+    // data set is constructed to have some cultural significance. For ex,
+    // utterances for en-IN might talk about Cricket.
+    private static final String UTTERANCES_DATA = "/resources/data/utterances.json";
+    private static UtterancesRepo instance;
+    private final Map<String, List<String>> utterancesMap;
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 }

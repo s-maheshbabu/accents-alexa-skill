@@ -15,30 +15,6 @@ import org.junit.Test;
 
 public class UtterancesRepoTest
 {
-    private static final UtterancesRepo unitUnderTest = UtterancesRepo.getInstance();
-    private static Map<String, List<String>> utterancesMap;
-
-    @BeforeClass
-    public static void setup()
-    {
-        Map<String, List<String>> map = new HashMap<>();
-
-        map.put("en-IN", Arrays.asList("Indian sentence - 1", "Indian sentence - 2", "Indian sentence - 3",
-                "Indian sentence - 4", "Indian sentence - 5", "Indian sentence - 6"));
-
-        map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
-                "Italian sentence - 4", "Italian sentence - 5"));
-
-        map.put("de-DE", Arrays.asList("German sentence - 1"));
-
-        map.put(UtterancesRepo.DEFAULT_LANGUAGE_KEY,
-                Arrays.asList("Default Language sentence - 1", "Default Language sentence - 2",
-                        "Default Language sentence - 3", "Default Language sentence - 4",
-                        "Default Language sentence - 5", "Default Language sentence - 6"));
-
-        utterancesMap = Collections.unmodifiableMap(map);
-    }
-
     /**
      * Test that a random set of utterances are returned for a given language.
      */
@@ -134,4 +110,27 @@ public class UtterancesRepoTest
         // Act
         unitUnderTest.getUtterances(language);
     }
+
+    @BeforeClass
+    public static void setup()
+    {
+        Map<String, List<String>> map = new HashMap<>();
+
+        map.put("en-IN", Arrays.asList("Indian sentence - 1", "Indian sentence - 2", "Indian sentence - 3",
+                "Indian sentence - 4", "Indian sentence - 5", "Indian sentence - 6"));
+
+        map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
+                "Italian sentence - 4", "Italian sentence - 5"));
+
+        map.put("de-DE", Arrays.asList("German sentence - 1"));
+
+        map.put(UtterancesRepo.DEFAULT_LANGUAGE_KEY,
+                Arrays.asList("Default Language sentence - 1", "Default Language sentence - 2",
+                        "Default Language sentence - 3", "Default Language sentence - 4",
+                        "Default Language sentence - 5", "Default Language sentence - 6"));
+
+        utterancesMap = Collections.unmodifiableMap(map);
+    }
+    private static final UtterancesRepo unitUnderTest = UtterancesRepo.getInstance();
+    private static Map<String, List<String>> utterancesMap;
 }

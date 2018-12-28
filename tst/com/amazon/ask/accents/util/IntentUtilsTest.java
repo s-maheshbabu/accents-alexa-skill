@@ -20,9 +20,6 @@ import org.junit.Test;
 
 public final class IntentUtilsTest
 {
-    private static final IntentUtils unitUnderTest = IntentUtils.getInstance();
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
-
     /**
      * Test that the slots can be obtained in the happy case.
      */
@@ -275,4 +272,7 @@ public final class IntentUtilsTest
 
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
+
+    private static final IntentUtils unitUnderTest = IntentUtils.getInstance();
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 }

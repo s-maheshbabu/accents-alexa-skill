@@ -17,17 +17,8 @@ import org.apache.commons.lang3.Validate;
  */
 public final class IntentUtils
 {
-    private static IntentUtils instance;
-
     private IntentUtils()
     {
-    }
-
-    public static IntentUtils getInstance()
-    {
-        if (instance == null)
-            instance = new IntentUtils();
-        return instance;
     }
 
     /**
@@ -71,4 +62,13 @@ public final class IntentUtils
 
         return slotId.orElseThrow(() -> new IllegalStateException("Couldn't find an Id in the slot: " + slot));
     }
+
+    public static IntentUtils getInstance()
+    {
+        if (instance == null)
+            instance = new IntentUtils();
+        return instance;
+    }
+
+    private static IntentUtils instance;
 }
