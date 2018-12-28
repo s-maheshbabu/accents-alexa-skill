@@ -20,6 +20,9 @@ import org.junit.Test;
 
 public final class IntentUtilsTest
 {
+    private static final IntentUtils unitUnderTest = IntentUtils.getInstance();
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+
     /**
      * Test that the slots can be obtained in the happy case.
      */
@@ -33,7 +36,7 @@ public final class IntentUtilsTest
         final HandlerInput handlerInput = buildHandlerInput(slots);
 
         // Act
-        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+        Map<String, Slot> actualSlots = unitUnderTest.getSlots(handlerInput);
 
         // Assert
         assertEquals(slots, actualSlots);
@@ -49,7 +52,7 @@ public final class IntentUtilsTest
         final HandlerInput handlerInput = buildHandlerInput(new HashMap<>());
 
         // Act
-        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+        Map<String, Slot> actualSlots = unitUnderTest.getSlots(handlerInput);
 
         // Assert
         assertEquals(0, actualSlots.size());
@@ -65,7 +68,7 @@ public final class IntentUtilsTest
         final HandlerInput handlerInput = buildHandlerInput(null);
 
         // Act
-        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+        Map<String, Slot> actualSlots = unitUnderTest.getSlots(handlerInput);
 
         // Assert
         assertEquals(0, actualSlots.size());
@@ -78,7 +81,7 @@ public final class IntentUtilsTest
     public void testGetSlots_NullInput()
     {
         // Act && Assert
-        IntentUtils.getSlots(null);
+        unitUnderTest.getSlots(null);
     }
 
     /**
@@ -96,7 +99,7 @@ public final class IntentUtilsTest
         when(requestEnvelope.getRequest()).thenReturn(request);
 
         // Act && Assert
-        IntentUtils.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
+        unitUnderTest.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
     }
 
     /**
@@ -115,7 +118,7 @@ public final class IntentUtilsTest
         when(intentRequest.getIntent()).thenReturn(intent);
 
         // Act && Assert
-        IntentUtils.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
+        unitUnderTest.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
     }
 
     /**
@@ -128,7 +131,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
 
         // Act
-        String slotId = IntentUtils.getSlotId(slot);
+        String slotId = unitUnderTest.getSlotId(slot);
 
         // Assert
         assertEquals("en-IN", slotId);
@@ -141,7 +144,7 @@ public final class IntentUtilsTest
     public void testGetSlotId_NullInput()
     {
         // Act && Assert
-        IntentUtils.getSlotId(null);
+        unitUnderTest.getSlotId(null);
     }
 
     /**
@@ -154,7 +157,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -168,7 +171,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -182,7 +185,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -196,7 +199,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -210,7 +213,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -224,7 +227,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     /**
@@ -238,7 +241,7 @@ public final class IntentUtilsTest
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
 
         // Act && Assert
-        IntentUtils.getSlotId(slot);
+        unitUnderTest.getSlotId(slot);
     }
 
     private Slot buildSlot(String slotResourcePath)
@@ -272,6 +275,4 @@ public final class IntentUtilsTest
 
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
-
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 }

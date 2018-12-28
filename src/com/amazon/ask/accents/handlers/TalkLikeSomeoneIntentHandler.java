@@ -23,6 +23,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
     private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
     private VoicesRepo voicesRepo = VoicesRepo.getInstance();
     private UtterancesRepo utterancesRepo = UtterancesRepo.getInstance();
+    private IntentUtils intentUtils = IntentUtils.getInstance();
 
     @Override
     public boolean canHandle(HandlerInput input)
@@ -34,14 +35,14 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        Map<String, Slot> slots = IntentUtils.getSlots(input);
+        Map<String, Slot> slots = intentUtils.getSlots(input);
 
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Optional<Slot> genderSlot = Optional.of(slots.get(Slots.GENDER_SLOT));
 
-        String voice = voicesRepo.getVoice(IntentUtils.getSlotId(languageSlot),
-                IntentUtils.getSlotId(genderSlot.orElse(null)));
-        List<String> utterances = utterancesRepo.getUtterances(IntentUtils.getSlotId(languageSlot));
+        String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot),
+                intentUtils.getSlotId(genderSlot.orElse(null)));
+        List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 
         String speechText = String.format("<voice name=\"%s\">%s</voice>", voice, utterances.get(0));
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();

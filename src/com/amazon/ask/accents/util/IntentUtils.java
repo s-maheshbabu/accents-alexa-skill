@@ -11,15 +11,31 @@ import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import org.apache.commons.lang3.Validate;
 
+/**
+ * A set of utility functions to work with Alexa Skill input structures.
+ * Note: This class can be a set of static helper functions but is modeled as a singleton to enable testing without using frameworks like PowerMockito.
+ */
 public final class IntentUtils
 {
+    private static IntentUtils instance;
+
+    private IntentUtils()
+    {
+    }
+
+    public static IntentUtils getInstance()
+    {
+        if (instance == null)
+            instance = new IntentUtils();
+        return instance;
+    }
 
     /**
      * @param input This input is parsed to extract slots.
      * @return a map of all the slots found in the input. If there are no slots, an empty map is returned.
      * @throws IllegalStateException if the input is in an unexpected state and slots cannot be extracted.
      */
-    public static Map<String, Slot> getSlots(HandlerInput input)
+    public Map<String, Slot> getSlots(HandlerInput input)
     {
         Validate.notNull(input);
 
@@ -42,7 +58,7 @@ public final class IntentUtils
      * @return the slotId if found.
      * @throws IllegalStateException if the given slot is in an unexpected state and slotId cannot be extracted.
      */
-    public static String getSlotId(Slot slot)
+    public String getSlotId(Slot slot)
     {
         Validate.notNull(slot);
 
