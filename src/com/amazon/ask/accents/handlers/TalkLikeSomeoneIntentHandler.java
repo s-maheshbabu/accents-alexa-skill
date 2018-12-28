@@ -13,9 +13,6 @@ import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import org.apache.logging.log4j.LogManager;
@@ -37,10 +34,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        Request request = input.getRequestEnvelope().getRequest();
-        IntentRequest intentRequest = (IntentRequest) request;
-        Intent intent = intentRequest.getIntent();
-        Map<String, Slot> slots = intent.getSlots();
+        Map<String, Slot> slots = IntentUtils.getSlots(input);
 
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Optional<Slot> genderSlot = Optional.of(slots.get(Slots.GENDER_SLOT));

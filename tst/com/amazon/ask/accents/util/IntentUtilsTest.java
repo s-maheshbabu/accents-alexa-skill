@@ -1,17 +1,122 @@
 package com.amazon.ask.accents.util;
 
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
 import java.io.FileReader;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Intent;
+import com.amazon.ask.model.IntentRequest;
+import com.amazon.ask.model.Request;
+import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
 public final class IntentUtilsTest
 {
+    /**
+     * Test that the slots can be obtained in the happy case.
+     */
+    @Test
+    public void testGetSlots()
+    {
+        // Arrange
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put("Slot1", mock(Slot.class));
+        slots.put("Slot2", mock(Slot.class));
+        final HandlerInput handlerInput = buildHandlerInput(slots);
 
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+        // Act
+        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+
+        // Assert
+        assertEquals(slots, actualSlots);
+    }
+
+    /**
+     * Test that the slots can be obtained when there are no slots. We should basically return an empty map of slots.
+     */
+    @Test
+    public void testGetSlots_SlotsEmpty()
+    {
+        // Arrange
+        final HandlerInput handlerInput = buildHandlerInput(new HashMap<>());
+
+        // Act
+        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+
+        // Assert
+        assertEquals(0, actualSlots.size());
+    }
+
+    /**
+     * Test that the slots can be obtained when the slots are missing in the handler input. We should basically return an empty map of slots.
+     */
+    @Test
+    public void testGetSlots_SlotsMissing()
+    {
+        // Arrange
+        final HandlerInput handlerInput = buildHandlerInput(null);
+
+        // Act
+        Map<String, Slot> actualSlots = IntentUtils.getSlots(handlerInput);
+
+        // Assert
+        assertEquals(0, actualSlots.size());
+    }
+
+    /**
+     * Test that an exception is raised if the input is null.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testGetSlots_NullInput()
+    {
+        // Act && Assert
+        IntentUtils.getSlots(null);
+    }
+
+    /**
+     * Test that an exception is raised if the Request is not of the type IntentRequest
+     */
+    @Test(expected = IllegalStateException.class)
+    public void testGetSlots_RequestIncorrectType()
+    {
+        // Arrange
+        RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
+
+        Request request = new Request()
+        {
+        };
+        when(requestEnvelope.getRequest()).thenReturn(request);
+
+        // Act && Assert
+        IntentUtils.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
+    }
+
+    /**
+     * Test that an exception is raised if the Intent is missing in the handler input
+     */
+    @Test(expected = IllegalStateException.class)
+    public void testGetSlots_MissingIntent()
+    {
+        // Arrange
+        RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
+
+        IntentRequest intentRequest = mock(IntentRequest.class);
+        when(requestEnvelope.getRequest()).thenReturn(intentRequest);
+
+        Intent intent = null;
+        when(intentRequest.getIntent()).thenReturn(intent);
+
+        // Act && Assert
+        IntentUtils.getSlots(HandlerInput.builder().withRequestEnvelope(requestEnvelope).build());
+    }
 
     /**
      * Test that the slot Id can be obtained in the happy case.
@@ -27,6 +132,16 @@ public final class IntentUtilsTest
 
         // Assert
         assertEquals("en-IN", slotId);
+    }
+
+    /**
+     * Test that an exception is raised if the input is null.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testGetSlotId_NullInput()
+    {
+        // Act && Assert
+        IntentUtils.getSlotId(null);
     }
 
     /**
@@ -57,7 +172,7 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that an exception is raised if there resolutionsPerAuthority is empty in
+     * Test that an exception is raised if the resolutionsPerAuthority is empty in
      * the slot.
      */
     @Test(expected = IllegalStateException.class)
@@ -143,4 +258,20 @@ public final class IntentUtilsTest
         return slot;
     }
 
+    private HandlerInput buildHandlerInput(Map<String, Slot> slots)
+    {
+        RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
+
+        IntentRequest intentRequest = mock(IntentRequest.class);
+        when(requestEnvelope.getRequest()).thenReturn(intentRequest);
+
+        Intent intent = mock(Intent.class);
+        when(intentRequest.getIntent()).thenReturn(intent);
+
+        when(intent.getSlots()).thenReturn(slots == null ? null : new HashMap<>(slots));
+
+        return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
+    }
+
+    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 }
