@@ -38,10 +38,13 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
         Map<String, Slot> slots = intentUtils.getSlots(input);
 
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
-        Optional<Slot> genderSlot = Optional.of(slots.get(Slots.GENDER_SLOT));
+        Slot genderSlot = slots.get(Slots.GENDER_SLOT);
 
+        String genderSlotId = null;
+        if(genderSlot != null) genderSlotId = intentUtils.getSlotId(genderSlot);
         String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot),
-                intentUtils.getSlotId(genderSlot.orElse(null)));
+                genderSlotId);
+
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 
         String speechText = String.format("<voice name=\"%s\">%s</voice>", voice, utterances.get(0));
