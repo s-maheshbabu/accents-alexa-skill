@@ -20,7 +20,7 @@ public class StopIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        String speechText = "Extract this into an exit prompt. Probably just say Okay";
+        String speechText = "Goodbye.";
         return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
     }
 }

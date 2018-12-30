@@ -1,4 +1,4 @@
-package com.amazon.ask.accents.requesthandlers;
+package com.amazon.ask.accents.intenthandlers;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -12,46 +12,25 @@ import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
-public class LaunchRequestHandlerTest
+public class CancelIntentHandlerTest
 {
-    /**
-     * Test that we return true if the request is a LaunchRequest.
-     */
+    /*
+    * Test that canHandle returns true when the right intent is passed.
+    */
     @Test
-    public void canHandle_LaunchRequest() throws Exception
-    {
-        // Arrange
-        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
-
-        LaunchRequest launchRequest = LaunchRequest.builder().build();
-        when(input.getRequestEnvelope().getRequest()).thenReturn(launchRequest);
-        when(input.matches(any())).thenCallRealMethod();
-
-        // Act
-        boolean canHandle = unitUnderTest.canHandle(input);
-
-        // Assert
-        assertTrue(canHandle);
-    }
-
-    /**
-     * Test that we return true if the intent is a StartOverIntent.
-     */
-    @Test
-    public void canHandle_StartOverIntent() throws Exception
+    public void testCanHandle_RightIntentName() throws Exception
     {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
         IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
         when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
-        when(intentRequest.getIntent().getName()).thenReturn(Intents.START_OVER_INTENT);
+        when(intentRequest.getIntent().getName()).thenReturn(Intents.CANCEL_INTENT);
 
         when(input.matches(any())).thenCallRealMethod();
 
@@ -62,9 +41,6 @@ public class LaunchRequestHandlerTest
         assertTrue(canHandle);
     }
 
-    /**
-     * Placeholder testing.
-     */
     @Test
     public void handle() throws Exception
     {
@@ -77,8 +53,9 @@ public class LaunchRequestHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>Welcome to accents.</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>Goodbye.</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertTrue("The session should be ended", response.get().getShouldEndSession());
     }
 
-    private LaunchRequestHandler unitUnderTest = new LaunchRequestHandler();
+    private CancelIntentHandler unitUnderTest = new CancelIntentHandler();
 }

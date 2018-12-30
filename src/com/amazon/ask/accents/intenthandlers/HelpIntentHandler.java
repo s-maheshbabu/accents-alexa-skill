@@ -20,9 +20,10 @@ public class HelpIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        String speechText = "You can tell me your favorite color by saying, my favorite color is red";
-        String repromptText = "Please tell me your favorite color by saying, my favorite color is red";
-        return input.getResponseBuilder().withSimpleCard("ColorSession", speechText).withSpeech(speechText)
-                .withReprompt(repromptText).withShouldEndSession(false).build();
+        // TODO: shouldEndSession should be false.
+        String speechText = "Help Message.";
+        String repromptText = "Help Message Repeated.";
+        return input.getResponseBuilder().withSpeech(speechText)
+                .withReprompt(repromptText).withShouldEndSession(true).build();
     }
 }
