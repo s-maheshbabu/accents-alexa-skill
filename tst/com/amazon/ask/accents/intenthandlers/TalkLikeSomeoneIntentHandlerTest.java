@@ -1,4 +1,4 @@
-package com.amazon.ask.accents.handlers;
+package com.amazon.ask.accents.intenthandlers;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -14,7 +14,6 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import com.amazon.ask.accents.intenthandlers.TalkLikeSomeoneIntentHandler;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
