@@ -81,6 +81,7 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>tst</testSourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -89,7 +90,6 @@
                     <executions>
                         <execution>
                             <id>copy-datafiles</id>
-                            <!-- here the phase you need -->
                             <phase>validate</phase>
                             <goals>
                                 <goal>copy-resources</goal>
@@ -106,8 +106,24 @@
                             </configuration>
                         </execution>
                         <execution>
+                            <id>copy-testdatafiles</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${basedir}/target/classes/testdata
+                                </outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>tst/testdata/</directory>
+                                        <filtering>false</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
                             <id>copy-configuration</id>
-                            <!-- here the phase you need -->
                             <phase>validate</phase>
                             <goals>
                                 <goal>copy-resources</goal>

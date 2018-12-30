@@ -148,6 +148,7 @@ public final class IntentUtilsTest
     /**
      * Test that null is returned if there are no resolutions in the slot.
      */
+    @Test
     public void testGetSlotId_MissigResolutions()
     {
         // Arrange
@@ -164,6 +165,7 @@ public final class IntentUtilsTest
      * Test that null is returned if there are no resolutionsPerAuthority in
      * the slot.
      */
+    @Test
     public void testGetSlotId_MissigResolutionsPerAuthority()
     {
         // Arrange
@@ -180,6 +182,7 @@ public final class IntentUtilsTest
      * Test that null is returned if the resolutionsPerAuthority is empty in
      * the slot.
      */
+    @Test
     public void testGetSlotId_EmptyResolutionsPerAuthority()
     {
         // Arrange
@@ -196,6 +199,7 @@ public final class IntentUtilsTest
      * Test that null is returned if there are no
      * resolutionsPerAuthorityValues in the slot.
      */
+    @Test
     public void testGetSlotId_MissigResolutionsPerAuthority_Values()
     {
         // Arrange
@@ -212,6 +216,7 @@ public final class IntentUtilsTest
      * Test that null is retutned if there resolutionsPerAuthorityValues is
      * empty in the slot.
      */
+    @Test
     public void testGetSlotId_EmptyResolutionsPerAuthority_Values()
     {
         // Arrange
@@ -228,6 +233,7 @@ public final class IntentUtilsTest
      * Test that null is returned if there are no
      * resolutionsPerAuthorityValuesValue in the slot.
      */
+    @Test
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value()
     {
         // Arrange
@@ -244,6 +250,7 @@ public final class IntentUtilsTest
      * Test that null is returned if there are no
      * resolutionsPerAuthorityValuesValueId in the slot.
      */
+    @Test
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id()
     {
         // Arrange
