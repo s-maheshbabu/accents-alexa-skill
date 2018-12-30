@@ -7,9 +7,11 @@ import static org.mockito.Mockito.when;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
+import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.LaunchRequest;
@@ -77,7 +79,8 @@ public class LaunchRequestHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>Welcome to accents.</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.WELCOME_MESSAGE + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertFalse("The session should be left open.", response.get().getShouldEndSession());
     }
 
     private LaunchRequestHandler unitUnderTest = new LaunchRequestHandler();

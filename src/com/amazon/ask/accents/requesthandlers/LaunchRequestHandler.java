@@ -6,6 +6,7 @@ import static com.amazon.ask.request.Predicates.requestType;
 import java.util.Optional;
 
 import com.amazon.ask.accents.model.Intents;
+import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
@@ -25,7 +26,7 @@ public class LaunchRequestHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        return input.getResponseBuilder().withSpeech("Welcome to accents.").withShouldEndSession(true).build();
+        return input.getResponseBuilder().withSpeech(Prompts.WELCOME_MESSAGE).withShouldEndSession(false).build();
     }
 
     private static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
