@@ -1,5 +1,6 @@
 package com.amazon.ask.accents.intenthandlers;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,6 +15,8 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import org.mockito.Mockito;
+import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
@@ -48,30 +51,41 @@ public class TalkLikeSomeoneIntentHandlerTest
     public void testCanHandle_RightIntentName()
     {
         // Arrange
-        HandlerInput input = buildHandlerInput("/testdata/handlerInputs/talkLikeSomeoneIntent/ValidHandlerInput.json");
+        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
+
+        IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
+        when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
+        when(intentRequest.getIntent().getName()).thenReturn(Intents.TALK_LIKE_SOMEONE_INTENT);
+
+        when(input.matches(any())).thenCallRealMethod();
 
         // Act
-        boolean actualValue = unitUnderTest.canHandle(input);
+        boolean canHandle = unitUnderTest.canHandle(input);
 
         // Assert
-        assertTrue("canHandle should return true when TalkLikeSomeoneIntent is passed.", actualValue);
+        assertTrue(canHandle);
     }
 
     /*
-     * Test that canHandle returns true when the right intent is passed.
+     * Test that canHandle returns false when an incorrect intent is passed.
      */
     @Test
     public void testCanHandle_IncorrectIntentName()
     {
         // Arrange
-        HandlerInput input = buildHandlerInput(
-                "/testdata/handlerInputs/talkLikeSomeoneIntent/IncorrectIntentName.json");
+        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
+
+        IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
+        when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
+        when(intentRequest.getIntent().getName()).thenReturn("anIntentThatIsNotTalkLikeSomeoneIntent");
+
+        when(input.matches(any())).thenCallRealMethod();
 
         // Act
         boolean actualValue = unitUnderTest.canHandle(input);
 
         // Assert
-        assertFalse("canHandle should return false when TalkLikeSomeoneIntent is passed.", actualValue);
+        assertFalse("canHandle should return false when any intent other than TalkLikeSomeoneIntent is passed.", actualValue);
     }
 
     /*
