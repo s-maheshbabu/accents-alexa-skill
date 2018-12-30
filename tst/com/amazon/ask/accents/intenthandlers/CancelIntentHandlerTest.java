@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
+import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.RequestEnvelope;
@@ -53,7 +54,7 @@ public class CancelIntentHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>Goodbye.</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.EXIT + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", response.get().getShouldEndSession());
     }
 

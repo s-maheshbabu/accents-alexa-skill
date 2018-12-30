@@ -18,7 +18,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
-public class StopIntentHandlerTest
+public class FallbackIntentHandlerTest
 {
     /*
     * Test that canHandle returns true when the right intent is passed.
@@ -31,7 +31,7 @@ public class StopIntentHandlerTest
 
         IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
         when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
-        when(intentRequest.getIntent().getName()).thenReturn(Intents.STOP_INTENT);
+        when(intentRequest.getIntent().getName()).thenReturn(Intents.FALLBACK_INTENT);
 
         when(input.matches(any())).thenCallRealMethod();
 
@@ -54,9 +54,9 @@ public class StopIntentHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + Prompts.EXIT + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.FALLBACK + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", response.get().getShouldEndSession());
     }
 
-    private StopIntentHandler unitUnderTest = new StopIntentHandler();
+    private FallbackIntentHandler unitUnderTest = new FallbackIntentHandler();
 }
