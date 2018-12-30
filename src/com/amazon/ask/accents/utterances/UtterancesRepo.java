@@ -16,7 +16,6 @@ import org.apache.commons.lang3.Validate;
  */
 public class UtterancesRepo
 {
-
     private UtterancesRepo()
     {
         URL url = getClass().getResource(UTTERANCES_DATA);

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
@@ -145,100 +146,114 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that an exception is raised if there are no resolutions in the slot.
+     * Test that null is returned if there are no resolutions in the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutions()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if there are no resolutionsPerAuthority in
+     * Test that null is returned if there are no resolutionsPerAuthority in
      * the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if the resolutionsPerAuthority is empty in
+     * Test that null is returned if the resolutionsPerAuthority is empty in
      * the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_EmptyResolutionsPerAuthority()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if there are no
+     * Test that null is returned if there are no
      * resolutionsPerAuthorityValues in the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if there resolutionsPerAuthorityValues is
+     * Test that null is retutned if there resolutionsPerAuthorityValues is
      * empty in the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_EmptyResolutionsPerAuthority_Values()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if there are no
+     * Test that null is returned if there are no
      * resolutionsPerAuthorityValuesValue in the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     /**
-     * Test that an exception is raised if there are no
+     * Test that null is returned if there are no
      * resolutionsPerAuthorityValuesValueId in the slot.
      */
-    @Test(expected = IllegalStateException.class)
     public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id()
     {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
 
-        // Act && Assert
-        unitUnderTest.getSlotId(slot);
+        // Act
+        String slotId = unitUnderTest.getSlotId(slot);
+
+        // Assert
+        assertNull("slotId should be null.", slotId);
     }
 
     private Slot buildSlot(String slotResourcePath)

@@ -81,7 +81,6 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
-        <testSourceDirectory>tst</testSourceDirectory>
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -89,18 +88,37 @@
                     <version>3.1.0</version>
                     <executions>
                         <execution>
-                            <id>copy-resources</id>
+                            <id>copy-datafiles</id>
                             <!-- here the phase you need -->
                             <phase>validate</phase>
                             <goals>
                                 <goal>copy-resources</goal>
                             </goals>
                             <configuration>
-                                <outputDirectory>${basedir}/target/resources/data</outputDirectory>
+                                <outputDirectory>${basedir}/target/classes/resources/data
+                                </outputDirectory>
                                 <resources>
                                     <resource>
                                         <directory>src/resources/data</directory>
-                                        <filtering>true</filtering>
+                                        <filtering>false</filtering>
+                                    </resource>
+                                </resources>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>copy-configuration</id>
+                            <!-- here the phase you need -->
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>${basedir}/target/classes
+                                </outputDirectory>
+                                <resources>
+                                    <resource>
+                                        <directory>src/configuration</directory>
+                                        <filtering>false</filtering>
                                     </resource>
                                 </resources>
                             </configuration>

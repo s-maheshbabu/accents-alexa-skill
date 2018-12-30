@@ -1,4 +1,4 @@
-package com.amazon.ask.accents.handlers;
+package com.amazon.ask.accents.intenthandlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 

@@ -14,6 +14,7 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+import com.amazon.ask.accents.intenthandlers.TalkLikeSomeoneIntentHandler;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
@@ -192,7 +193,7 @@ public class TalkLikeSomeoneIntentHandlerTest
     }
 
     @InjectMocks
-    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
+    private static final com.amazon.ask.accents.intenthandlers.TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
     private static final String languageSlotRawValue = "languageSlotRawValue";
     private static final String languageSlotResolvedValue = "languageSlotResolvedValue";
     private static final String languageSlotId = "languageSlotId";

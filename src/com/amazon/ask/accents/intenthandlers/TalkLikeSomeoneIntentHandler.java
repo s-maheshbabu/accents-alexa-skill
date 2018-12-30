@@ -1,4 +1,4 @@
-package com.amazon.ask.accents.handlers;
+package com.amazon.ask.accents.intenthandlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -24,7 +24,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
     @Override
     public boolean canHandle(HandlerInput input)
     {
-        logger.info("Handler Input: " + input);
+        logger.info("Request Envelope: " + input.getRequestEnvelope());
         return input.matches(intentName(Intents.TALK_LIKE_SOMEONE_INTENT));
     }
 

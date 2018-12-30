@@ -33,7 +33,7 @@ public class VoicesRepoTest
         // The idea here is to run this test 1000 times the number of voices for the
         // given language / gender combination and hoping that each voice will get
         // selected at least once. Sure, there is a slim chance that a voice doesn't get
-        // selected in all of those runs making this test undeterministic. However, it
+        // selected in all of those runs making this test non-deterministic. However, it
         // is very unlikely and if it happens, it is probably an indication of poor
         // random selection logic in the source code than us getting really unlucky.
         Set<String> actualVoices = new HashSet<>();
@@ -197,6 +197,7 @@ public class VoicesRepoTest
 
         voicesMap = Collections.unmodifiableMap(map);
     }
+
     private static final VoicesRepo unitUnderTest = VoicesRepo.getInstance();
     private static Map<String, Map<String, List<String>>> voicesMap;
 }

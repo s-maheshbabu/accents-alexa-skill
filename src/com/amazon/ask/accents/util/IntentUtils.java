@@ -46,8 +46,7 @@ public final class IntentUtils
 
     /**
      * @param slot The slot from which the slotId is to be extracted.
-     * @return the slotId if found.
-     * @throws IllegalStateException if the given slot is in an unexpected state and slotId cannot be extracted.
+     * @return the slotId if found and null otherwise.
      */
     public String getSlotId(Slot slot)
     {
@@ -60,7 +59,7 @@ public final class IntentUtils
                 .map(values -> values.stream().findFirst().orElse(null)).map(firstValue -> firstValue.getValue())
                 .map(value -> value.getId());
 
-        return slotId.orElseThrow(() -> new IllegalStateException("Couldn't find an Id in the slot: " + slot));
+        return slotId.orElse(null);
     }
 
     public static IntentUtils getInstance()
