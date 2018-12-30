@@ -79,7 +79,7 @@ public class HelpIntentHandlerTest
         // Assert
         assertEquals("<speak>" + Prompts.HELP + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
         assertEquals("<speak>" + Prompts.HELP_REPROMPT + "</speak>", ((SsmlOutputSpeech) response.get().getReprompt().getOutputSpeech()).getSsml());
-        assertTrue("The session should be ended", response.get().getShouldEndSession());
+        assertFalse("The session should be left open.", response.get().getShouldEndSession());
     }
 
     private HelpIntentHandler unitUnderTest = new HelpIntentHandler();

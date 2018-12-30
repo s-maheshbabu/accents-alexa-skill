@@ -21,8 +21,7 @@ public class HelpIntentHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        // TODO: shouldEndSession should be false.
         return input.getResponseBuilder().withSpeech(Prompts.HELP)
-                .withReprompt(Prompts.HELP_REPROMPT).withShouldEndSession(true).build();
+                .withReprompt(Prompts.HELP_REPROMPT).withShouldEndSession(false).build();
     }
 }
