@@ -2,10 +2,7 @@
   "de-DE": [
     "German sentence - 1",
     "German sentence - 2",
-    "German sentence - 3",
-    "German sentence - 4",
-    "German sentence - 5",
-    "German sentence - 6"
+    "German sentence - 3"
   ],
   "en-AU": [
     "Australian sentence - 1",
@@ -14,14 +11,6 @@
     "Australian sentence - 4",
     "Australian sentence - 5",
     "Australian sentence - 6"
-  ],
-  "en-ES": [
-    "Spanish sentence - 1",
-    "Spanish sentence - 2",
-    "Spanish sentence - 3",
-    "Spanish sentence - 4",
-    "Spanish sentence - 5",
-    "Spanish sentence - 6"
   ],
   "en-GB": [
     "British sentence - 1",
@@ -46,6 +35,14 @@
     "American sentence - 4",
     "American sentence - 5",
     "American sentence - 6"
+  ],
+  "es-ES": [
+    "Spanish sentence - 1",
+    "Spanish sentence - 2",
+    "Spanish sentence - 3",
+    "Spanish sentence - 4",
+    "Spanish sentence - 5",
+    "Spanish sentence - 6"
   ],
   "fr-FR": [
     "French sentence - 1",

@@ -122,7 +122,7 @@ public class UtterancesRepoTest
         map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
                 "Italian sentence - 4", "Italian sentence - 5"));
 
-        map.put("de-DE", Arrays.asList("German sentence - 1"));
+        map.put("de-DE", Arrays.asList("German sentence - 1", "German sentence - 2", "German sentence - 3"));
 
         map.put(UtterancesRepo.DEFAULT_LANGUAGE_KEY,
                 Arrays.asList("Default Language sentence - 1", "Default Language sentence - 2",
@@ -131,6 +131,7 @@ public class UtterancesRepoTest
 
         utterancesMap = Collections.unmodifiableMap(map);
     }
+
     private static final UtterancesRepo unitUnderTest = UtterancesRepo.getInstance();
     private static Map<String, List<String>> utterancesMap;
 }
