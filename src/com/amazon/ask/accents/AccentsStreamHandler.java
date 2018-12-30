@@ -23,7 +23,8 @@ public class AccentsStreamHandler extends SkillStreamHandler
                 .addRequestHandlers(new StopIntentHandler(), new CancelIntentHandler(), new HelpIntentHandler(),
                         new LaunchRequestHandler(),
                         new TalkLikeSomeoneIntentHandler(), new FallbackIntentHandler())
-                .withSkillId("amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc").build();
+                .withSkillId(SKILl_ID).build();
     }
 
+    private static final String SKILl_ID = "amzn1.ask.skill.75abfdf4-a8c0-445a-8413-9a08ae0d8fbc";
 }
