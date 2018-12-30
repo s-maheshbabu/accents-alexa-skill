@@ -1,4 +1,36 @@
 {
+  "de-DE": [
+    "German sentence - 1",
+    "German sentence - 2",
+    "German sentence - 3",
+    "German sentence - 4",
+    "German sentence - 5",
+    "German sentence - 6"
+  ],
+  "en-AU": [
+    "Australian sentence - 1",
+    "Australian sentence - 2",
+    "Australian sentence - 3",
+    "Australian sentence - 4",
+    "Australian sentence - 5",
+    "Australian sentence - 6"
+  ],
+  "en-ES": [
+    "Spanish sentence - 1",
+    "Spanish sentence - 2",
+    "Spanish sentence - 3",
+    "Spanish sentence - 4",
+    "Spanish sentence - 5",
+    "Spanish sentence - 6"
+  ],
+  "en-GB": [
+    "British sentence - 1",
+    "British sentence - 2",
+    "British sentence - 3",
+    "British sentence - 4",
+    "British sentence - 5",
+    "British sentence - 6"
+  ],
   "en-IN": [
     "Indian sentence - 1",
     "Indian sentence - 2",
@@ -7,6 +39,21 @@
     "Indian sentence - 5",
     "Indian sentence - 6"
   ],
+  "en-US": [
+    "American sentence - 1",
+    "American sentence - 2",
+    "American sentence - 3",
+    "American sentence - 4",
+    "American sentence - 5",
+    "American sentence - 6"
+  ],
+  "fr-FR": [
+    "French sentence - 1",
+    "French sentence - 2",
+    "French sentence - 3",
+    "French sentence - 4",
+    "French sentence - 5"
+  ],
   "it-IT": [
     "Italian sentence - 1",
     "Italian sentence - 2",
@@ -14,8 +61,12 @@
     "Italian sentence - 4",
     "Italian sentence - 5"
   ],
-  "de-DE": [
-    "German sentence - 1"
+  "ja-JP": [
+    "Japanese sentence - 1",
+    "Japanese sentence - 2",
+    "Japanese sentence - 3",
+    "Japanese sentence - 4",
+    "Japanese sentence - 5"
   ],
   "default": [
     "Default Language sentence - 1",

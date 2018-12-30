@@ -1,12 +1,4 @@
 {
-  "it-IT": {
-    "Female": [
-      "Carla"
-    ],
-    "Male": [
-      "Giorgio"
-    ]
-  },
   "de-DE": {
     "Female": [
       "Marlene",
@@ -14,28 +6,6 @@
     ],
     "Male": [
       "Hans"
-    ]
-  },
-  "en-US": {
-    "Female": [
-      "Ivy",
-      "Joanna",
-      "Kendra",
-      "Kimberly",
-      "Salli"
-    ],
-    "Male": [
-      "Joey",
-      "Justin",
-      "Matthew"
-    ]
-  },
-  "en-IN": {
-    "Female": [
-      "Aditi"
-    ],
-    "Male": [
-      "Raveena"
     ]
   },
   "en-AU": {
@@ -54,6 +24,37 @@
       "Enrique"
     ]
   },
+  "en-GB": {
+    "Female": [
+      "Amy",
+      "Emma"
+    ],
+    "Male": [
+      "Brian"
+    ]
+  },
+  "en-IN": {
+    "Female": [
+      "Aditi"
+    ],
+    "Male": [
+      "Raveena"
+    ]
+  },
+  "en-US": {
+    "Female": [
+      "Ivy",
+      "Joanna",
+      "Kendra",
+      "Kimberly",
+      "Salli"
+    ],
+    "Male": [
+      "Joey",
+      "Justin",
+      "Matthew"
+    ]
+  },
   "fr-FR": {
     "Female": [
       "Celine",
@@ -63,13 +64,12 @@
       "Mathieu"
     ]
   },
-  "en-GB": {
+  "it-IT": {
     "Female": [
-      "Amy",
-      "Emma"
+      "Carla"
     ],
     "Male": [
-      "Brian"
+      "Giorgio"
     ]
   },
   "ja-JP": {
