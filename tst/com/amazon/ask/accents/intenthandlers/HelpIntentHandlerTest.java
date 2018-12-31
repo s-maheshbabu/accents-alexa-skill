@@ -25,7 +25,7 @@ public class HelpIntentHandlerTest
     * Test that canHandle returns true when the right intent is passed.
     */
     @Test
-    public void testCanHandle_RightIntentName() throws Exception
+    public void testCanHandle_HelpIntent() throws Exception
     {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
@@ -33,6 +33,28 @@ public class HelpIntentHandlerTest
         IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
         when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
         when(intentRequest.getIntent().getName()).thenReturn(Intents.HELP_INTENT);
+
+        when(input.matches(any())).thenCallRealMethod();
+
+        // Act
+        boolean canHandle = unitUnderTest.canHandle(input);
+
+        // Assert
+        assertTrue(canHandle);
+    }
+
+    /*
+    * Test that canHandle returns true when the right intent is passed.
+    */
+    @Test
+    public void testCanHandle_FallbackIntent() throws Exception
+    {
+        // Arrange
+        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
+
+        IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
+        when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
+        when(intentRequest.getIntent().getName()).thenReturn(Intents.FALLBACK_INTENT);
 
         when(input.matches(any())).thenCallRealMethod();
 

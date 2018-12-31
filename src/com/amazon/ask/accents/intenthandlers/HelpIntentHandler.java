@@ -15,7 +15,7 @@ public class HelpIntentHandler implements RequestHandler
     @Override
     public boolean canHandle(HandlerInput input)
     {
-        return input.matches(intentName(Intents.HELP_INTENT));
+        return input.matches(intentName(Intents.HELP_INTENT)) || input.matches((intentName((Intents.FALLBACK_INTENT))));
     }
 
     @Override
