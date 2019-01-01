@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
+import com.amazon.ask.accents.prompts.Cards;
 import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.accents.util.IntentUtils;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
@@ -17,6 +18,8 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.ui.Card;
+import com.amazon.ask.model.ui.SimpleCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,7 +53,8 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 
         String speechText = wrapUtternacesInVoiceTag(voice, utterances);
-        return input.getResponseBuilder().withSpeech(speechText).withShouldEndSession(true).build();
+        Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();
+        return input.getResponseBuilder().withSpeech(speechText).withCard(card).withShouldEndSession(true).build();
     }
 
     private String wrapUtternacesInVoiceTag(String voice, List<String> utterances)

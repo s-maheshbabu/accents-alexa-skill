@@ -16,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
+import com.amazon.ask.accents.prompts.Cards;
 import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
@@ -30,6 +31,7 @@ import com.amazon.ask.model.slu.entityresolution.Resolution;
 import com.amazon.ask.model.slu.entityresolution.Resolutions;
 import com.amazon.ask.model.slu.entityresolution.Value;
 import com.amazon.ask.model.slu.entityresolution.ValueWrapper;
+import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -118,6 +120,10 @@ public class TalkLikeSomeoneIntentHandlerTest
         }
         assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+
+        assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
+        assertEquals(Cards.TALK_LIKE_SOMEONE_INFO, ((SimpleCard) actualResponse.get().getCard()).getContent());
+
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
@@ -151,6 +157,10 @@ public class TalkLikeSomeoneIntentHandlerTest
         }
         assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+
+        assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
+        assertEquals(Cards.TALK_LIKE_SOMEONE_INFO, ((SimpleCard) actualResponse.get().getCard()).getContent());
+
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 

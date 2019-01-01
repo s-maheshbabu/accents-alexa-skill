@@ -11,12 +11,14 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
+import com.amazon.ask.accents.prompts.Cards;
 import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
@@ -80,6 +82,10 @@ public class LaunchRequestHandlerTest
 
         // Assert
         assertEquals("<speak>" + Prompts.WELCOME_MESSAGE + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+
+        assertEquals(Cards.CARD_TITLE, ((SimpleCard) response.get().getCard()).getTitle());
+        assertEquals(Cards.WELCOME, ((SimpleCard) response.get().getCard()).getContent());
+
         assertFalse("The session should be left open.", response.get().getShouldEndSession());
     }
 

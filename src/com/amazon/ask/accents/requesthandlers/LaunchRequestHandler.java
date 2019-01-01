@@ -6,11 +6,14 @@ import static com.amazon.ask.request.Predicates.requestType;
 import java.util.Optional;
 
 import com.amazon.ask.accents.model.Intents;
+import com.amazon.ask.accents.prompts.Cards;
 import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.ui.Card;
+import com.amazon.ask.model.ui.SimpleCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -26,7 +29,8 @@ public class LaunchRequestHandler implements RequestHandler
     @Override
     public Optional<Response> handle(HandlerInput input)
     {
-        return input.getResponseBuilder().withSpeech(Prompts.WELCOME_MESSAGE).withShouldEndSession(false).build();
+        Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.WELCOME).build();
+        return input.getResponseBuilder().withSpeech(Prompts.WELCOME_MESSAGE).withShouldEndSession(false).withCard(card).build();
     }
 
     private static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
