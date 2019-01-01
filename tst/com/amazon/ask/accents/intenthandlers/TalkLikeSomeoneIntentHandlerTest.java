@@ -4,8 +4,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import java.io.FileReader;
-import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +16,7 @@ import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
+import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
@@ -43,7 +42,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 public class TalkLikeSomeoneIntentHandlerTest
 {
-
     /*
      * Test that canHandle returns true when the right intent is passed.
      */
@@ -156,6 +154,33 @@ public class TalkLikeSomeoneIntentHandlerTest
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
+    /*
+     * Test that handle returns an accurate error prompt if no voice is found for the given language/voice combination.
+     */
+    @Test
+    public void testHandle_NoVoiceFound()
+    {
+        // Arrange
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue, languageSlotId);
+        Slot genderSlot = buildSlot(Slots.GENDER_SLOT, genderSlotRawValue, genderSlotResolvedValue, genderSlotId);
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put(Slots.LANGUAGE_SLOT, languageSlot);
+        slots.put(Slots.GENDER_SLOT, genderSlot);
+
+        HandlerInput input = buildHandlerInput(slots);
+
+        when(voicesRepo.getVoice(languageSlotId, genderSlotId)).thenReturn(null);
+
+        // Act
+        Optional<Response> actualResponse = unitUnderTest.handle(input);
+
+        // Assert
+        assertEquals(ssmlize(Prompts.NO_VOICE_FOUND),
+                ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+        assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
+    }
+
     private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId)
     {
         ValueWrapper resolvedValueWrapper = ValueWrapper.builder().withValue(Value.builder().withId(slotId).withName(slotResolvedValue).build()).build();
@@ -185,24 +210,6 @@ public class TalkLikeSomeoneIntentHandlerTest
     private String ssmlize(String input)
     {
         return "<speak>" + input + "</speak>";
-    }
-
-    private HandlerInput buildHandlerInput(String handlerInputResourcePath)
-    {
-        URL url = getClass().getResource(handlerInputResourcePath);
-
-        RequestEnvelope requestEnvelope;
-        try
-        {
-            requestEnvelope = objectMapper.readValue(new FileReader(url.getPath()), RequestEnvelope.class);
-        }
-        catch (Exception e)
-        {
-            throw new RuntimeException("Failed loading the handler inputs from test data files. This is a fatal error.",
-                    e);
-        }
-
-        return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
 
     @InjectMocks

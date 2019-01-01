@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
+import com.amazon.ask.accents.prompts.Prompts;
 import com.amazon.ask.accents.util.IntentUtils;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
@@ -40,6 +41,11 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
         if (genderSlot != null) genderSlotId = intentUtils.getSlotId(genderSlot);
         String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot),
                 genderSlotId);
+
+        if (null == voice)
+        {
+            return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
+        }
 
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 

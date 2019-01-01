@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import com.amazon.ask.accents.errors.UnsupportedLanguageException;
 import org.apache.logging.log4j.util.Strings;
@@ -103,6 +104,23 @@ public class VoicesRepoTest
     }
 
     /**
+     * Test that if there no voice for the given valid language/gender combination, we return null.
+     */
+    @Test
+    public void getVoice_NoVoiceForSpecifiedGender()
+    {
+        // Arrange
+        String language = "en-IN";
+        String gender = "Male";    // There are no Male en-IN voices.
+
+        // Act
+        String actualVoice = unitUnderTest.getVoice(language, gender);
+
+        // Assert
+        assertNull(actualVoice);
+    }
+
+    /**
      * Test that an NPE is thrown if the language parameter is null.
      */
     @Test(expected = NullPointerException.class)
@@ -166,8 +184,7 @@ public class VoicesRepoTest
         map.put("en-GB", en_GBVoicesMapByGender);
 
         Map<String, List<String>> en_INVoicesMapByGender = new HashMap<>();
-        en_INVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Aditi")));
-        en_INVoicesMapByGender.put("Male", Collections.unmodifiableList(Arrays.asList("Raveena")));
+        en_INVoicesMapByGender.put("Female", Collections.unmodifiableList(Arrays.asList("Aditi", "Raveena")));
         map.put("en-IN", en_INVoicesMapByGender);
 
         Map<String, List<String>> de_DEVoicesMapByGender = new HashMap<>();

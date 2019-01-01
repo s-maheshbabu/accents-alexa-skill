@@ -70,16 +70,12 @@ public class VoicesRepo
             applicableVoices = new ArrayList<>(voicesByGenderMap.get(Gender.Male.name()));
             applicableVoices.addAll(voicesByGenderMap.get(Gender.Female.name()));
         }
-        // TODO: This block of code needs to be tested. We need to be able to inject
-        // voicesMap from test class to be albe to test this because the real data has
-        // no language/gender combination that doesn't support any voices.
-        if (applicableVoices.size() < 1)
+
+        // This can happen if there are no voices for the specified gender even though the language itself is supported.
+        if (applicableVoices == null || applicableVoices.size() < 1)
         {
-            throw new IllegalStateException(String.format(
-                    "Each language/gender combination should have at least one supported languages. Language: %s. Gender: %s",
-                    language, gender));
+            return null;
         }
-        // We need throw an InvalidStateException if applicableVoices is of size 0
 
         Collections.shuffle(applicableVoices);
         return applicableVoices.get(0);
