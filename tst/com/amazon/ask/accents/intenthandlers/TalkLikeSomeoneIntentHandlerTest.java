@@ -12,13 +12,14 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import org.mockito.Mockito;
+import com.amazon.ask.accents.apl.DocumentRenderer;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.prompts.Cards;
 import com.amazon.ask.accents.prompts.Prompts;
-import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
@@ -27,13 +28,14 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.RequestEnvelope;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
 import com.amazon.ask.model.slu.entityresolution.Resolution;
 import com.amazon.ask.model.slu.entityresolution.Resolutions;
 import com.amazon.ask.model.slu.entityresolution.Value;
 import com.amazon.ask.model.slu.entityresolution.ValueWrapper;
 import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -41,7 +43,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-
 public class TalkLikeSomeoneIntentHandlerTest
 {
     /*
@@ -124,6 +125,8 @@ public class TalkLikeSomeoneIntentHandlerTest
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
         assertEquals(Cards.TALK_LIKE_SOMEONE_INFO, ((SimpleCard) actualResponse.get().getCard()).getContent());
 
+        assertSame(documentDirective, actualResponse.get().getDirectives().get(0));
+
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
@@ -161,6 +164,8 @@ public class TalkLikeSomeoneIntentHandlerTest
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
         assertEquals(Cards.TALK_LIKE_SOMEONE_INFO, ((SimpleCard) actualResponse.get().getCard()).getContent());
 
+        assertSame(documentDirective, actualResponse.get().getDirectives().get(0));
+
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
@@ -188,7 +193,16 @@ public class TalkLikeSomeoneIntentHandlerTest
         // Assert
         assertEquals(ssmlize(Prompts.NO_VOICE_FOUND),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+
+        assertSame(documentDirective, actualResponse.get().getDirectives().get(0));
+
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
+    }
+
+    @Before
+    public void setup()
+    {
+        when(documentRenderer.buildDirective()).thenReturn(documentDirective);
     }
 
     private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId)
@@ -223,7 +237,8 @@ public class TalkLikeSomeoneIntentHandlerTest
     }
 
     @InjectMocks
-    private static final com.amazon.ask.accents.intenthandlers.TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
+    private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
+    private static final RenderDocumentDirective documentDirective = RenderDocumentDirective.builder().build();
     private static final String languageSlotRawValue = "languageSlotRawValue";
     private static final String languageSlotResolvedValue = "languageSlotResolvedValue";
     private static final String languageSlotId = "languageSlotId";
@@ -231,9 +246,10 @@ public class TalkLikeSomeoneIntentHandlerTest
     private static final String genderSlotResolvedValue = "genderSlotResolvedValue";
     private static final String genderSlotId = "genderSlotId";
     private static final String voice = "nameOfVoice";
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
     @Mock
     private VoicesRepo voicesRepo;
     @Mock
     private UtterancesRepo utterancesRepo;
+    @Mock
+    private DocumentRenderer documentRenderer;
 }

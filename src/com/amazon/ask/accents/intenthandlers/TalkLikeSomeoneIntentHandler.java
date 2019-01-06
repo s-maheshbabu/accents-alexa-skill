@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.amazon.ask.accents.apl.DocumentRenderer;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
 import com.amazon.ask.accents.prompts.Cards;
@@ -16,12 +17,14 @@ import com.amazon.ask.accents.utterances.UtterancesRepo;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.Directive;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.ui.Card;
 import com.amazon.ask.model.ui.SimpleCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
 
 public class TalkLikeSomeoneIntentHandler implements RequestHandler
 {
@@ -45,16 +48,20 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
         String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot),
                 genderSlotId);
 
+        Directive documentDirective = documentRenderer.buildDirective();
         if (null == voice)
         {
-            return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
+            // TODO: Do we need to add cards here?
+            return input.getResponseBuilder().addDirective(documentDirective).withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
         }
 
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 
         String speechText = wrapUtternacesInVoiceTag(voice, utterances);
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();
-        return input.getResponseBuilder().withSpeech(speechText).withCard(card).withShouldEndSession(true).build();
+
+        return input.getResponseBuilder().addDirective(documentDirective).
+                withSpeech(speechText).withCard(card).withShouldEndSession(true).build();
     }
 
     private String wrapUtternacesInVoiceTag(String voice, List<String> utterances)
@@ -67,4 +74,5 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
     private VoicesRepo voicesRepo = VoicesRepo.getInstance();
     private UtterancesRepo utterancesRepo = UtterancesRepo.getInstance();
     private IntentUtils intentUtils = IntentUtils.getInstance();
+    private DocumentRenderer documentRenderer = DocumentRenderer.getInstance();
 }
