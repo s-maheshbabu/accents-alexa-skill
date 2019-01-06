@@ -50,13 +50,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_brie.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_brie.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -84,13 +84,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_gruyere.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_gruyere.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -118,13 +118,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/md_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -152,13 +152,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_brie.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_brie.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -186,13 +186,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gruyere.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gruyere.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -220,13 +220,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -254,13 +254,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -288,13 +288,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
@@ -322,13 +322,13 @@
             "largeSourceUrl": null,
             "sources": [
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
                 "size": "small",
                 "widthPixels": 0,
                 "heightPixels": 0
               },
               {
-                "url": "https://d2o906d8ln7ui1.cloudfront.net/images/tl_gorgonzola.png",
+                "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
                 "size": "large",
                 "widthPixels": 0,
                 "heightPixels": 0
