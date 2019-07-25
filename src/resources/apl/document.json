@@ -235,16 +235,28 @@
           "width": "100%",
           "items": [
             {
-              "type": "Sequence",
-              "scrollDirection": "horizontal",
-              "data": "${listData}",
-              "height": "100%",
-              "width": "100%",
-              "numbered": true,
-              "item": [
+              "type": "TouchWrapper",
+              "onPress": {
+                "type": "SendEvent",
+                "arguments": [
+                  "distanceEvent",
+                  "${title}"
+                ]
+              },
+              "items": [
                 {
-                  "type": "FullHorizontalListItem",
-                  "listLength": "${payload.listTemplate2ListData.listPage.listItems.length}"
+                  "type": "Sequence",
+                  "scrollDirection": "horizontal",
+                  "data": "${listData}",
+                  "height": "100%",
+                  "width": "100%",
+                  "numbered": true,
+                  "item": [
+                    {
+                      "type": "FullHorizontalListItem",
+                      "listLength": "${payload.listTemplate2ListData.listPage.listItems.length}"
+                    }
+                  ]
                 }
               ]
             }
@@ -279,7 +291,17 @@
               "numbered": true,
               "item": [
                 {
-                  "type": "HorizontalListItem"
+                  "type": "TouchWrapper",
+                  "onPress": {
+                    "type": "SendEvent",
+                    "arguments": [
+                      "ItemSelected",
+                      "${ordinal}"
+                    ]
+                  },
+                  "item": {
+                    "type": "HorizontalListItem"
+                  }
                 }
               ]
             },
@@ -297,6 +319,21 @@
       "payload"
     ],
     "item": [
+      {
+        "type": "TouchWrapper",
+        "item": {
+          "type": "Text",
+          "text": "There are 5 peas in the pod",
+          "color": "#66DFFF",
+          "fontSize": 30
+        },
+        "onPress": {
+          "type": "SendEvent",
+          "arguments": [
+            "peasinapod"
+          ]
+        }
+      },
       {
         "type": "ListTemplate2",
         "backgroundImage": "${payload.listTemplate2Metadata.backgroundImage.sources[0].url}",
