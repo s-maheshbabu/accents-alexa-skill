@@ -25,34 +25,30 @@ import com.amazon.ask.model.ui.SimpleCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
-public class TalkLikeSomeoneIntentHandler implements RequestHandler
-{
+public class TalkLikeSomeoneIntentHandler implements RequestHandler {
     @Override
-    public boolean canHandle(HandlerInput input)
-    {
+    public boolean canHandle(HandlerInput input) {
         logger.info("Request Envelope: " + input.getRequestEnvelope());
         return input.matches(intentName(Intents.TALK_LIKE_SOMEONE_INTENT));
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input)
-    {
+    public Optional<Response> handle(HandlerInput input) {
         Map<String, Slot> slots = intentUtils.getSlots(input);
 
         Slot languageSlot = slots.get(Slots.LANGUAGE_SLOT);
         Slot genderSlot = slots.get(Slots.GENDER_SLOT);
 
         String genderSlotId = null;
-        if (genderSlot != null) genderSlotId = intentUtils.getSlotId(genderSlot);
-        String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot),
-                genderSlotId);
+        if (genderSlot != null)
+            genderSlotId = intentUtils.getSlotId(genderSlot);
+        String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot), genderSlotId);
 
         Directive documentDirective = documentRenderer.buildDirective();
-        if (null == voice)
-        {
+        if (null == voice) {
             // TODO: Do we need to add cards here?
-            return input.getResponseBuilder().addDirective(documentDirective).withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
+            return input.getResponseBuilder().addDirective(documentDirective).withSpeech(Prompts.NO_VOICE_FOUND)
+                    .withShouldEndSession(true).build();
         }
 
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
@@ -60,12 +56,11 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler
         String speechText = wrapUtternacesInVoiceTag(voice, utterances);
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();
 
-        return input.getResponseBuilder().addDirective(documentDirective).
-                withSpeech(speechText).withCard(card).withShouldEndSession(true).build();
+        return input.getResponseBuilder().addDirective(documentDirective).withSpeech(speechText).withCard(card)
+                .withShouldEndSession(true).build();
     }
 
-    private String wrapUtternacesInVoiceTag(String voice, List<String> utterances)
-    {
+    private String wrapUtternacesInVoiceTag(String voice, List<String> utterances) {
         String combinedUtterance = utterances.stream().map(utterance -> utterance + ". ").collect(Collectors.joining());
         return String.format("<voice name=\"%s\">%s</voice>", voice, combinedUtterance);
     }

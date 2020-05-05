@@ -10,32 +10,27 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class DocumentRenderer
-{
-    private DocumentRenderer()
-    {
+public class DocumentRenderer {
+    private DocumentRenderer() {
     }
 
-    public RenderDocumentDirective buildDirective()
-    {
-        if (document == null || dataSources == null)
-        {
-            try
-            {
-                document = objectMapper.readValue(new FileReader(getClass().getResource(DOCUMENT_PATH).getPath()), HashMap.class);
-                dataSources = objectMapper.readValue(new FileReader(getClass().getResource(DATASOURCES_PATH).getPath()), HashMap.class);
-            }
-            catch (Exception e)
-            {
+    public RenderDocumentDirective buildDirective() {
+        if (document == null || dataSources == null) {
+            try {
+                document = objectMapper.readValue(new FileReader(getClass().getResource(DOCUMENT_PATH).getPath()),
+                        HashMap.class);
+                dataSources = objectMapper.readValue(new FileReader(getClass().getResource(DATASOURCES_PATH).getPath()),
+                        HashMap.class);
+            } catch (Exception e) {
                 logger.error("Failed loading APL document and datasources. GUI would be broken.", e);
                 return null;
             }
         }
-        return RenderDocumentDirective.builder().withToken(APL_TOKEN).withDocument(document).withDatasources(dataSources).build();
+        return RenderDocumentDirective.builder().withToken(APL_TOKEN).withDocument(document)
+                .withDatasources(dataSources).build();
     }
 
-    public static DocumentRenderer getInstance()
-    {
+    public static DocumentRenderer getInstance() {
         if (instance == null)
             instance = new DocumentRenderer();
         return instance;

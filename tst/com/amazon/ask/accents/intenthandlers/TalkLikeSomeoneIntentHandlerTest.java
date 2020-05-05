@@ -43,14 +43,12 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 @RunWith(MockitoJUnitRunner.class)
-public class TalkLikeSomeoneIntentHandlerTest
-{
+public class TalkLikeSomeoneIntentHandlerTest {
     /*
      * Test that canHandle returns true when the right intent is passed.
      */
     @Test
-    public void testCanHandle_RightIntentName()
-    {
+    public void testCanHandle_RightIntentName() {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -71,8 +69,7 @@ public class TalkLikeSomeoneIntentHandlerTest
      * Test that canHandle returns false when an incorrect intent is passed.
      */
     @Test
-    public void testCanHandle_IncorrectIntentName()
-    {
+    public void testCanHandle_IncorrectIntentName() {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -86,17 +83,18 @@ public class TalkLikeSomeoneIntentHandlerTest
         boolean actualValue = unitUnderTest.canHandle(input);
 
         // Assert
-        assertFalse("canHandle should return false when any intent other than TalkLikeSomeoneIntent is passed.", actualValue);
+        assertFalse("canHandle should return false when any intent other than TalkLikeSomeoneIntent is passed.",
+                actualValue);
     }
 
     /*
      * Test that handle returns the right response in the happy case.
      */
     @Test
-    public void testHandle()
-    {
+    public void testHandle() {
         // Arrange
-        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue, languageSlotId);
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                languageSlotId);
         Slot genderSlot = buildSlot(Slots.GENDER_SLOT, genderSlotRawValue, genderSlotResolvedValue, genderSlotId);
 
         Map<String, Slot> slots = new HashMap<>();
@@ -115,8 +113,7 @@ public class TalkLikeSomeoneIntentHandlerTest
 
         // Assert
         String combinedUtterance = "";
-        for (String utterance : utterances)
-        {
+        for (String utterance : utterances) {
             combinedUtterance += utterance + ". ";
         }
         assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
@@ -134,10 +131,10 @@ public class TalkLikeSomeoneIntentHandlerTest
      * Test that handle returns a response even when gender slot is missing.
      */
     @Test
-    public void testHandle_NoGenderSlot()
-    {
+    public void testHandle_NoGenderSlot() {
         // Arrange
-        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue, languageSlotId);
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                languageSlotId);
 
         Map<String, Slot> slots = new HashMap<>();
         slots.put(Slots.LANGUAGE_SLOT, languageSlot);
@@ -154,8 +151,7 @@ public class TalkLikeSomeoneIntentHandlerTest
 
         // Assert
         String combinedUtterance = "";
-        for (String utterance : utterances)
-        {
+        for (String utterance : utterances) {
             combinedUtterance += utterance + ". ";
         }
         assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
@@ -170,13 +166,14 @@ public class TalkLikeSomeoneIntentHandlerTest
     }
 
     /*
-     * Test that handle returns an accurate error prompt if no voice is found for the given language/voice combination.
+     * Test that handle returns an accurate error prompt if no voice is found for
+     * the given language/voice combination.
      */
     @Test
-    public void testHandle_NoVoiceFound()
-    {
+    public void testHandle_NoVoiceFound() {
         // Arrange
-        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue, languageSlotId);
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                languageSlotId);
         Slot genderSlot = buildSlot(Slots.GENDER_SLOT, genderSlotRawValue, genderSlotResolvedValue, genderSlotId);
 
         Map<String, Slot> slots = new HashMap<>();
@@ -200,14 +197,13 @@ public class TalkLikeSomeoneIntentHandlerTest
     }
 
     @Before
-    public void setup()
-    {
+    public void setup() {
         when(documentRenderer.buildDirective()).thenReturn(documentDirective);
     }
 
-    private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId)
-    {
-        ValueWrapper resolvedValueWrapper = ValueWrapper.builder().withValue(Value.builder().withId(slotId).withName(slotResolvedValue).build()).build();
+    private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId) {
+        ValueWrapper resolvedValueWrapper = ValueWrapper.builder()
+                .withValue(Value.builder().withId(slotId).withName(slotResolvedValue).build()).build();
         List<ValueWrapper> values = Arrays.asList(resolvedValueWrapper);
         Resolution resolutionPerAuthority = Resolution.builder().withValues(values).build();
         List<Resolution> resolutionsPerAuthority = Arrays.asList(resolutionPerAuthority);
@@ -216,8 +212,7 @@ public class TalkLikeSomeoneIntentHandlerTest
         return Slot.builder().withName(slotName).withValue(slotRawValue).withResolutions(resolutions).build();
     }
 
-    private HandlerInput buildHandlerInput(Map<String, Slot> slots)
-    {
+    private HandlerInput buildHandlerInput(Map<String, Slot> slots) {
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
 
         IntentRequest intentRequest = mock(IntentRequest.class);
@@ -231,8 +226,7 @@ public class TalkLikeSomeoneIntentHandlerTest
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
 
-    private String ssmlize(String input)
-    {
+    private String ssmlize(String input) {
         return "<speak>" + input + "</speak>";
     }
 

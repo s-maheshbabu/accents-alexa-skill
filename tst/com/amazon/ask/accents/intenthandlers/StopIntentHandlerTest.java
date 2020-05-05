@@ -19,14 +19,12 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
-public class StopIntentHandlerTest
-{
+public class StopIntentHandlerTest {
     /*
-    * Test that canHandle returns true when the right intent is passed.
-    */
+     * Test that canHandle returns true when the right intent is passed.
+     */
     @Test
-    public void testCanHandle_RightIntentName() throws Exception
-    {
+    public void testCanHandle_RightIntentName() throws Exception {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -47,8 +45,7 @@ public class StopIntentHandlerTest
      * Test that canHandle returns false when an incorrect intent is passed.
      */
     @Test
-    public void testCanHandle_IncorrectIntentName()
-    {
+    public void testCanHandle_IncorrectIntentName() {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -66,8 +63,7 @@ public class StopIntentHandlerTest
     }
 
     @Test
-    public void handle() throws Exception
-    {
+    public void handle() throws Exception {
         // Arrange
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
         when(requestEnvelope.getRequest()).thenReturn(mock(IntentRequest.class));
@@ -77,7 +73,8 @@ public class StopIntentHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + Prompts.EXIT + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.EXIT + "</speak>",
+                ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
         assertTrue("The session should be ended", response.get().getShouldEndSession());
     }
 

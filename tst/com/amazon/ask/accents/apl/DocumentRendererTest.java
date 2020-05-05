@@ -15,14 +15,12 @@ import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class DocumentRendererTest
-{
+public class DocumentRendererTest {
     /*
-    * Test that buildDirective returns the correct directive.
-    */
+     * Test that buildDirective returns the correct directive.
+     */
     @Test
-    public void testBuildDirective_HappyCase() throws Exception
-    {
+    public void testBuildDirective_HappyCase() throws Exception {
         // Arrange
 
         // Act
@@ -34,11 +32,10 @@ public class DocumentRendererTest
     }
 
     /*
-    * Test that we swallow the error if we are unable to read the document.
-    */
+     * Test that we swallow the error if we are unable to read the document.
+     */
     @Test
-    public void testBuildDirective_ErrorReadingDocument() throws Exception
-    {
+    public void testBuildDirective_ErrorReadingDocument() throws Exception {
         // Arrange
         ObjectMapper originalMapper = (ObjectMapper) FieldUtils.readDeclaredField(unitUnderTest, "objectMapper", true);
 
@@ -57,8 +54,7 @@ public class DocumentRendererTest
     }
 
     @BeforeClass
-    public static void setup() throws Exception
-    {
+    public static void setup() throws Exception {
         FieldUtils.writeField(unitUnderTest, "DOCUMENT_PATH", TEST_DOCUMENT_PATH, true);
         FieldUtils.writeField(unitUnderTest, "DATASOURCES_PATH", TEST_DATASOURCES_PATH, true);
     }

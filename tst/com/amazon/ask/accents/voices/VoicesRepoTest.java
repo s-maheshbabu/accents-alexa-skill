@@ -17,14 +17,12 @@ import org.apache.logging.log4j.util.Strings;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class VoicesRepoTest
-{
+public class VoicesRepoTest {
     /**
      * Test that a random voice can be obtained in the happy case.
      */
     @Test
-    public void getVoice()
-    {
+    public void getVoice() {
         // Arrange
         String language = "en-US";
         String gender = "Female";
@@ -38,8 +36,7 @@ public class VoicesRepoTest
         // is very unlikely and if it happens, it is probably an indication of poor
         // random selection logic in the source code than us getting really unlucky.
         Set<String> actualVoices = new HashSet<>();
-        for (int i = 0; i < numberOfVoices * 1000; i++)
-        {
+        for (int i = 0; i < numberOfVoices * 1000; i++) {
             // Act
             actualVoices.add(unitUnderTest.getVoice(language, gender));
         }
@@ -47,8 +44,7 @@ public class VoicesRepoTest
         // Assert
         List<String> expectedVoices = voicesMap.get(language).get(gender);
         assertEquals(expectedVoices.size(), actualVoices.size());
-        for (String voice : actualVoices)
-        {
+        for (String voice : actualVoices) {
             assertTrue(expectedVoices.contains(voice));
         }
     }
@@ -64,8 +60,7 @@ public class VoicesRepoTest
      * VoicesRepo class.
      */
     @Test
-    public void getVoice_OnlyOneVoice()
-    {
+    public void getVoice_OnlyOneVoice() {
         // Arrange
         String language = "en-AU";
         String gender = "Female";
@@ -84,8 +79,7 @@ public class VoicesRepoTest
      * for either gender can be returned.
      */
     @Test
-    public void getVoice_NoGender()
-    {
+    public void getVoice_NoGender() {
         // Arrange
         String language = "en-AU";
         String gender = null;
@@ -104,14 +98,14 @@ public class VoicesRepoTest
     }
 
     /**
-     * Test that if there no voice for the given valid language/gender combination, we return null.
+     * Test that if there no voice for the given valid language/gender combination,
+     * we return null.
      */
     @Test
-    public void getVoice_NoVoiceForSpecifiedGender()
-    {
+    public void getVoice_NoVoiceForSpecifiedGender() {
         // Arrange
         String language = "en-IN";
-        String gender = "Male";    // There are no Male en-IN voices.
+        String gender = "Male"; // There are no Male en-IN voices.
 
         // Act
         String actualVoice = unitUnderTest.getVoice(language, gender);
@@ -124,8 +118,7 @@ public class VoicesRepoTest
      * Test that an NPE is thrown if the language parameter is null.
      */
     @Test(expected = NullPointerException.class)
-    public void getVoice_NoLanguage()
-    {
+    public void getVoice_NoLanguage() {
         // Arrange
         String language = null;
         String gender = "anyGender";
@@ -138,8 +131,7 @@ public class VoicesRepoTest
      * Test that an exception is raised if the language paramter is empty.
      */
     @Test(expected = IllegalArgumentException.class)
-    public void getVoice_EmptyLanguage()
-    {
+    public void getVoice_EmptyLanguage() {
         // Arrange
         String language = Strings.EMPTY;
         String gender = "anyGender";
@@ -152,8 +144,7 @@ public class VoicesRepoTest
      * Test that an exception is raised if an unsupported language is passed.
      */
     @Test(expected = UnsupportedLanguageException.class)
-    public void getVoice_UnsupportedLanguage()
-    {
+    public void getVoice_UnsupportedLanguage() {
         // Arrange
         String language = "anUnsupportedLangugage";
         String gender = "anyGender";
@@ -163,8 +154,7 @@ public class VoicesRepoTest
     }
 
     @BeforeClass
-    public static void setup()
-    {
+    public static void setup() {
         Map<String, Map<String, List<String>>> map = new HashMap<>();
 
         Map<String, List<String>> en_USVoicesMapByGender = new HashMap<>();

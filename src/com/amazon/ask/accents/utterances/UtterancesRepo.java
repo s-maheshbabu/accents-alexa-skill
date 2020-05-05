@@ -14,19 +14,14 @@ import org.apache.commons.lang3.Validate;
 /**
  * Maintains a repo of utterances by language.
  */
-public class UtterancesRepo
-{
-    private UtterancesRepo()
-    {
+public class UtterancesRepo {
+    private UtterancesRepo() {
         URL url = getClass().getResource(UTTERANCES_DATA);
 
         Map<String, List<String>> son;
-        try
-        {
+        try {
             son = objectMapper.readValue(new FileReader(url.getPath()), HashMap.class);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException("Failed loading the mapping of languages to utterances. This is a fatal error.",
                     e);
         }
@@ -42,10 +37,9 @@ public class UtterancesRepo
      * @param language The language for which utterances are needed. This field is
      *                 required.
      * @return a set of utterances for the given language. There will always be at
-     * least one utterances and atmost three utterances returned.
+     *         least one utterances and atmost three utterances returned.
      */
-    public List<String> getUtterances(String language)
-    {
+    public List<String> getUtterances(String language) {
         Validate.notEmpty(language, "Language cannot be empty");
 
         if (!utterancesMap.containsKey(language))
@@ -56,8 +50,7 @@ public class UtterancesRepo
         return allUtterances.subList(0, Math.min(allUtterances.size(), MAX_NUMBER_UTTERANCES));
     }
 
-    public static UtterancesRepo getInstance()
-    {
+    public static UtterancesRepo getInstance() {
         if (instance == null)
             instance = new UtterancesRepo();
         return instance;

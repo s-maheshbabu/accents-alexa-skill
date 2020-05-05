@@ -19,14 +19,12 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
-public class HelpIntentHandlerTest
-{
+public class HelpIntentHandlerTest {
     /*
-    * Test that canHandle returns true when the right intent is passed.
-    */
+     * Test that canHandle returns true when the right intent is passed.
+     */
     @Test
-    public void testCanHandle_HelpIntent() throws Exception
-    {
+    public void testCanHandle_HelpIntent() throws Exception {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -44,11 +42,10 @@ public class HelpIntentHandlerTest
     }
 
     /*
-    * Test that canHandle returns true when the right intent is passed.
-    */
+     * Test that canHandle returns true when the right intent is passed.
+     */
     @Test
-    public void testCanHandle_FallbackIntent() throws Exception
-    {
+    public void testCanHandle_FallbackIntent() throws Exception {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -69,8 +66,7 @@ public class HelpIntentHandlerTest
      * Test that canHandle returns false when an incorrect intent is passed.
      */
     @Test
-    public void testCanHandle_IncorrectIntentName()
-    {
+    public void testCanHandle_IncorrectIntentName() {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -88,8 +84,7 @@ public class HelpIntentHandlerTest
     }
 
     @Test
-    public void handle() throws Exception
-    {
+    public void handle() throws Exception {
         // Arrange
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
         when(requestEnvelope.getRequest()).thenReturn(mock(IntentRequest.class));
@@ -99,8 +94,10 @@ public class HelpIntentHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + Prompts.HELP + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
-        assertEquals("<speak>" + Prompts.HELP_REPROMPT + "</speak>", ((SsmlOutputSpeech) response.get().getReprompt().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.HELP + "</speak>",
+                ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.HELP_REPROMPT + "</speak>",
+                ((SsmlOutputSpeech) response.get().getReprompt().getOutputSpeech()).getSsml());
         assertFalse("The session should be left open.", response.get().getShouldEndSession());
     }
 

@@ -10,18 +10,15 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-public class HelpIntentHandler implements RequestHandler
-{
+public class HelpIntentHandler implements RequestHandler {
     @Override
-    public boolean canHandle(HandlerInput input)
-    {
+    public boolean canHandle(HandlerInput input) {
         return input.matches(intentName(Intents.HELP_INTENT)) || input.matches((intentName((Intents.FALLBACK_INTENT))));
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input)
-    {
-        return input.getResponseBuilder().withSpeech(Prompts.HELP)
-                .withReprompt(Prompts.HELP_REPROMPT).withShouldEndSession(false).build();
+    public Optional<Response> handle(HandlerInput input) {
+        return input.getResponseBuilder().withSpeech(Prompts.HELP).withReprompt(Prompts.HELP_REPROMPT)
+                .withShouldEndSession(false).build();
     }
 }

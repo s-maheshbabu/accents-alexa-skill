@@ -22,14 +22,12 @@ import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.model.ui.SsmlOutputSpeech;
 import org.junit.Test;
 
-public class LaunchRequestHandlerTest
-{
+public class LaunchRequestHandlerTest {
     /**
      * Test that we return true if the request is a LaunchRequest.
      */
     @Test
-    public void canHandle_LaunchRequest() throws Exception
-    {
+    public void canHandle_LaunchRequest() throws Exception {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -48,8 +46,7 @@ public class LaunchRequestHandlerTest
      * Test that we return true if the intent is a StartOverIntent.
      */
     @Test
-    public void canHandle_StartOverIntent() throws Exception
-    {
+    public void canHandle_StartOverIntent() throws Exception {
         // Arrange
         HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
 
@@ -70,8 +67,7 @@ public class LaunchRequestHandlerTest
      * Placeholder testing.
      */
     @Test
-    public void handle() throws Exception
-    {
+    public void handle() throws Exception {
         // Arrange
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
         when(requestEnvelope.getRequest()).thenReturn(mock(IntentRequest.class));
@@ -81,7 +77,8 @@ public class LaunchRequestHandlerTest
         Optional<Response> response = unitUnderTest.handle(input);
 
         // Assert
-        assertEquals("<speak>" + Prompts.WELCOME_MESSAGE + "</speak>", ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
+        assertEquals("<speak>" + Prompts.WELCOME_MESSAGE + "</speak>",
+                ((SsmlOutputSpeech) response.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) response.get().getCard()).getTitle());
         assertEquals(Cards.WELCOME, ((SimpleCard) response.get().getCard()).getContent());

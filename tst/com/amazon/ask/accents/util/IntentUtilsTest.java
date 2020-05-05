@@ -19,14 +19,12 @@ import com.amazon.ask.model.Slot;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
-public final class IntentUtilsTest
-{
+public final class IntentUtilsTest {
     /**
      * Test that the slots can be obtained in the happy case.
      */
     @Test
-    public void testGetSlots()
-    {
+    public void testGetSlots() {
         // Arrange
         Map<String, Slot> slots = new HashMap<>();
         slots.put("Slot1", mock(Slot.class));
@@ -41,11 +39,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that the slots can be obtained when there are no slots. We should basically return an empty map of slots.
+     * Test that the slots can be obtained when there are no slots. We should
+     * basically return an empty map of slots.
      */
     @Test
-    public void testGetSlots_SlotsEmpty()
-    {
+    public void testGetSlots_SlotsEmpty() {
         // Arrange
         final HandlerInput handlerInput = buildHandlerInput(new HashMap<>());
 
@@ -57,11 +55,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that the slots can be obtained when the slots are missing in the handler input. We should basically return an empty map of slots.
+     * Test that the slots can be obtained when the slots are missing in the handler
+     * input. We should basically return an empty map of slots.
      */
     @Test
-    public void testGetSlots_SlotsMissing()
-    {
+    public void testGetSlots_SlotsMissing() {
         // Arrange
         final HandlerInput handlerInput = buildHandlerInput(null);
 
@@ -76,23 +74,21 @@ public final class IntentUtilsTest
      * Test that an exception is raised if the input is null.
      */
     @Test(expected = NullPointerException.class)
-    public void testGetSlots_NullInput()
-    {
+    public void testGetSlots_NullInput() {
         // Act && Assert
         unitUnderTest.getSlots(null);
     }
 
     /**
-     * Test that an exception is raised if the Request is not of the type IntentRequest
+     * Test that an exception is raised if the Request is not of the type
+     * IntentRequest
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlots_RequestIncorrectType()
-    {
+    public void testGetSlots_RequestIncorrectType() {
         // Arrange
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
 
-        Request request = new Request()
-        {
+        Request request = new Request() {
         };
         when(requestEnvelope.getRequest()).thenReturn(request);
 
@@ -101,11 +97,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that an exception is raised if the Intent is missing in the handler input
+     * Test that an exception is raised if the Intent is missing in the handler
+     * input
      */
     @Test(expected = IllegalStateException.class)
-    public void testGetSlots_MissingIntent()
-    {
+    public void testGetSlots_MissingIntent() {
         // Arrange
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
 
@@ -123,8 +119,7 @@ public final class IntentUtilsTest
      * Test that the slot Id can be obtained in the happy case.
      */
     @Test
-    public void testGetSlotId()
-    {
+    public void testGetSlotId() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
 
@@ -139,8 +134,7 @@ public final class IntentUtilsTest
      * Test that an exception is raised if the input is null.
      */
     @Test(expected = NullPointerException.class)
-    public void testGetSlotId_NullInput()
-    {
+    public void testGetSlotId_NullInput() {
         // Act && Assert
         unitUnderTest.getSlotId(null);
     }
@@ -149,8 +143,7 @@ public final class IntentUtilsTest
      * Test that null is returned if there are no resolutions in the slot.
      */
     @Test
-    public void testGetSlotId_MissigResolutions()
-    {
+    public void testGetSlotId_MissigResolutions() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
 
@@ -162,12 +155,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that null is returned if there are no resolutionsPerAuthority in
-     * the slot.
+     * Test that null is returned if there are no resolutionsPerAuthority in the
+     * slot.
      */
     @Test
-    public void testGetSlotId_MissigResolutionsPerAuthority()
-    {
+    public void testGetSlotId_MissigResolutionsPerAuthority() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
 
@@ -179,12 +171,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that null is returned if the resolutionsPerAuthority is empty in
-     * the slot.
+     * Test that null is returned if the resolutionsPerAuthority is empty in the
+     * slot.
      */
     @Test
-    public void testGetSlotId_EmptyResolutionsPerAuthority()
-    {
+    public void testGetSlotId_EmptyResolutionsPerAuthority() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
 
@@ -196,12 +187,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that null is returned if there are no
-     * resolutionsPerAuthorityValues in the slot.
+     * Test that null is returned if there are no resolutionsPerAuthorityValues in
+     * the slot.
      */
     @Test
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values()
-    {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
 
@@ -213,12 +203,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that null is retutned if there resolutionsPerAuthorityValues is
-     * empty in the slot.
+     * Test that null is retutned if there resolutionsPerAuthorityValues is empty in
+     * the slot.
      */
     @Test
-    public void testGetSlotId_EmptyResolutionsPerAuthority_Values()
-    {
+    public void testGetSlotId_EmptyResolutionsPerAuthority_Values() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
 
@@ -230,12 +219,11 @@ public final class IntentUtilsTest
     }
 
     /**
-     * Test that null is returned if there are no
-     * resolutionsPerAuthorityValuesValue in the slot.
+     * Test that null is returned if there are no resolutionsPerAuthorityValuesValue
+     * in the slot.
      */
     @Test
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value()
-    {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
 
@@ -251,8 +239,7 @@ public final class IntentUtilsTest
      * resolutionsPerAuthorityValuesValueId in the slot.
      */
     @Test
-    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id()
-    {
+    public void testGetSlotId_MissigResolutionsPerAuthority_Values_Value_Id() {
         // Arrange
         Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueId.json");
 
@@ -263,25 +250,20 @@ public final class IntentUtilsTest
         assertNull("slotId should be null.", slotId);
     }
 
-    private Slot buildSlot(String slotResourcePath)
-    {
+    private Slot buildSlot(String slotResourcePath) {
         URL url = getClass().getResource(slotResourcePath);
 
         Slot slot;
-        try
-        {
+        try {
             slot = objectMapper.readValue(new FileReader(url.getPath()), Slot.class);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             throw new RuntimeException("Failed loading the slots from test data files. This is a fatal error.", e);
         }
 
         return slot;
     }
 
-    private HandlerInput buildHandlerInput(Map<String, Slot> slots)
-    {
+    private HandlerInput buildHandlerInput(Map<String, Slot> slots) {
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
 
         IntentRequest intentRequest = mock(IntentRequest.class);
