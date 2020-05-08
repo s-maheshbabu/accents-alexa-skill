@@ -22,7 +22,7 @@
       ]
     },
     "properties": {
-      "accentSpoken": "I spoke like ...",
+      "currentAccent": "I spoke like ...",
       "hint": "Talk like an Australian"
     },
     "transformers": [

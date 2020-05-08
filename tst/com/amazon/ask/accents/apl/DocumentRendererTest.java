@@ -36,7 +36,8 @@ public class DocumentRendererTest {
         assertEquals("token", directive.getToken());
 
         JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
-        assertEquals(I_SPOKE_LIKE + languageName, dataSourceNode.at("/skillMetadata/properties/accentSpoken").asText());
+        assertEquals(I_SPOKE_LIKE + languageName,
+                dataSourceNode.at("/skillMetadata/properties/currentAccent").asText());
     }
 
     /*
@@ -54,7 +55,7 @@ public class DocumentRendererTest {
 
             // Assert
             JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
-            assertEquals(I_SPOKE_LIKE, dataSourceNode.at(PATH + "/" + ACCENT_SPOKEN_KEY).asText());
+            assertEquals(I_SPOKE_LIKE, dataSourceNode.at(PATH + "/" + CURRENT_ACCENT_KEY).asText());
         }
     }
 
@@ -93,7 +94,7 @@ public class DocumentRendererTest {
 
     private static final String PATH = "/skillMetadata/properties";
     private static final String I_SPOKE_LIKE = "I spoke like ... ";
-    private static final String ACCENT_SPOKEN_KEY = "accentSpoken";
+    private static final String CURRENT_ACCENT_KEY = "currentAccent";
 
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();
 

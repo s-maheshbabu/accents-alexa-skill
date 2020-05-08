@@ -142,7 +142,7 @@
   "layouts": {
     "ListTemplate": {
       "parameters": [
-        "accentSpoken",
+        "currentAccent",
         "backgroundImage",
         "title",
         "logo",
@@ -213,7 +213,7 @@
                   {
                     "type": "Text",
                     "width": "45vw",
-                    "text": "${accentSpoken}",
+                    "text": "${currentAccent}",
                     "textAlign": "auto"
                   },
                   {
@@ -347,7 +347,7 @@
     "item": [
       {
         "type": "ListTemplate",
-        "accentSpoken": "${payload.skillMetadata.properties.accentSpoken}",
+        "currentAccent": "${payload.skillMetadata.properties.currentAccent}",
         "backgroundImage": "${payload.skillMetadata.backgroundImage.sources[0].url}",
         "title": "${payload.skillMetadata.title}",
         "hint": "${payload.skillMetadata.properties.hint}",

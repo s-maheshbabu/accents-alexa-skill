@@ -26,7 +26,7 @@ public class DocumentRenderer {
 
                 final JsonNode node = objectMapper
                         .readTree(new FileReader(getClass().getResource(DATASOURCES_PATH).getPath()));
-                setAccentSpoken(node, language);
+                setCurrentAccent(node, language);
 
                 dataSources = objectMapper.treeToValue(node, HashMap.class);
             } catch (final Exception e) {
@@ -38,8 +38,8 @@ public class DocumentRenderer {
                 .withDatasources(dataSources).build();
     }
 
-    private void setAccentSpoken(final JsonNode node, final String language) {
-        ((ObjectNode) node.at(PATH)).put(ACCENT_SPOKEN_KEY,
+    private void setCurrentAccent(final JsonNode node, final String language) {
+        ((ObjectNode) node.at(PATH)).put(CURRENT_ACCENT_KEY,
                 StringUtils.isEmpty(language) ? I_SPOKE_LIKE : I_SPOKE_LIKE + language);
     }
 
@@ -59,7 +59,7 @@ public class DocumentRenderer {
     private static final String PATH = "/skillMetadata/properties";
     private static final String APL_TOKEN = "token";
     private static final String I_SPOKE_LIKE = "I spoke like ... ";
-    private static final String ACCENT_SPOKEN_KEY = "accentSpoken";
+    private static final String CURRENT_ACCENT_KEY = "currentAccent";
 
     private static final Logger logger = LogManager.getLogger(DocumentRenderer.class);
     private static DocumentRenderer instance;
