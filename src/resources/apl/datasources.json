@@ -143,7 +143,7 @@
         },
         {
           "listItemIdentifier": "en-GB",
-          "ordinalNumber": 1,
+          "ordinalNumber": 4,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
@@ -177,7 +177,7 @@
         },
         {
           "listItemIdentifier": "en-IN",
-          "ordinalNumber": 2,
+          "ordinalNumber": 5,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
@@ -211,7 +211,7 @@
         },
         {
           "listItemIdentifier": "en-US",
-          "ordinalNumber": 3,
+          "ordinalNumber": 6,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
@@ -245,7 +245,7 @@
         },
         {
           "listItemIdentifier": "fr-FR",
-          "ordinalNumber": 3,
+          "ordinalNumber": 7,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
@@ -279,7 +279,7 @@
         },
         {
           "listItemIdentifier": "it-IT",
-          "ordinalNumber": 3,
+          "ordinalNumber": 8,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
@@ -313,7 +313,7 @@
         },
         {
           "listItemIdentifier": "ja-JP",
-          "ordinalNumber": 3,
+          "ordinalNumber": 9,
           "textContent": {
             "primaryText": {
               "type": "PlainText",
