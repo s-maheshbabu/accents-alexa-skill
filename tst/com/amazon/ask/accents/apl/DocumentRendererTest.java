@@ -9,9 +9,13 @@ import java.io.Reader;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+
+import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -22,13 +26,36 @@ public class DocumentRendererTest {
     @Test
     public void testBuildDirective_HappyCase() throws Exception {
         // Arrange
+        String languageName = "languageName";
 
         // Act
-        RenderDocumentDirective directive = unitUnderTest.buildDirective();
+        RenderDocumentDirective directive = unitUnderTest.buildDirective(languageName);
 
         // Assert
         assertNotNull(directive);
         assertEquals("token", directive.getToken());
+
+        JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
+        assertEquals(I_SPOKE_LIKE + languageName, dataSourceNode.at("/skillMetadata/properties/accentSpoken").asText());
+    }
+
+    /*
+     * Test that buildDirective returns the correct directive when no language is
+     * passed.
+     */
+    @Test
+    public void testBuildDirective_NoLanguage() throws Exception {
+        // Arrange
+        String[] languageNameValues = { "", null };
+
+        for (String languageName : languageNameValues) {
+            // Act
+            RenderDocumentDirective directive = unitUnderTest.buildDirective(languageName);
+
+            // Assert
+            JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
+            assertEquals(I_SPOKE_LIKE, dataSourceNode.at(PATH + "/" + ACCENT_SPOKEN_KEY).asText());
+        }
     }
 
     /*
@@ -44,7 +71,7 @@ public class DocumentRendererTest {
         FieldUtils.writeField(unitUnderTest, "objectMapper", mapper, true);
 
         // Act
-        RenderDocumentDirective directive = unitUnderTest.buildDirective();
+        RenderDocumentDirective directive = unitUnderTest.buildDirective("anyLanguage");
 
         // Assert
         assertNull(directive);
@@ -59,7 +86,18 @@ public class DocumentRendererTest {
         FieldUtils.writeField(unitUnderTest, "DATASOURCES_PATH", TEST_DATASOURCES_PATH, true);
     }
 
+    @Before
+    public void initialize() {
+        unitUnderTest.reset();
+    }
+
+    private static final String PATH = "/skillMetadata/properties";
+    private static final String I_SPOKE_LIKE = "I spoke like ... ";
+    private static final String ACCENT_SPOKEN_KEY = "accentSpoken";
+
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();
+
+    private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
     private static String TEST_DOCUMENT_PATH = "/testdata/apl/document.json";
     private static String TEST_DATASOURCES_PATH = "/testdata/apl/datasources.json";

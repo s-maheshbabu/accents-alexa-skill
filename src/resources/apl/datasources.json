@@ -1,34 +1,42 @@
 {
-  "listTemplate2Metadata": {
+  "skillMetadata": {
     "type": "object",
-    "objectId": "lt1Metadata",
+    "objectId": "skillMetadataId",
     "backgroundImage": {
       "contentDescription": null,
       "smallSourceUrl": null,
       "largeSourceUrl": null,
       "sources": [
         {
-          "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT2_Background.png",
+          "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
           "size": "small",
           "widthPixels": 0,
           "heightPixels": 0
         },
         {
-          "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT2_Background.png",
+          "url": "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
           "size": "large",
           "widthPixels": 0,
           "heightPixels": 0
         }
       ]
     },
-    "title": "Accents that I can talk in",
+    "properties": {
+      "accentSpoken": "I spoke like ...",
+      "hint": "Talk like an Australian"
+    },
+    "transformers": [
+      {
+        "inputPath": "hint",
+        "transformer": "textToHint"
+      }
+    ],
+    "title": "Accents",
     "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
   },
-  "listTemplate2ListData": {
+  "accentsData": {
     "type": "list",
-    "listId": "lt2Sample",
-    "totalNumberOfItems": 10,
-    "hintText": "Try, \"Alexa, select number 1\"",
+    "listId": "accentsDataList",
     "listPage": {
       "listItems": [
         {

@@ -44,7 +44,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
             genderSlotId = intentUtils.getSlotId(genderSlot);
         String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot), genderSlotId);
 
-        Directive documentDirective = documentRenderer.buildDirective();
+        Directive documentDirective = documentRenderer.buildDirective(intentUtils.getSlotName(languageSlot));
         if (null == voice) {
             // TODO: Do we need to add cards here?
             return input.getResponseBuilder().addDirective(documentDirective).withSpeech(Prompts.NO_VOICE_FOUND)

@@ -9,6 +9,8 @@ import com.amazon.ask.model.Intent;
 import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.slu.entityresolution.Value;
+
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -51,20 +53,35 @@ public final class IntentUtils {
     public String getSlotId(Slot slot) {
         Validate.notNull(slot);
 
-        Optional<String> slotId = Optional.ofNullable(slot).map(_slot -> _slot.getResolutions())
-                .map(resolutions -> resolutions.getResolutionsPerAuthority())
-                .map(resolutionsPerAuthority -> resolutionsPerAuthority.stream().findFirst().orElse(null))
-                .map(highestConfidenceResolutionPerAuthority -> highestConfidenceResolutionPerAuthority.getValues())
-                .map(values -> values.stream().findFirst().orElse(null)).map(firstValue -> firstValue.getValue())
-                .map(value -> value.getId());
+        Optional<String> slotId = getSlotValue(slot).map(value -> value.getId());
 
         return slotId.orElse(null);
+    }
+
+    /**
+     * @param slot The slot from which the slotValue is to be extracted.
+     * @return the slotValue if found and null otherwise.
+     */
+    public String getSlotName(Slot slot) {
+        Validate.notNull(slot);
+
+        Optional<String> slotName = getSlotValue(slot).map(value -> value.getName());
+
+        return slotName.orElse(null);
     }
 
     public static IntentUtils getInstance() {
         if (instance == null)
             instance = new IntentUtils();
         return instance;
+    }
+
+    private Optional<Value> getSlotValue(Slot slot) {
+        return Optional.ofNullable(slot).map(_slot -> _slot.getResolutions())
+                .map(resolutions -> resolutions.getResolutionsPerAuthority())
+                .map(resolutionsPerAuthority -> resolutionsPerAuthority.stream().findFirst().orElse(null))
+                .map(highestConfidenceResolutionPerAuthority -> highestConfidenceResolutionPerAuthority.getValues())
+                .map(values -> values.stream().findFirst().orElse(null)).map(firstValue -> firstValue.getValue());
     }
 
     private static IntentUtils instance;

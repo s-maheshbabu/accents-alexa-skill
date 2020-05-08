@@ -250,6 +250,141 @@ public final class IntentUtilsTest {
         assertNull("slotId should be null.", slotId);
     }
 
+    /**
+     * Test that the slot name can be obtained in the happy case.
+     */
+    @Test
+    public void testGetSlotName() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertEquals("Indian", slotName);
+    }
+
+    /**
+     * Test that an exception is raised if the input is null.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testGetSlotName_NullInput() {
+        // Act && Assert
+        unitUnderTest.getSlotName(null);
+    }
+
+    /**
+     * Test that null is returned if there are no resolutions in the slot.
+     */
+    @Test
+    public void testGetSlotName_MissigResolutions() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutions.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is returned if there are no resolutionsPerAuthority in the
+     * slot.
+     */
+    @Test
+    public void testGetSlotName_MissigResolutionsPerAuthority() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthority.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is returned if the resolutionsPerAuthority is empty in the
+     * slot.
+     */
+    @Test
+    public void testGetSlotName_EmptyResolutionsPerAuthority() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthority.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is returned if there are no resolutionsPerAuthorityValues in
+     * the slot.
+     */
+    @Test
+    public void testGetSlotName_MissigResolutionsPerAuthority_Values() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValues.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is retutned if there resolutionsPerAuthorityValues is empty in
+     * the slot.
+     */
+    @Test
+    public void testGetSlotName_EmptyResolutionsPerAuthority_Values() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithEmptyResolutionsPerAuthorityValues.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is returned if there are no resolutionsPerAuthorityValuesValue
+     * in the slot.
+     */
+    @Test
+    public void testGetSlotName_MissigResolutionsPerAuthority_Values_Value() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValue.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
+    /**
+     * Test that null is returned if there are no
+     * resolutionsPerAuthorityValuesValueName in the slot.
+     */
+    @Test
+    public void testGetSlotName_MissigResolutionsPerAuthority_Values_Value_Name() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutResolutionsPerAuthorityValuesValueName.json");
+
+        // Act
+        String slotName = unitUnderTest.getSlotName(slot);
+
+        // Assert
+        assertNull("slotName should be null.", slotName);
+    }
+
     private Slot buildSlot(String slotResourcePath) {
         URL url = getClass().getResource(slotResourcePath);
 
