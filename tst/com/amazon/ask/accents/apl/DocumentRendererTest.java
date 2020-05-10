@@ -108,6 +108,6 @@ public class DocumentRendererTest {
     private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
     private static String TEST_DOCUMENT_PATH = "/testdata/apl/document.json";
-    private static String VISUAL_METADATA_DATASOURCES_PATH = "/testdata/apl/datasources.json";
+    private static String VISUAL_METADATA_DATASOURCES_PATH = "/testdata/apl/skill-metadata-datasource.json";
     private static String SUPPORTED_VOICES_DATASOURCES_PATH = "/testdata/APL/supported_voices.json";
 }

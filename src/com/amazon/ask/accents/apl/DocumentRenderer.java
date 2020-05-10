@@ -75,7 +75,7 @@ public class DocumentRenderer {
     private static Map<String, Object> document = null;
     private static Map<String, Object> visualMetadataDataSource = null;
     private String DOCUMENT_PATH = "/resources/apl/document.json";
-    private String VISUAL_METADATA_DATASOURCES_PATH = "/resources/apl/datasources.json";
+    private String VISUAL_METADATA_DATASOURCES_PATH = "/resources/apl/skill-metadata-datasource.json";
     private String SUPPORTED_VOICES_DATASOURCES_PATH = "/resources/data/supported_voices.json";
     private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
