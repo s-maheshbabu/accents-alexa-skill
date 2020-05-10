@@ -68,7 +68,7 @@ public class DocumentRenderer {
 
     private static final String PATH = "/skillMetadata/properties";
     private static final String APL_TOKEN = "token";
-    private static final String I_SPOKE_LIKE = "I spoke like ... ";
+    private static final String I_SPOKE_LIKE = "I just spoke ";
     private static final String CURRENT_ACCENT_KEY = "currentAccent";
 
     private static DocumentRenderer instance;

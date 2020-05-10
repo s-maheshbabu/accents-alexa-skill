@@ -100,7 +100,7 @@ public class DocumentRendererTest {
     }
 
     private static final String PATH = "/skillMetadata/properties";
-    private static final String I_SPOKE_LIKE = "I spoke like ... ";
+    private static final String I_SPOKE_LIKE = "I just spoke ";
     private static final String CURRENT_ACCENT_KEY = "currentAccent";
 
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();

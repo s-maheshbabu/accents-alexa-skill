@@ -142,6 +142,7 @@
   "layouts": {
     "ListTemplate": {
       "parameters": [
+        "currentAccent",
         "backgroundImage",
         "title",
         "logo",
@@ -200,29 +201,9 @@
               "position": "absolute"
             },
             {
-              "type": "Container",
-              "direction": "row",
-              "paddingLeft": 40,
-              "paddingRight": 72,
-              "grow": 1,
-              "item": {
-                "type": "Sequence",
-                "scrollDirection": "horizontal",
-                "items": [
-                  {
-                    "type": "Text",
-                    "width": "45vw",
-                    "text": "I just spoke Japanese",
-                    "textAlign": "auto"
-                  },
-                  {
-                    "type": "Text",
-                    "text": "Other accents to try",
-                    "textAlign": "auto"
-                  }
-                ],
-                "grow": 1
-              }
+              "type": "AlexaHeader",
+              "headerAttributionImage": "${logo}",
+              "headerTitle": "${title}"
             },
             {
               "type": "Container",
@@ -232,12 +213,23 @@
               "grow": 1,
               "item": [
                 {
-                  "type": "Image",
-                  "width": "35vw",
-                  "height": "65vh",
-                  "source": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
-                  "scale": "best-fit",
-                  "align": "center"
+                  "type": "Container",
+                  "item": [
+                    {
+                      "type": "Text",
+                      "width": "45vw",
+                      "text": "${currentAccent}",
+                      "textAlign": "auto"
+                    },
+                    {
+                      "type": "Image",
+                      "width": "35vw",
+                      "height": "65vh",
+                      "source": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
+                      "scale": "best-fit",
+                      "align": "center"
+                    }
+                  ]
                 },
                 {
                   "type": "Sequence",
@@ -250,10 +242,10 @@
                   "items": [
                     {
                       "type": "VerticalListItem",
-                      "image": "${data.image.sources[0].url}",
-                      "primaryText": "${data.textContent.primaryText.text}",
-                      "secondaryText": "${data.textContent.secondaryText.text}",
-                      "tertiaryText": "${data.textContent.tertiaryText.text}"
+                      "image": "${data.url}",
+                      "primaryText": "${data.name}",
+                      "secondaryText": "${data.name}",
+                      "tertiaryText": "${data.name}"
                     }
                   ]
                 }
@@ -346,11 +338,12 @@
     "item": [
       {
         "type": "ListTemplate",
+        "currentAccent": "${payload.skillMetadata.properties.currentAccent}",
         "backgroundImage": "${payload.skillMetadata.backgroundImage.sources[0].url}",
         "title": "${payload.skillMetadata.title}",
         "hint": "${payload.skillMetadata.properties.hint}",
         "logo": "${payload.skillMetadata.logoUrl}",
-        "listData": "${payload.accentsData.listPage.listItems}"
+        "listData": "${payload.supportedVoices.voices}"
       }
     ]
   }

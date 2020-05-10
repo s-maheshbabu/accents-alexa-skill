@@ -201,29 +201,9 @@
               "position": "absolute"
             },
             {
-              "type": "Container",
-              "direction": "row",
-              "paddingLeft": 40,
-              "paddingRight": 72,
-              "grow": 1,
-              "item": {
-                "type": "Sequence",
-                "scrollDirection": "horizontal",
-                "items": [
-                  {
-                    "type": "Text",
-                    "width": "45vw",
-                    "text": "${currentAccent}",
-                    "textAlign": "auto"
-                  },
-                  {
-                    "type": "Text",
-                    "text": "Other accents to try",
-                    "textAlign": "auto"
-                  }
-                ],
-                "grow": 1
-              }
+              "type": "AlexaHeader",
+              "headerAttributionImage": "${logo}",
+              "headerTitle": "${title}"
             },
             {
               "type": "Container",
@@ -233,12 +213,23 @@
               "grow": 1,
               "item": [
                 {
-                  "type": "Image",
-                  "width": "35vw",
-                  "height": "65vh",
-                  "source": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
-                  "scale": "best-fit",
-                  "align": "center"
+                  "type": "Container",
+                  "item": [
+                    {
+                      "type": "Text",
+                      "width": "45vw",
+                      "text": "${currentAccent}",
+                      "textAlign": "auto"
+                    },
+                    {
+                      "type": "Image",
+                      "width": "35vw",
+                      "height": "65vh",
+                      "source": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
+                      "scale": "best-fit",
+                      "align": "center"
+                    }
+                  ]
                 },
                 {
                   "type": "Sequence",
