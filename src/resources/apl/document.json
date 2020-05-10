@@ -339,7 +339,7 @@
       {
         "type": "ListTemplate",
         "currentAccent": "${payload.skillMetadata.properties.currentAccent}",
-        "backgroundImage": "${payload.skillMetadata.backgroundImage.sources[0].url}",
+        "backgroundImage": "${payload.skillMetadata.backgroundImageUrl}",
         "title": "${payload.skillMetadata.title}",
         "hint": "${payload.skillMetadata.properties.hint}",
         "logo": "${payload.skillMetadata.logoUrl}",
