@@ -6,95 +6,136 @@
         "locale": "de-DE",
         "name": "German",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
-        "Female": [
+        "female": [
           "Marlene",
           "Vicki"
         ],
-        "Male": [
+        "male": [
           "Hans"
         ]
       },
       {
         "locale": "en-AU",
-        "name": "Australian",
+        "name": "English, Australian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
-        "Female": [
+        "female": [
           "Nicole"
         ],
-        "Male": [
+        "male": [
           "Russell"
         ]
       },
       {
-        "locale": "es-ES",
-        "name": "Spanish",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
-        "Female": [
-          "Conchita"
-        ],
-        "Male": [
-          "Enrique"
-        ]
-      },
-      {
         "locale": "en-GB",
-        "name": "British",
+        "name": "English, British",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
-        "Female": [
+        "female": [
           "Amy",
           "Emma"
         ],
-        "Male": [
+        "male": [
           "Brian"
         ]
       },
       {
         "locale": "en-IN",
-        "name": "Indian",
+        "name": "English, Indian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
-        "Female": [
+        "female": [
           "Aditi",
           "Raveena"
         ],
-        "Male": []
+        "male": []
       },
       {
         "locale": "en-US",
-        "name": "American",
+        "name": "English, American",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
-        "Female": [
+        "female": [
           "Ivy",
           "Joanna",
           "Kendra",
           "Kimberly",
           "Salli"
         ],
-        "Male": [
+        "male": [
           "Joey",
           "Justin",
           "Matthew"
         ]
       },
       {
+        "locale": "es-ES",
+        "name": "Spanish, Castilian",
+        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
+        "female": [
+          "Conchita",
+          "Lucia"
+        ],
+        "male": [
+          "Enrique"
+        ]
+      },
+      {
+        "locale": "es-MX",
+        "name": "Spanish, Mexican",
+        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "female": [
+          "Mia"
+        ],
+        "male": []
+      },
+      {
+        "locale": "es-US",
+        "name": "Spanish, American",
+        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "female": [
+          "Lupe",
+          "Penelope"
+        ],
+        "male": [
+          "Miguel"
+        ]
+      },
+      {
+        "locale": "fr-CA",
+        "name": "French, Canadian",
+        "url": "https: //i.imgur.com/Ll0Qfo5.jpeg",
+        "female": [
+          "Chantal"
+        ],
+        "male": []
+      },
+      {
         "locale": "fr-FR",
-        "name": "French",
+        "name": "French, France",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
-        "Female": [
+        "female": [
           "Celine",
           "Lea"
         ],
-        "Male": [
+        "male": [
           "Mathieu"
         ]
+      },
+      {
+        "locale": "hi-IN",
+        "name": "Hindi",
+        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "female": [
+          "Aditi"
+        ],
+        "male": []
       },
       {
         "locale": "it-IT",
         "name": "Italian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
-        "Female": [
+        "female": [
+          "Bianca",
           "Carla"
         ],
-        "Male": [
+        "male": [
           "Giorgio"
         ]
       },
@@ -102,11 +143,23 @@
         "locale": "ja-JP",
         "name": "Japanese",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
-        "Female": [
+        "female": [
           "Mizuki"
         ],
-        "Male": [
+        "male": [
           "Takumi"
+        ]
+      },
+      {
+        "locale": "pt-BR",
+        "name": "Portuguese, Brazilian",
+        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "female": [
+          "Camila",
+          "Vitoria"
+        ],
+        "male": [
+          "Ricardo"
         ]
       }
     ]
