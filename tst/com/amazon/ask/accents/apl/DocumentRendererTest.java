@@ -7,6 +7,7 @@ import static org.mockito.Mockito.when;
 import java.io.Reader;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
@@ -36,8 +37,11 @@ public class DocumentRendererTest {
         assertEquals("token", directive.getToken());
 
         JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
+        assertFalse(dataSourceNode.at("/skillMetadata").isMissingNode());
         assertEquals(I_SPOKE_LIKE + languageName,
                 dataSourceNode.at("/skillMetadata/properties/currentAccent").asText());
+
+        assertFalse(dataSourceNode.at("/supportedVoices").isMissingNode());
     }
 
     /*
@@ -84,7 +88,10 @@ public class DocumentRendererTest {
     @BeforeClass
     public static void setup() throws Exception {
         FieldUtils.writeField(unitUnderTest, "DOCUMENT_PATH", TEST_DOCUMENT_PATH, true);
-        FieldUtils.writeField(unitUnderTest, "DATASOURCES_PATH", TEST_DATASOURCES_PATH, true);
+        FieldUtils.writeField(unitUnderTest, "VISUAL_METADATA_DATASOURCES_PATH", VISUAL_METADATA_DATASOURCES_PATH,
+                true);
+        FieldUtils.writeField(unitUnderTest, "SUPPORTED_VOICES_DATASOURCES_PATH", SUPPORTED_VOICES_DATASOURCES_PATH,
+                true);
     }
 
     @Before
@@ -101,5 +108,6 @@ public class DocumentRendererTest {
     private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
     private static String TEST_DOCUMENT_PATH = "/testdata/apl/document.json";
-    private static String TEST_DATASOURCES_PATH = "/testdata/apl/datasources.json";
+    private static String VISUAL_METADATA_DATASOURCES_PATH = "/testdata/apl/datasources.json";
+    private static String SUPPORTED_VOICES_DATASOURCES_PATH = "/testdata/APL/supported_voices.json";
 }

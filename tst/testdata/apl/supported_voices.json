@@ -6,11 +6,11 @@
         "locale": "de-DE",
         "name": "German",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
-        "female": [
+        "Female": [
           "Marlene",
           "Vicki"
         ],
-        "male": [
+        "Male": [
           "Hans"
         ]
       },
@@ -18,10 +18,10 @@
         "locale": "en-AU",
         "name": "Australian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
-        "female": [
+        "Female": [
           "Nicole"
         ],
-        "male": [
+        "Male": [
           "Russell"
         ]
       },
@@ -29,10 +29,10 @@
         "locale": "es-ES",
         "name": "Spanish",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
-        "female": [
+        "Female": [
           "Conchita"
         ],
-        "male": [
+        "Male": [
           "Enrique"
         ]
       },
@@ -40,11 +40,11 @@
         "locale": "en-GB",
         "name": "British",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
-        "female": [
+        "Female": [
           "Amy",
           "Emma"
         ],
-        "male": [
+        "Male": [
           "Brian"
         ]
       },
@@ -52,24 +52,24 @@
         "locale": "en-IN",
         "name": "Indian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
-        "female": [
+        "Female": [
           "Aditi",
           "Raveena"
         ],
-        "male": []
+        "Male": []
       },
       {
         "locale": "en-US",
         "name": "American",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
-        "female": [
+        "Female": [
           "Ivy",
           "Joanna",
           "Kendra",
           "Kimberly",
           "Salli"
         ],
-        "male": [
+        "Male": [
           "Joey",
           "Justin",
           "Matthew"
@@ -79,11 +79,11 @@
         "locale": "fr-FR",
         "name": "French",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
-        "female": [
+        "Female": [
           "Celine",
           "Lea"
         ],
-        "male": [
+        "Male": [
           "Mathieu"
         ]
       },
@@ -91,10 +91,10 @@
         "locale": "it-IT",
         "name": "Italian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
-        "female": [
+        "Female": [
           "Carla"
         ],
-        "male": [
+        "Male": [
           "Giorgio"
         ]
       },
@@ -102,10 +102,10 @@
         "locale": "ja-JP",
         "name": "Japanese",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
-        "female": [
+        "Female": [
           "Mizuki"
         ],
-        "male": [
+        "Male": [
           "Takumi"
         ]
       }

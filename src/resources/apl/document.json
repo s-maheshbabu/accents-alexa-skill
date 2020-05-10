@@ -251,10 +251,10 @@
                   "items": [
                     {
                       "type": "VerticalListItem",
-                      "image": "${data.image.sources[0].url}",
-                      "primaryText": "${data.textContent.primaryText.text}",
-                      "secondaryText": "${data.textContent.secondaryText.text}",
-                      "tertiaryText": "${data.textContent.tertiaryText.text}"
+                      "image": "${data.url}",
+                      "primaryText": "${data.name}",
+                      "secondaryText": "${data.name}",
+                      "tertiaryText": "${data.name}"
                     }
                   ]
                 }
@@ -352,7 +352,7 @@
         "title": "${payload.skillMetadata.title}",
         "hint": "${payload.skillMetadata.properties.hint}",
         "logo": "${payload.skillMetadata.logoUrl}",
-        "listData": "${payload.accentsData.listPage.listItems}"
+        "listData": "${payload.supportedVoices.voices}"
       }
     ]
   }

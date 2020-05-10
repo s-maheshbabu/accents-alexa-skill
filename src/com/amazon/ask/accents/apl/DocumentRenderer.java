@@ -19,23 +19,33 @@ public class DocumentRenderer {
     }
 
     public RenderDocumentDirective buildDirective(final String language) {
-        if (document == null || dataSources == null) {
+        if (document == null || visualMetadataDataSource == null) {
             try {
                 document = objectMapper.readValue(new FileReader(getClass().getResource(DOCUMENT_PATH).getPath()),
                         HashMap.class);
+            } catch (final Exception e) {
+                logger.error("Failed loading APL document. GUI would be broken.", e);
+                return null;
+            }
+
+            try {
+                final Map<String, Object> supportedVoicesDataSource = objectMapper.readValue(
+                        new FileReader(getClass().getResource(SUPPORTED_VOICES_DATASOURCES_PATH).getPath()),
+                        HashMap.class);
 
                 final JsonNode node = objectMapper
-                        .readTree(new FileReader(getClass().getResource(DATASOURCES_PATH).getPath()));
+                        .readTree(new FileReader(getClass().getResource(VISUAL_METADATA_DATASOURCES_PATH).getPath()));
                 setCurrentAccent(node, language);
+                visualMetadataDataSource = objectMapper.treeToValue(node, HashMap.class);
 
-                dataSources = objectMapper.treeToValue(node, HashMap.class);
+                visualMetadataDataSource.putAll(supportedVoicesDataSource);
             } catch (final Exception e) {
-                logger.error("Failed loading APL document and datasources. GUI would be broken.", e);
+                logger.error("Failed loading APL datasources. GUI would be broken.", e);
                 return null;
             }
         }
         return RenderDocumentDirective.builder().withToken(APL_TOKEN).withDocument(document)
-                .withDatasources(dataSources).build();
+                .withDatasources(visualMetadataDataSource).build();
     }
 
     private void setCurrentAccent(final JsonNode node, final String language) {
@@ -53,7 +63,7 @@ public class DocumentRenderer {
      * Visible for testing purposes only.
      */
     protected void reset() {
-        document = dataSources = null;
+        document = visualMetadataDataSource = null;
     }
 
     private static final String PATH = "/skillMetadata/properties";
@@ -61,11 +71,13 @@ public class DocumentRenderer {
     private static final String I_SPOKE_LIKE = "I spoke like ... ";
     private static final String CURRENT_ACCENT_KEY = "currentAccent";
 
-    private static final Logger logger = LogManager.getLogger(DocumentRenderer.class);
     private static DocumentRenderer instance;
     private static Map<String, Object> document = null;
-    private static Map<String, Object> dataSources = null;
-    private final String DOCUMENT_PATH = "/resources/apl/document.json";
-    private final String DATASOURCES_PATH = "/resources/apl/datasources.json";
-    private final ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+    private static Map<String, Object> visualMetadataDataSource = null;
+    private String DOCUMENT_PATH = "/resources/apl/document.json";
+    private String VISUAL_METADATA_DATASOURCES_PATH = "/resources/apl/datasources.json";
+    private String SUPPORTED_VOICES_DATASOURCES_PATH = "/resources/data/supported_voices.json";
+    private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
+
+    private static final Logger logger = LogManager.getLogger(DocumentRenderer.class);
 }

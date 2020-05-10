@@ -56,7 +56,7 @@ public class VoicesRepoTest {
      * TODO: This is a fragile test because if and when Amazon starts supporting
      * more than once voice for the en-AU/Female combination, this test will break.
      * This test class needs to be refactored to not use the real supported voices
-     * but rather injec a mock mapping of languages->voices and inject it into
+     * but rather inject a mock mapping of languages->voices and inject it into
      * VoicesRepo class.
      */
     @Test
@@ -83,6 +83,29 @@ public class VoicesRepoTest {
         // Arrange
         String language = "en-AU";
         String gender = null;
+
+        // Act
+        String actualVoice = unitUnderTest.getVoice(language, gender);
+
+        // Assert
+        List<String> maleVoiceIds = voicesMap.get(language).get("Male");
+        List<String> femaleVoiceIds = voicesMap.get(language).get("Female");
+
+        List<String> allVoiceIds = new ArrayList<String>(maleVoiceIds);
+        allVoiceIds.addAll(femaleVoiceIds);
+        assertTrue("Returned voiceId should be on of the voices for the given language and gender.",
+                allVoiceIds.contains(actualVoice));
+    }
+
+    /**
+     * Test that a voice can be obtained when a given gender value is unknown (most
+     * probably invalid). A voice Id for either gender can be returned.
+     */
+    @Test
+    public void getVoice_UnknownGender() {
+        // Arrange
+        String language = "en-AU";
+        String gender = "someUnknownGender";
 
         // Act
         String actualVoice = unitUnderTest.getVoice(language, gender);
