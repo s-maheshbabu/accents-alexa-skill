@@ -19,7 +19,6 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.lang3.reflect.FieldUtils;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class DocumentRendererTest {
@@ -85,15 +84,6 @@ public class DocumentRendererTest {
         FieldUtils.writeDeclaredField(unitUnderTest, "objectMapper", originalMapper, true);
     }
 
-    @BeforeClass
-    public static void setup() throws Exception {
-        FieldUtils.writeField(unitUnderTest, "DOCUMENT_PATH", TEST_DOCUMENT_PATH, true);
-        FieldUtils.writeField(unitUnderTest, "VISUAL_METADATA_DATASOURCES_PATH", VISUAL_METADATA_DATASOURCES_PATH,
-                true);
-        FieldUtils.writeField(unitUnderTest, "SUPPORTED_VOICES_DATASOURCES_PATH", SUPPORTED_VOICES_DATASOURCES_PATH,
-                true);
-    }
-
     @Before
     public void initialize() {
         unitUnderTest.reset();
@@ -106,8 +96,4 @@ public class DocumentRendererTest {
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();
 
     private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
-
-    private static String TEST_DOCUMENT_PATH = "/testdata/apl/document.json";
-    private static String VISUAL_METADATA_DATASOURCES_PATH = "/testdata/apl/skill-metadata-datasource.json";
-    private static String SUPPORTED_VOICES_DATASOURCES_PATH = "/testdata/APL/supported_voices.json";
 }
