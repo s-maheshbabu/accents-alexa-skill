@@ -10,7 +10,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
 
+import com.amazon.ask.accents.skillmetadata.APLDatasourceKeys;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -37,16 +39,14 @@ public class DocumentRendererTest {
         assertEquals("token", directive.getToken());
 
         JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
-        assertFalse(dataSourceNode.at("/skillMetadata").isMissingNode());
-        assertEquals(I_SPOKE_LIKE + languageName,
-                dataSourceNode.at("/skillMetadata/properties/currentAccent").asText());
+        assertFalse(dataSourceNode.at("/" + APLDatasourceKeys.VISUAL_SKILL_METADATA).isMissingNode());
+        assertEquals(I_SPOKE_LIKE + languageName, dataSourceNode.at(CURRENT_ACCENT_PATH).asText());
 
         assertFalse(dataSourceNode.at("/supportedVoices").isMissingNode());
     }
 
     /*
-     * Test that buildDirective returns the correct directive when no language is
-     * passed.
+     * Test that buildDirective throws when no language is passed.
      */
     @Test
     public void testBuildDirective_NoLanguage() throws Exception {
@@ -55,11 +55,11 @@ public class DocumentRendererTest {
 
         for (String languageName : languageNameValues) {
             // Act
-            RenderDocumentDirective directive = unitUnderTest.buildDirective(languageName);
-
-            // Assert
-            JsonNode dataSourceNode = objectMapper.convertValue(directive.getDatasources(), JsonNode.class);
-            assertEquals(I_SPOKE_LIKE, dataSourceNode.at(PATH + "/" + CURRENT_ACCENT_KEY).asText());
+            try {
+                unitUnderTest.buildDirective(languageName);
+                fail("Expected an IllegalArgumentException to be thrown");
+            } catch (IllegalArgumentException e) {
+            }
         }
     }
 
@@ -99,9 +99,9 @@ public class DocumentRendererTest {
         unitUnderTest.reset();
     }
 
-    private static final String PATH = "/skillMetadata/properties";
-    private static final String I_SPOKE_LIKE = "I just spoke ";
-    private static final String CURRENT_ACCENT_KEY = "currentAccent";
+    private static final String I_SPOKE_LIKE = "Here is my ";
+    private static final String CURRENT_ACCENT_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"
+            + APLDatasourceKeys.PROPERTIES + "/" + APLDatasourceKeys.CURRENT_ACCENT;
 
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();
 

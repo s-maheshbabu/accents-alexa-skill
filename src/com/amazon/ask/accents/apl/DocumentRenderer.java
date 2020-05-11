@@ -4,13 +4,14 @@ import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.amazon.ask.accents.skillmetadata.Properties;
+import com.amazon.ask.accents.skillmetadata.VisualSkillMetadata;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
 import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +20,8 @@ public class DocumentRenderer {
     }
 
     public RenderDocumentDirective buildDirective(final String language) {
+        Validate.isTrue(StringUtils.isNotBlank(language), "Language is a required parameter.", language);
+
         if (document == null) {
             try {
                 document = objectMapper.readValue(new FileReader(getClass().getResource(DOCUMENT_PATH).getPath()),
@@ -28,6 +31,18 @@ public class DocumentRenderer {
                 return null;
             }
         }
+
+        if (visualSkillMetadata == null) {
+            try {
+                visualSkillMetadata = objectMapper.readValue(
+                        new FileReader(getClass().getResource(VISUAL_METADATA_DATASOURCES_PATH).getPath()),
+                        VisualSkillMetadata.class);
+            } catch (final Exception e) {
+                logger.error("Failed loading supported voices data source. GUI would be broken.", e);
+                return null;
+            }
+        }
+        setCurrentAccent(language);
 
         if (supportedVoicesDataSource == null) {
             try {
@@ -40,34 +55,22 @@ public class DocumentRenderer {
             }
         }
 
-        if (visualMetadataDataSourceNode == null) {
-            try {
-
-                visualMetadataDataSourceNode = objectMapper
-                        .readTree(new FileReader(getClass().getResource(VISUAL_METADATA_DATASOURCES_PATH).getPath()));
-            } catch (final Exception e) {
-                logger.error("Failed loading visual metadata data source. GUI would be broken.", e);
-                return null;
-            }
-        }
-
-        setCurrentAccent(visualMetadataDataSourceNode, language);
         try {
-            visualMetadataDataSource = objectMapper.treeToValue(visualMetadataDataSourceNode, HashMap.class);
+            visualMetadataDataSource = objectMapper.readValue(objectMapper.writeValueAsString(visualSkillMetadata),
+                    HashMap.class);
         } catch (final Exception e) {
             logger.error("Failed loading the dynamic values into the data source. GUI would be broken.", e);
             return null;
         }
-
         visualMetadataDataSource.putAll(supportedVoicesDataSource);
 
         return RenderDocumentDirective.builder().withToken(APL_TOKEN).withDocument(document)
                 .withDatasources(visualMetadataDataSource).build();
     }
 
-    private void setCurrentAccent(final JsonNode node, final String language) {
-        ((ObjectNode) node.at(PATH)).put(CURRENT_ACCENT_KEY,
-                StringUtils.isEmpty(language) ? I_SPOKE_LIKE : I_SPOKE_LIKE + language);
+    private void setCurrentAccent(final String language) {
+        Properties properties = visualSkillMetadata.getProperties();
+        properties.setCurrentAccent(I_SPOKE_LIKE + language);
     }
 
     public static DocumentRenderer getInstance() {
@@ -81,22 +84,21 @@ public class DocumentRenderer {
      */
     protected void reset() {
         document = supportedVoicesDataSource = visualMetadataDataSource = null;
-        visualMetadataDataSourceNode = null;
     }
 
-    private static final String PATH = "/skillMetadata/properties";
     private static final String APL_TOKEN = "token";
-    private static final String I_SPOKE_LIKE = "I just spoke ";
-    private static final String CURRENT_ACCENT_KEY = "currentAccent";
+    private static final String I_SPOKE_LIKE = "Here is my ";
 
     private static DocumentRenderer instance;
+    private static VisualSkillMetadata visualSkillMetadata = null;
     private static Map<String, Object> document = null;
     private static Map<String, Object> visualMetadataDataSource = null;
     private static Map<String, Object> supportedVoicesDataSource = null;
-    private static JsonNode visualMetadataDataSourceNode = null;
+
     private String DOCUMENT_PATH = "/resources/apl/document.json";
     private String VISUAL_METADATA_DATASOURCES_PATH = "/resources/apl/skill-metadata-datasource.json";
     private String SUPPORTED_VOICES_DATASOURCES_PATH = "/resources/data/supported_voices.json";
+
     private ObjectMapper objectMapper = ObjectMapperFactory.getInstance();
 
     private static final Logger logger = LogManager.getLogger(DocumentRenderer.class);

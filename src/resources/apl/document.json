@@ -333,17 +333,18 @@
   },
   "mainTemplate": {
     "parameters": [
-      "payload"
+      "visualSkillMetadata",
+      "supportedVoices"
     ],
     "item": [
       {
         "type": "ListTemplate",
-        "currentAccent": "${payload.skillMetadata.properties.currentAccent}",
-        "backgroundImage": "${payload.skillMetadata.backgroundImageUrl}",
-        "title": "${payload.skillMetadata.title}",
-        "hint": "${payload.skillMetadata.properties.hint}",
-        "logo": "${payload.skillMetadata.logoUrl}",
-        "listData": "${payload.supportedVoices.voices}"
+        "currentAccent": "${visualSkillMetadata.properties.currentAccent}",
+        "backgroundImage": "${visualSkillMetadata.backgroundImage.sources[0].url}",
+        "title": "${visualSkillMetadata.title}",
+        "hint": "${visualSkillMetadata.properties.hint}",
+        "logo": "${visualSkillMetadata.logoUrl}",
+        "listData": "${supportedVoices.voices}"
       }
     ]
   }
