@@ -17,20 +17,18 @@ import com.amazon.ask.model.ui.SimpleCard;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class LaunchRequestHandler implements RequestHandler
-{
+public class LaunchRequestHandler implements RequestHandler {
     @Override
-    public boolean canHandle(HandlerInput input)
-    {
+    public boolean canHandle(HandlerInput input) {
         logger.info("Request Envelope: " + input.getRequestEnvelope());
         return input.matches(requestType(LaunchRequest.class)) || input.matches(intentName(Intents.START_OVER_INTENT));
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input)
-    {
+    public Optional<Response> handle(HandlerInput input) {
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.WELCOME).build();
-        return input.getResponseBuilder().withSpeech(Prompts.WELCOME_MESSAGE).withShouldEndSession(false).withCard(card).build();
+        return input.getResponseBuilder().withSpeech(Prompts.WELCOME_MESSAGE).withShouldEndSession(false).withCard(card)
+                .build();
     }
 
     private static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);

@@ -1,6 +1,5 @@
 package com.amazon.ask.accents.model;
 
-public enum Gender
-{
+public enum Gender {
     Female, Male;
 }

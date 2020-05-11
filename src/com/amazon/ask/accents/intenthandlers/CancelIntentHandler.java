@@ -10,17 +10,14 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
 
-public class CancelIntentHandler implements RequestHandler
-{
+public class CancelIntentHandler implements RequestHandler {
     @Override
-    public boolean canHandle(HandlerInput input)
-    {
+    public boolean canHandle(HandlerInput input) {
         return input.matches(intentName(Intents.CANCEL_INTENT));
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input)
-    {
+    public Optional<Response> handle(HandlerInput input) {
         return input.getResponseBuilder().withSpeech(Prompts.EXIT).withShouldEndSession(true).build();
     }
 }

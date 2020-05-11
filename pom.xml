@@ -95,11 +95,11 @@
                                 <goal>copy-resources</goal>
                             </goals>
                             <configuration>
-                                <outputDirectory>${basedir}/target/classes/resources/data
+                                <outputDirectory>${basedir}/target/classes/resources/
                                 </outputDirectory>
                                 <resources>
                                     <resource>
-                                        <directory>src/resources/data</directory>
+                                        <directory>src/resources/</directory>
                                         <filtering>false</filtering>
                                     </resource>
                                 </resources>

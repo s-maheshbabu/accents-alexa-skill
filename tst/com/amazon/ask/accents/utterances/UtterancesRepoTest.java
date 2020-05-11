@@ -13,14 +13,12 @@ import static org.junit.Assert.assertTrue;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class UtterancesRepoTest
-{
+public class UtterancesRepoTest {
     /**
      * Test that a random set of utterances are returned for a given language.
      */
     @Test
-    public void getUtterances()
-    {
+    public void getUtterances() {
         // Arrange
         String language = "en-IN";
 
@@ -34,8 +32,7 @@ public class UtterancesRepoTest
         // of poor random selection logic in the source code than us getting really
         // unlucky.
         Set<String> allActualUtterances = new HashSet<>();
-        for (int i = 0; i < numberOfUtterances * 1000; i++)
-        {
+        for (int i = 0; i < numberOfUtterances * 1000; i++) {
             // Act
             List<String> actualUtterances = unitUnderTest.getUtterances(language);
 
@@ -49,8 +46,7 @@ public class UtterancesRepoTest
         // Assert
         List<String> allUtterancesThatExist = utterancesMap.get(language);
         assertEquals(allUtterancesThatExist.size(), allActualUtterances.size());
-        for (String utterance : allActualUtterances)
-        {
+        for (String utterance : allActualUtterances) {
             assertTrue(allUtterancesThatExist.contains(utterance));
         }
     }
@@ -60,8 +56,7 @@ public class UtterancesRepoTest
      * returned, we return all the available utterances.
      */
     @Test
-    public void getUtterances_TooFewUtterances()
-    {
+    public void getUtterances_TooFewUtterances() {
         // Arrange
         String language = "de-DE";
 
@@ -71,8 +66,7 @@ public class UtterancesRepoTest
         // Assert
         List<String> expectedUtterances = utterancesMap.get(language);
         assertEquals(expectedUtterances.size(), actualUtternaces.size());
-        for (String utterance : actualUtternaces)
-        {
+        for (String utterance : actualUtternaces) {
             assertTrue(expectedUtterances.contains(utterance));
         }
     }
@@ -82,8 +76,7 @@ public class UtterancesRepoTest
      * return from the default set.
      */
     @Test
-    public void getUtterances_UnsupportedLanguage()
-    {
+    public void getUtterances_UnsupportedLanguage() {
         // Arrange
         String language = "unknownLanguage";
 
@@ -92,8 +85,7 @@ public class UtterancesRepoTest
 
         // Assert
         List<String> expectedUtterances = utterancesMap.get(UtterancesRepo.DEFAULT_LANGUAGE_KEY);
-        for (String utterance : actualUtternaces)
-        {
+        for (String utterance : actualUtternaces) {
             assertTrue(expectedUtterances.contains(utterance));
         }
     }
@@ -102,8 +94,7 @@ public class UtterancesRepoTest
      * Test that an NPE is thrown if the language parameter is null.
      */
     @Test(expected = NullPointerException.class)
-    public void getUtterances_NoLanguage()
-    {
+    public void getUtterances_NoLanguage() {
         // Arrange
         String language = null;
 
@@ -112,8 +103,7 @@ public class UtterancesRepoTest
     }
 
     @BeforeClass
-    public static void setup()
-    {
+    public static void setup() {
         Map<String, List<String>> map = new HashMap<>();
 
         map.put("en-IN", Arrays.asList("Indian sentence - 1", "Indian sentence - 2", "Indian sentence - 3",
