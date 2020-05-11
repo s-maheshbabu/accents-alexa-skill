@@ -7,6 +7,8 @@ import java.util.Map;
 import com.amazon.ask.accents.skillmetadata.Properties;
 import com.amazon.ask.accents.skillmetadata.VisualSkillMetadata;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
+import com.amazon.ask.accents.voices.Voice;
+import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -19,8 +21,8 @@ public class DocumentRenderer {
     private DocumentRenderer() {
     }
 
-    public RenderDocumentDirective buildDirective(final String language) {
-        Validate.isTrue(StringUtils.isNotBlank(language), "Language is a required parameter.", language);
+    public RenderDocumentDirective buildDirective(final String locale) {
+        Validate.isTrue(StringUtils.isNotBlank(locale), "Locale is a required parameter.", locale);
 
         if (document == null) {
             try {
@@ -42,7 +44,7 @@ public class DocumentRenderer {
                 return null;
             }
         }
-        setCurrentAccent(language);
+        setCurrentAccent(locale);
 
         if (supportedVoicesDataSource == null) {
             try {
@@ -68,9 +70,13 @@ public class DocumentRenderer {
                 .withDatasources(visualMetadataDataSource).build();
     }
 
-    private void setCurrentAccent(final String language) {
+    private void setCurrentAccent(final String locale) {
+        Map<String, Voice> supportedVoices = voicesRepo.getSupportedVoices();
+        Voice voice = supportedVoices.get(locale);
+
         Properties properties = visualSkillMetadata.getProperties();
-        properties.setCurrentAccent(I_SPOKE_LIKE + language);
+        properties.setCurrentAccent(I_SPOKE_LIKE + voice.getName());
+        properties.setCurrentAccentUrl(voice.getUrl());
     }
 
     public static DocumentRenderer getInstance() {
@@ -85,6 +91,8 @@ public class DocumentRenderer {
     protected void reset() {
         document = supportedVoicesDataSource = visualMetadataDataSource = null;
     }
+
+    private static final VoicesRepo voicesRepo = VoicesRepo.getInstance();
 
     private static final String APL_TOKEN = "token";
     private static final String I_SPOKE_LIKE = "Here is my ";

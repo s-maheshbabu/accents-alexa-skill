@@ -143,6 +143,7 @@
     "ListTemplate": {
       "parameters": [
         "currentAccent",
+        "currentAccentUrl",
         "backgroundImage",
         "title",
         "logo",
@@ -225,7 +226,7 @@
                       "type": "Image",
                       "width": "35vw",
                       "height": "65vh",
-                      "source": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
+                      "source": "${currentAccentUrl}",
                       "scale": "best-fit",
                       "align": "center"
                     }
@@ -340,6 +341,7 @@
       {
         "type": "ListTemplate",
         "currentAccent": "${visualSkillMetadata.properties.currentAccent}",
+        "currentAccentUrl": "${visualSkillMetadata.properties.currentAccentUrl}",
         "backgroundImage": "${visualSkillMetadata.backgroundImage.sources[0].url}",
         "title": "${visualSkillMetadata.title}",
         "hint": "${visualSkillMetadata.properties.hint}",

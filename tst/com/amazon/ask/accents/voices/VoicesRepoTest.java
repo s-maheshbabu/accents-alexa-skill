@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import com.amazon.ask.accents.errors.UnsupportedLanguageException;
@@ -174,6 +175,21 @@ public class VoicesRepoTest {
 
         // Act
         unitUnderTest.getVoice(language, gender);
+    }
+
+    /**
+     * Test that a map of supported voices by locale is returned.
+     */
+    @Test
+    public void testGetSupportedVoices() {
+        // Arrange
+
+        // Act
+        Map<String, Voice> supportedVoices = unitUnderTest.getSupportedVoices();
+
+        // Assert
+        assertNotNull(supportedVoices);
+        assertEquals(14, supportedVoices.size());
     }
 
     @BeforeClass

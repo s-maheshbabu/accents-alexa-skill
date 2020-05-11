@@ -84,6 +84,10 @@ public class VoicesRepo {
         return applicableVoices.get(0);
     }
 
+    public Map<String, Voice> getSupportedVoices() {
+        return voicesMap;
+    }
+
     public static VoicesRepo getInstance() {
         if (instance == null)
             instance = new VoicesRepo();

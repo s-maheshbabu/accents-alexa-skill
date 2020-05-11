@@ -3,6 +3,7 @@ package com.amazon.ask.accents.skillmetadata;
 public class APLDatasourceKeys {
     public static final String BACKGROUND_IMAGE_URL = "backgroundImageUrl";
     public static final String CURRENT_ACCENT = "currentAccent";
+    public static final String CURRENT_ACCENT_URL = "currentAccentUrl";
     public static final String HINT = "hint";
     public static final String INPUT_PATH = "inputPath";
     public static final String LOGO_URL = "logoUrl";

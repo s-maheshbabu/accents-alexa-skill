@@ -17,6 +17,16 @@ public class Properties {
         return this.currentAccent;
     }
 
+    @JsonProperty(APLDatasourceKeys.CURRENT_ACCENT_URL)
+    public void setCurrentAccentUrl(String currentAccentUrl) {
+        this.currentAccentUrl = currentAccentUrl;
+    }
+
+    @JsonProperty(APLDatasourceKeys.CURRENT_ACCENT_URL)
+    public String getCurrentAccentUrl() {
+        return this.currentAccentUrl;
+    }
+
     @JsonProperty(APLDatasourceKeys.HINT)
     public void setHint(String hint) {
         this.hint = hint;
@@ -28,5 +38,6 @@ public class Properties {
     }
 
     private String currentAccent;
+    private String currentAccentUrl;
     private String hint;
 }

@@ -198,7 +198,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
 
     @Before
     public void setup() {
-        when(documentRenderer.buildDirective(languageSlotResolvedValue)).thenReturn(documentDirective);
+        when(documentRenderer.buildDirective(languageSlotId)).thenReturn(documentDirective);
     }
 
     private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId) {
