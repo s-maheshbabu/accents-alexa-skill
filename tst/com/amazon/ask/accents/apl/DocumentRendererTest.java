@@ -47,6 +47,7 @@ public class DocumentRendererTest {
         assertFalse(dataSourceNode.at("/" + APLDatasourceKeys.VISUAL_SKILL_METADATA).isMissingNode());
         assertEquals(I_SPOKE + languageName, dataSourceNode.at(CURRENT_ACCENT_PATH).asText());
         assertTrue(StringUtils.isNotBlank(dataSourceNode.at(CURRENT_ACCENT_URL_PATH).asText()));
+        assertTrue(StringUtils.startsWith(dataSourceNode.at(HINT_PATH).asText(), HINT_BASE));
 
         assertFalse(dataSourceNode.at("/supportedVoices").isMissingNode());
     }
@@ -97,10 +98,13 @@ public class DocumentRendererTest {
     }
 
     private static final String I_SPOKE = "Here is my ";
+    private static final String HINT_BASE = "Talk like ";
     private static final String CURRENT_ACCENT_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"
             + APLDatasourceKeys.PROPERTIES + "/" + APLDatasourceKeys.CURRENT_ACCENT;
     private static final String CURRENT_ACCENT_URL_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"
             + APLDatasourceKeys.PROPERTIES + "/" + APLDatasourceKeys.CURRENT_ACCENT_URL;
+    private static final String HINT_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"
+            + APLDatasourceKeys.PROPERTIES + "/" + APLDatasourceKeys.HINT;
 
     private static final DocumentRenderer unitUnderTest = DocumentRenderer.getInstance();
 

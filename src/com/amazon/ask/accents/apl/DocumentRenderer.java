@@ -1,8 +1,11 @@
 package com.amazon.ask.accents.apl;
 
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import com.amazon.ask.accents.skillmetadata.Properties;
 import com.amazon.ask.accents.skillmetadata.VisualSkillMetadata;
@@ -77,6 +80,10 @@ public class DocumentRenderer {
         Properties properties = visualSkillMetadata.getProperties();
         properties.setCurrentAccent(I_SPOKE_LIKE + voice.getName());
         properties.setCurrentAccentUrl(voice.getUrl());
+
+        List<Voice> values = new ArrayList<Voice>(supportedVoices.values());
+        Voice randomVoice = values.get(new Random().nextInt(values.size()));
+        properties.setHint(HINT_BASE + randomVoice.getName());
     }
 
     public static DocumentRenderer getInstance() {
@@ -96,6 +103,7 @@ public class DocumentRenderer {
 
     private static final String APL_TOKEN = "token";
     private static final String I_SPOKE_LIKE = "Here is my ";
+    private static final String HINT_BASE = "Talk like ";
 
     private static DocumentRenderer instance;
     private static VisualSkillMetadata visualSkillMetadata = null;
