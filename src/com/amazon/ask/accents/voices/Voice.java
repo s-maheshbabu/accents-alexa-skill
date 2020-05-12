@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import java.util.List;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonPropertyOrder({ "locale", "name", "url", "Female", "Male" })
+@JsonPropertyOrder({ "locale", "name", "friendlyName", "url", "Female", "Male" })
 public class Voice {
     @JsonProperty("locale")
     public void setLocale(String locale) {
@@ -26,6 +26,16 @@ public class Voice {
     @JsonProperty("name")
     public String getName() {
         return this.name;
+    }
+
+    @JsonProperty("friendlyName")
+    public void setFriendlyName(String friendlyName) {
+        this.friendlyName = friendlyName;
+    }
+
+    @JsonProperty("friendlyName")
+    public String getFriendlyName() {
+        return this.friendlyName;
     }
 
     @JsonProperty("url")
@@ -63,6 +73,9 @@ public class Voice {
 
     @JsonProperty("name")
     private String name;
+
+    @JsonProperty("friendlyName")
+    private String friendlyName;
 
     @JsonProperty("url")
     private String url;

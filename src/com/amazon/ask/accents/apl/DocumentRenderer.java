@@ -84,12 +84,12 @@ public class DocumentRenderer {
         Voice voice = supportedVoices.get(locale);
 
         Properties properties = visualSkillMetadata.getProperties();
-        properties.setCurrentAccent(I_SPOKE_LIKE + voice.getName());
+        properties.setCurrentAccent(I_SPOKE_LIKE + voice.getFriendlyName());
         properties.setCurrentAccentUrl(voice.getUrl());
 
         List<Voice> values = new ArrayList<Voice>(supportedVoices.values());
         Voice randomVoice = values.get(new Random().nextInt(values.size()));
-        properties.setHint(HINT_BASE + randomVoice.getName());
+        properties.setHint(HINT_BASE + randomVoice.getFriendlyName());
     }
 
     public static DocumentRenderer getInstance() {
@@ -109,7 +109,7 @@ public class DocumentRenderer {
 
     private static final String APL_TOKEN = "token";
     private static final String I_SPOKE_LIKE = "Here is my ";
-    private static final String HINT_BASE = "Talk like ";
+    private static final String HINT_BASE = "Speak your ";
 
     private static DocumentRenderer instance;
     private static VisualSkillMetadata visualSkillMetadata = null;

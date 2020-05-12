@@ -98,7 +98,7 @@ public class DocumentRendererTest {
     }
 
     private static final String I_SPOKE = "Here is my ";
-    private static final String HINT_BASE = "Talk like ";
+    private static final String HINT_BASE = "Speak your ";
     private static final String CURRENT_ACCENT_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"
             + APLDatasourceKeys.PROPERTIES + "/" + APLDatasourceKeys.CURRENT_ACCENT;
     private static final String CURRENT_ACCENT_URL_PATH = "/" + APLDatasourceKeys.VISUAL_SKILL_METADATA + "/"

@@ -4,6 +4,7 @@
       {
         "locale": "de-DE",
         "name": "German",
+        "friendlyName": "German",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
         "female": [
           "Marlene",
@@ -16,6 +17,7 @@
       {
         "locale": "en-AU",
         "name": "English, Australian",
+        "friendlyName": "Australian English",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
         "female": [
           "Nicole"
@@ -27,6 +29,7 @@
       {
         "locale": "en-GB",
         "name": "English, British",
+        "friendlyName": "British English",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
         "female": [
           "Amy",
@@ -39,6 +42,7 @@
       {
         "locale": "en-IN",
         "name": "English, Indian",
+        "friendlyName": "Indian English",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
         "female": [
           "Aditi",
@@ -49,6 +53,7 @@
       {
         "locale": "en-US",
         "name": "English, American",
+        "friendlyName": "American English",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
         "female": [
           "Ivy",
@@ -66,6 +71,7 @@
       {
         "locale": "es-ES",
         "name": "Spanish, Castilian",
+        "friendlyName": "Castilian Spanish",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
         "female": [
           "Conchita",
@@ -78,6 +84,7 @@
       {
         "locale": "es-MX",
         "name": "Spanish, Mexican",
+        "friendlyName": "Mexican Spanish",
         "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
         "female": [
           "Mia"
@@ -87,6 +94,7 @@
       {
         "locale": "es-US",
         "name": "Spanish, American",
+        "friendlyName": "American Spanish",
         "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
         "female": [
           "Lupe",
@@ -99,6 +107,7 @@
       {
         "locale": "fr-CA",
         "name": "French, Canadian",
+        "friendlyName": "Canadian French",
         "url": "https: //i.imgur.com/Ll0Qfo5.jpeg",
         "female": [
           "Chantal"
@@ -108,6 +117,7 @@
       {
         "locale": "fr-FR",
         "name": "French, France",
+        "friendlyName": "France French",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
         "female": [
           "Celine",
@@ -120,6 +130,7 @@
       {
         "locale": "hi-IN",
         "name": "Hindi",
+        "friendlyName": "Hindi",
         "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
         "female": [
           "Aditi"
@@ -129,6 +140,7 @@
       {
         "locale": "it-IT",
         "name": "Italian",
+        "friendlyName": "Italian",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
         "female": [
           "Bianca",
@@ -141,6 +153,7 @@
       {
         "locale": "ja-JP",
         "name": "Japanese",
+        "friendlyName": "Japanese",
         "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
         "female": [
           "Mizuki"
@@ -152,6 +165,7 @@
       {
         "locale": "pt-BR",
         "name": "Portuguese, Brazilian",
+        "friendlyName": "Brazilian Portuguese",
         "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
         "female": [
           "Camila",
