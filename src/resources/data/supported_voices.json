@@ -1,6 +1,5 @@
 {
   "supportedVoices": {
-    "listId": "supportedVoicesListId",
     "voices": [
       {
         "locale": "de-DE",

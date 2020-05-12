@@ -8,6 +8,7 @@ public class APLDatasourceKeys {
     public static final String INPUT_PATH = "inputPath";
     public static final String LOGO_URL = "logoUrl";
     public static final String PROPERTIES = "properties";
+    public static final String SUPPORTED_VOICES = "supportedVoices";
     public static final String TITLE = "title";
     public static final String TRANSFORMER = "transformer";
     public static final String TRANSFORMERS = "transformers";

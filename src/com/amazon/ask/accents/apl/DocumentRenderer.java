@@ -2,6 +2,7 @@ package com.amazon.ask.accents.apl;
 
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Random;
 import com.amazon.ask.accents.skillmetadata.Properties;
 import com.amazon.ask.accents.skillmetadata.VisualSkillMetadata;
 import com.amazon.ask.accents.util.ObjectMapperFactory;
+import com.amazon.ask.accents.voices.SupportedVoices;
 import com.amazon.ask.accents.voices.Voice;
 import com.amazon.ask.accents.voices.VoicesRepo;
 import com.amazon.ask.model.interfaces.alexa.presentation.apl.RenderDocumentDirective;
@@ -49,22 +51,26 @@ public class DocumentRenderer {
         }
         setCurrentAccent(locale);
 
-        if (supportedVoicesDataSource == null) {
+        if (supportedVoices == null) {
             try {
-                supportedVoicesDataSource = objectMapper.readValue(
+                supportedVoices = objectMapper.readValue(
                         new FileReader(getClass().getResource(SUPPORTED_VOICES_DATASOURCES_PATH).getPath()),
-                        HashMap.class);
+                        SupportedVoices.class);
             } catch (final Exception e) {
                 logger.error("Failed loading supported voices data source. GUI would be broken.", e);
                 return null;
             }
         }
+        Collections.shuffle(supportedVoices.getVoices());
 
         try {
             visualMetadataDataSource = objectMapper.readValue(objectMapper.writeValueAsString(visualSkillMetadata),
                     HashMap.class);
+            supportedVoicesDataSource = objectMapper.readValue(objectMapper.writeValueAsString(supportedVoices),
+                    HashMap.class);
         } catch (final Exception e) {
-            logger.error("Failed loading the dynamic values into the data source. GUI would be broken.", e);
+            logger.error(
+                    "Failed loading skill metadata and supported voices into the data source. GUI would be broken.", e);
             return null;
         }
         visualMetadataDataSource.putAll(supportedVoicesDataSource);
@@ -107,6 +113,7 @@ public class DocumentRenderer {
 
     private static DocumentRenderer instance;
     private static VisualSkillMetadata visualSkillMetadata = null;
+    private static SupportedVoices supportedVoices = null;
     private static Map<String, Object> document = null;
     private static Map<String, Object> visualMetadataDataSource = null;
     private static Map<String, Object> supportedVoicesDataSource = null;
