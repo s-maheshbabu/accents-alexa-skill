@@ -22,6 +22,8 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.ui.Card;
 import com.amazon.ask.model.ui.SimpleCard;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -42,15 +44,20 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         String genderSlotId = null;
         if (genderSlot != null)
             genderSlotId = intentUtils.getSlotId(genderSlot);
-        String voice = voicesRepo.getVoice(intentUtils.getSlotId(languageSlot), genderSlotId);
 
-        Directive documentDirective = documentRenderer.buildDirective(intentUtils.getSlotId(languageSlot));
+        String languageSlotId = intentUtils.getSlotId(languageSlot);
+        String voice = null;
+        if (StringUtils.isNotBlank(languageSlotId))
+            voice = voicesRepo.getVoice(languageSlotId, genderSlotId);
+
         if (null == voice) {
-            // TODO: Do we need to add cards here?
-            return input.getResponseBuilder().addDirective(documentDirective).withSpeech(Prompts.NO_VOICE_FOUND)
-                    .withShouldEndSession(true).build();
+            // TODO: Do we need to add cards/APL document here? Note, because of a bug in
+            // ASK, you need to add an APL document at the end of the builder below if you
+            // ever decide to add one.
+            return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
         }
 
+        Directive documentDirective = documentRenderer.buildDirective(intentUtils.getSlotId(languageSlot));
         List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
 
         String speechText = wrapUtternacesInVoiceTag(voice, utterances);

@@ -1,6 +1,5 @@
 package com.amazon.ask.accents.intenthandlers;
 
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -14,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import org.mockito.Mockito;
 import com.amazon.ask.accents.apl.DocumentRenderer;
 import com.amazon.ask.accents.model.Intents;
 import com.amazon.ask.accents.model.Slots;
@@ -45,18 +43,19 @@ import org.mockito.junit.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class TalkLikeSomeoneIntentHandlerTest {
     /*
-     * Test that canHandle returns true when the right intent is passed.
+     * Test that canHandle returns true when the right intent and supported locale
+     * is passed.
      */
     @Test
-    public void testCanHandle_RightIntentName() {
+    public void testCanHandle_RightIntentNameAndLocale() {
         // Arrange
-        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                languageSlotId);
 
-        IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
-        when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
-        when(intentRequest.getIntent().getName()).thenReturn(Intents.TALK_LIKE_SOMEONE_INTENT);
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put(Slots.LANGUAGE_SLOT, languageSlot);
 
-        when(input.matches(any())).thenCallRealMethod();
+        HandlerInput input = buildHandlerInput(slots);
 
         // Act
         boolean canHandle = unitUnderTest.canHandle(input);
@@ -71,13 +70,13 @@ public class TalkLikeSomeoneIntentHandlerTest {
     @Test
     public void testCanHandle_IncorrectIntentName() {
         // Arrange
-        HandlerInput input = mock(HandlerInput.class, Mockito.RETURNS_DEEP_STUBS);
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                languageSlotId);
 
-        IntentRequest intentRequest = mock(IntentRequest.class, Mockito.RETURNS_DEEP_STUBS);
-        when(input.getRequestEnvelope().getRequest()).thenReturn(intentRequest);
-        when(intentRequest.getIntent().getName()).thenReturn("anIntentThatIsNotTalkLikeSomeoneIntent");
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put(Slots.LANGUAGE_SLOT, languageSlot);
 
-        when(input.matches(any())).thenCallRealMethod();
+        HandlerInput input = buildHandlerInput(slots, "anIntentThatIsNotTalkLikeSomeoneIntent");
 
         // Act
         boolean actualValue = unitUnderTest.canHandle(input);
@@ -166,6 +165,61 @@ public class TalkLikeSomeoneIntentHandlerTest {
     }
 
     /*
+     * Test that handle returns an accurate error prompt if an unsupported locale is
+     * passed.
+     */
+    @Test
+    public void testHandle_UnsupportedLocale() {
+        // Arrange
+        String unsupportedLocale = "unsupportedLocale";
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, languageSlotResolvedValue,
+                unsupportedLocale);
+        Slot genderSlot = buildSlot(Slots.GENDER_SLOT, genderSlotRawValue, genderSlotResolvedValue, genderSlotId);
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put(Slots.LANGUAGE_SLOT, languageSlot);
+        slots.put(Slots.GENDER_SLOT, genderSlot);
+
+        HandlerInput input = buildHandlerInput(slots);
+
+        // Act
+        Optional<Response> actualResponse = unitUnderTest.handle(input);
+
+        // Assert
+        assertEquals(ssmlize(Prompts.NO_VOICE_FOUND),
+                ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+
+        assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
+    }
+
+    /*
+     * Test that handle returns an accurate error prompt if the language slot has no
+     * successful ER resolutions. ASK model guarantees that the languageSlot is
+     * present but it doesn't guarantee that the slot has a resolved value.
+     */
+    @Test
+    public void testHandle_LanguageSlotNotResolved() {
+        // Arrange
+        Slot languageSlot = buildSlot(Slots.LANGUAGE_SLOT, languageSlotRawValue, null, null);
+        Slot genderSlot = buildSlot(Slots.GENDER_SLOT, genderSlotRawValue, genderSlotResolvedValue, genderSlotId);
+
+        Map<String, Slot> slots = new HashMap<>();
+        slots.put(Slots.LANGUAGE_SLOT, languageSlot);
+        slots.put(Slots.GENDER_SLOT, genderSlot);
+
+        HandlerInput input = buildHandlerInput(slots);
+
+        // Act
+        Optional<Response> actualResponse = unitUnderTest.handle(input);
+
+        // Assert
+        assertEquals(ssmlize(Prompts.NO_VOICE_FOUND),
+                ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+
+        assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
+    }
+
+    /*
      * Test that handle returns an accurate error prompt if no voice is found for
      * the given language/voice combination.
      */
@@ -191,8 +245,6 @@ public class TalkLikeSomeoneIntentHandlerTest {
         assertEquals(ssmlize(Prompts.NO_VOICE_FOUND),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
-        assertSame(documentDirective, actualResponse.get().getDirectives().get(0));
-
         assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
     }
 
@@ -202,8 +254,12 @@ public class TalkLikeSomeoneIntentHandlerTest {
     }
 
     private Slot buildSlot(String slotName, String slotRawValue, String slotResolvedValue, String slotId) {
-        ValueWrapper resolvedValueWrapper = ValueWrapper.builder()
-                .withValue(Value.builder().withId(slotId).withName(slotResolvedValue).build()).build();
+        ValueWrapper resolvedValueWrapper = null;
+        if (slotResolvedValue != null && slotId != null)
+            resolvedValueWrapper = ValueWrapper.builder()
+                    .withValue(Value.builder().withId(slotId).withName(slotResolvedValue).build()).build();
+        else
+            resolvedValueWrapper = ValueWrapper.builder().withValue(Value.builder().build()).build();
         List<ValueWrapper> values = Arrays.asList(resolvedValueWrapper);
         Resolution resolutionPerAuthority = Resolution.builder().withValues(values).build();
         List<Resolution> resolutionsPerAuthority = Arrays.asList(resolutionPerAuthority);
@@ -213,6 +269,10 @@ public class TalkLikeSomeoneIntentHandlerTest {
     }
 
     private HandlerInput buildHandlerInput(Map<String, Slot> slots) {
+        return buildHandlerInput(slots, Intents.TALK_LIKE_SOMEONE_INTENT);
+    }
+
+    private HandlerInput buildHandlerInput(Map<String, Slot> slots, String intentName) {
         RequestEnvelope requestEnvelope = mock(RequestEnvelope.class);
 
         IntentRequest intentRequest = mock(IntentRequest.class);
@@ -222,6 +282,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         when(intentRequest.getIntent()).thenReturn(intent);
 
         when(intent.getSlots()).thenReturn(slots == null ? null : new HashMap<>(slots));
+        when(intent.getName()).thenReturn(intentName);
 
         return HandlerInput.builder().withRequestEnvelope(requestEnvelope).build();
     }
