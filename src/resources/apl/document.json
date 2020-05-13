@@ -220,7 +220,12 @@
                       "type": "Text",
                       "width": "45vw",
                       "text": "${currentAccent}",
-                      "textAlign": "auto"
+                      "textAlign": "auto",
+                      "grow": 1,
+                      "shrink": 1,
+                      "maxLines": 1,
+                      "fontStyle": "normal",
+                      "fontSize": "30dp"
                     },
                     {
                       "type": "Image",
@@ -244,9 +249,7 @@
                     {
                       "type": "VerticalListItem",
                       "image": "${data.url}",
-                      "primaryText": "${data.name}",
-                      "secondaryText": "${data.name}",
-                      "tertiaryText": "${data.name}"
+                      "primaryText": "${data.friendlyName}"
                     }
                   ]
                 }
@@ -263,8 +266,6 @@
     "VerticalListItem": {
       "parameters": [
         "primaryText",
-        "secondaryText",
-        "tertiaryText",
         "image"
       ],
       "item": [
@@ -304,28 +305,11 @@
                   "fontWeight": "300",
                   "grow": 1,
                   "shrink": 1,
-                  "maxLines": 1
-                },
-                {
-                  "type": "Text",
-                  "text": "${secondaryText}",
-                  "style": "textStyleDetails",
-                  "fontWeight": "300",
-                  "grow": 1,
-                  "shrink": 1,
-                  "maxLines": 1
+                  "maxLines": 1,
+                  "fontStyle": "normal",
+                  "fontSize": "30dp"
                 }
               ]
-            },
-            {
-              "type": "Text",
-              "text": "${tertiaryText}",
-              "style": "textStyleBody",
-              "fontWeight": "300",
-              "grow": 1,
-              "shrink": 1,
-              "textAlign": "right",
-              "maxLines": 1
             }
           ]
         }
