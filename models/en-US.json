@@ -2,6 +2,11 @@
   "interactionModel": {
     "languageModel": {
       "invocationName": "accents",
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      },
       "intents": [
         {
           "name": "AMAZON.FallbackIntent",
@@ -36,10 +41,27 @@
             }
           ],
           "samples": [
+            "a {Gender} {Language}",
+            "a {Language} {Gender}",
+            "a {Language}",
+            "an {Language} {Gender}",
+            "an {Language}",
+            "fake {Language} accent",
+            "fake {Language} {Gender} accent",
+            "pretend to be {Language} {Gender}",
+            "pretend to be {Language}",
+            "speak like a {Gender} {Language}",
+            "speak like a {Language} {Gender}",
+            "speak like an {Language} {Gender}",
+            "speak your {Gender} {Language}",
+            "speak your {Language}",
             "talk like a {Language} {Gender}",
             "talk like a {Language}",
             "talk like an {Language} {Gender}",
-            "talk like an {Language}"
+            "talk like an {Language}",
+            "{Gender} {Language}",
+            "{Language} {Gender}",
+            "{Language}"
           ]
         }
       ],
@@ -48,29 +70,157 @@
           "name": "AMAZON.Language",
           "values": [
             {
-              "id": "it-IT",
+              "id": "de-DE",
               "name": {
-                "value": "Italian"
-              }
-            },
-            {
-              "id": "en-IN",
-              "name": {
-                "value": "Indian",
-                "synonyms": ["Desi English", "Indian English", "Desi"]
+                "value": "German"
               }
             },
             {
               "id": "en-AU",
               "name": {
-                "value": "Australian English"
+                "value": "English, Australian",
+                "synonyms": [
+                  "Australia",
+                  "Australian",
+                  "Australian English",
+                  "English Australian"
+                ]
+              }
+            },
+            {
+              "id": "en-GB",
+              "name": {
+                "value": "English, British",
+                "synonyms": [
+                  "Brit",
+                  "British",
+                  "British English",
+                  "England",
+                  "England English",
+                  "English"
+                ]
+              }
+            },
+            {
+              "id": "en-IN",
+              "name": {
+                "value": "English, Indian",
+                "synonyms": [
+                  "Desi",
+                  "Desi English",
+                  "English Indian",
+                  "Indian",
+                  "Indian English"
+                ]
               }
             },
             {
               "id": "en-US",
               "name": {
-                "value": "American English",
-                "synonyms": ["American"]
+                "value": "English, American",
+                "synonyms": [
+                  "American",
+                  "American English",
+                  "English American",
+                  "North American English"
+                ]
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": {
+                "value": "Spanish, Castilian",
+                "synonyms": [
+                  "Castilian",
+                  "Castilian Spanish",
+                  "Spanish",
+                  "Spanish Castilian"
+                ]
+              }
+            },
+            {
+              "id": "es-MX",
+              "name": {
+                "value": "Spanish, Mexican",
+                "synonyms": [
+                  "Mexican",
+                  "Mexican Spanish",
+                  "Spanish",
+                  "Spanish Mexican"
+                ]
+              }
+            },
+            {
+              "id": "es-US",
+              "name": {
+                "value": "Spanish, American",
+                "synonyms": [
+                  "American Spanish",
+                  "Spanish American"
+                ]
+              }
+            },
+            {
+              "id": "fr-CA",
+              "name": {
+                "value": "French, Canadian",
+                "synonyms": [
+                  "Canada",
+                  "Canadian",
+                  "Canadanian French",
+                  "French"
+                ]
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": {
+                "value": "French",
+                "synonyms": [
+                  "France",
+                  "French",
+                  "France French"
+                ]
+              }
+            },
+            {
+              "id": "hi-IN",
+              "name": {
+                "value": "Hindi",
+                "synonyms": [
+                  "Desi Hindi",
+                  "Hindi"
+                ]
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": {
+                "value": "Italian",
+                "synonyms": [
+                  "Italy"
+                ]
+              }
+            },
+            {
+              "id": "ja-JP",
+              "name": {
+                "value": "Japanese",
+                "synonyms": [
+                  "Japan"
+                ]
+              }
+            },
+            {
+              "id": "pt-BR",
+              "name": {
+                "value": "Portuguese, Brazilian",
+                "synonyms": [
+                  "Brazilian",
+                  "Brazilian Portuguese",
+                  "Portuguese",
+                  "Portuguese Brazilian"
+                ]
               }
             }
           ]
@@ -79,17 +229,31 @@
           "name": "Gender_SlotType",
           "values": [
             {
-              "id": "MALE",
+              "id": "Male",
               "name": {
                 "value": "Male",
-                "synonyms": ["Boys", "Boy", "Man", "Men"]
+                "synonyms": [
+                  "Boys",
+                  "Boy",
+                  "Gentle Man",
+                  "Gentle Men",
+                  "Man",
+                  "Men"
+                ]
               }
             },
             {
-              "id": "FEMALE",
+              "id": "Female",
               "name": {
                 "value": "Female",
-                "synonyms": ["Girls", "Girl", "Woman", "Women"]
+                "synonyms": [
+                  "Girls",
+                  "Girl",
+                  "Lady",
+                  "Ladies",
+                  "Woman",
+                  "Women"
+                ]
               }
             }
           ]
@@ -121,7 +285,8 @@
             }
           ]
         }
-      ]
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
     },
     "prompts": [
       {

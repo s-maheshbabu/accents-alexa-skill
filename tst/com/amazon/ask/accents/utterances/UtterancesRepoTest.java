@@ -106,8 +106,10 @@ public class UtterancesRepoTest {
     public static void setup() {
         Map<String, List<String>> map = new HashMap<>();
 
-        map.put("en-IN", Arrays.asList("Indian sentence - 1", "Indian sentence - 2", "Indian sentence - 3",
-                "Indian sentence - 4", "Indian sentence - 5", "Indian sentence - 6"));
+        map.put("en-IN",
+                Arrays.asList("Indian English sentence - 1", "Indian English sentence - 2",
+                        "Indian English sentence - 3", "Indian English sentence - 4", "Indian English sentence - 5",
+                        "Indian English sentence - 6"));
 
         map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
                 "Italian sentence - 4", "Italian sentence - 5"));

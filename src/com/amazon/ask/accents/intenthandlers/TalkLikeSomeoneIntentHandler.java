@@ -57,8 +57,8 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
             return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
         }
 
-        Directive documentDirective = documentRenderer.buildDirective(intentUtils.getSlotId(languageSlot));
-        List<String> utterances = utterancesRepo.getUtterances(intentUtils.getSlotId(languageSlot));
+        Directive documentDirective = documentRenderer.buildDirective(languageSlotId);
+        List<String> utterances = utterancesRepo.getUtterances(languageSlotId);
 
         String speechText = wrapUtternacesInVoiceTag(voice, utterances);
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();

@@ -25,43 +25,73 @@
     "I'm just waiting for a mate."
   ],
   "en-GB": [
-    "British sentence - 1",
-    "British sentence - 2",
-    "British sentence - 3",
-    "British sentence - 4",
-    "British sentence - 5",
-    "British sentence - 6"
+    "British English sentence - 1",
+    "British English sentence - 2",
+    "British English sentence - 3",
+    "British English sentence - 4",
+    "British English sentence - 5",
+    "British English sentence - 6"
   ],
   "en-IN": [
-    "Indian sentence - 1",
-    "Indian sentence - 2",
-    "Indian sentence - 3",
-    "Indian sentence - 4",
-    "Indian sentence - 5",
-    "Indian sentence - 6"
+    "Indian English sentence - 1",
+    "Indian English sentence - 2",
+    "Indian English sentence - 3",
+    "Indian English sentence - 4",
+    "Indian English sentence - 5",
+    "Indian English sentence - 6"
   ],
   "en-US": [
-    "American sentence - 1",
-    "American sentence - 2",
-    "American sentence - 3",
-    "American sentence - 4",
-    "American sentence - 5",
-    "American sentence - 6"
+    "American English sentence - 1",
+    "American English sentence - 2",
+    "American English sentence - 3",
+    "American English sentence - 4",
+    "American English sentence - 5",
+    "American English sentence - 6"
   ],
   "es-ES": [
-    "Spanish sentence - 1",
-    "Spanish sentence - 2",
-    "Spanish sentence - 3",
-    "Spanish sentence - 4",
-    "Spanish sentence - 5",
-    "Spanish sentence - 6"
+    "Castilian Spanish sentence - 1",
+    "Castilian Spanish sentence - 2",
+    "Castilian Spanish sentence - 3",
+    "Castilian Spanish sentence - 4",
+    "Castilian Spanish sentence - 5",
+    "Castilian Spanish sentence - 6"
+  ],
+  "es-MX": [
+    "Mexican Spanish sentence - 1",
+    "Mexican Spanish sentence - 2",
+    "Mexican Spanish sentence - 3",
+    "Mexican Spanish sentence - 4",
+    "Mexican Spanish sentence - 5",
+    "Mexican Spanish sentence - 6"
+  ],
+  "es-US": [
+    "American Spanish sentence - 1",
+    "American Spanish sentence - 2",
+    "American Spanish sentence - 3",
+    "American Spanish sentence - 4",
+    "American Spanish sentence - 5",
+    "American Spanish sentence - 6"
+  ],
+  "fr-CA": [
+    "Canadian French sentence - 1",
+    "Canadian French sentence - 2",
+    "Canadian French sentence - 3",
+    "Canadian French sentence - 4",
+    "Canadian French sentence - 5"
   ],
   "fr-FR": [
-    "French sentence - 1",
-    "French sentence - 2",
-    "French sentence - 3",
-    "French sentence - 4",
-    "French sentence - 5"
+    "France French sentence - 1",
+    "France French sentence - 2",
+    "France French sentence - 3",
+    "France French sentence - 4",
+    "France French sentence - 5"
+  ],
+  "hi-IN": [
+    "Hindi sentence - 1",
+    "Hindi sentence - 2",
+    "Hindi sentence - 3",
+    "Hindi sentence - 4",
+    "Hindi sentence - 5"
   ],
   "it-IT": [
     "Italian sentence - 1",
@@ -76,6 +106,13 @@
     "Japanese sentence - 3",
     "Japanese sentence - 4",
     "Japanese sentence - 5"
+  ],
+  "pt-BR": [
+    "Brazilian Portuguese sentence - 1",
+    "Brazilian Portuguese sentence - 2",
+    "Brazilian Portuguese sentence - 3",
+    "Brazilian Portuguese sentence - 4",
+    "Brazilian Portuguese sentence - 5"
   ],
   "default": [
     "Default Language sentence - 1",
