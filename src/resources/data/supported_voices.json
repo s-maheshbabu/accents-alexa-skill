@@ -5,7 +5,7 @@
         "locale": "de-DE",
         "name": "German",
         "friendlyName": "German",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/de-DE-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/de-DE-female.jpg",
         "female": [
           "Marlene",
           "Vicki"
@@ -18,7 +18,7 @@
         "locale": "en-AU",
         "name": "English, Australian",
         "friendlyName": "Australian English",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-AU-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/en-AU-female.jpg",
         "female": [
           "Nicole"
         ],
@@ -30,7 +30,7 @@
         "locale": "en-GB",
         "name": "English, British",
         "friendlyName": "British English",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-GB-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/en-GB-female.jpg",
         "female": [
           "Amy",
           "Emma"
@@ -43,7 +43,7 @@
         "locale": "en-IN",
         "name": "English, Indian",
         "friendlyName": "Indian English",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-IN-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/en-IN-female.jpg",
         "female": [
           "Aditi",
           "Raveena"
@@ -54,7 +54,7 @@
         "locale": "en-US",
         "name": "English, American",
         "friendlyName": "American English",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/en-US-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/en-US-female.jpg",
         "female": [
           "Ivy",
           "Joanna",
@@ -72,7 +72,7 @@
         "locale": "es-ES",
         "name": "Spanish, Castilian",
         "friendlyName": "Castilian Spanish",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/es-ES-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/es-ES-female.jpg",
         "female": [
           "Conchita",
           "Lucia"
@@ -85,7 +85,7 @@
         "locale": "es-MX",
         "name": "Spanish, Mexican",
         "friendlyName": "Mexican Spanish",
-        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/es-MX-female.png",
         "female": [
           "Mia"
         ],
@@ -95,7 +95,7 @@
         "locale": "es-US",
         "name": "Spanish, American",
         "friendlyName": "American Spanish",
-        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/es-US-female.png",
         "female": [
           "Lupe",
           "Penelope"
@@ -108,7 +108,7 @@
         "locale": "fr-CA",
         "name": "French, Canadian",
         "friendlyName": "Canadian French",
-        "url": "https: //i.imgur.com/Ll0Qfo5.jpeg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/fr-CA-female.jpg",
         "female": [
           "Chantal"
         ],
@@ -118,7 +118,7 @@
         "locale": "fr-FR",
         "name": "French, France",
         "friendlyName": "France French",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/fr-FR-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/fr-FR-female.jpg",
         "female": [
           "Celine",
           "Lea"
@@ -131,7 +131,7 @@
         "locale": "hi-IN",
         "name": "Hindi",
         "friendlyName": "Hindi",
-        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/hi-IN-female.jpg",
         "female": [
           "Aditi"
         ],
@@ -141,7 +141,7 @@
         "locale": "it-IT",
         "name": "Italian",
         "friendlyName": "Italian",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/it-IT-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/it-IT-female.jpg",
         "female": [
           "Bianca",
           "Carla"
@@ -154,7 +154,7 @@
         "locale": "ja-JP",
         "name": "Japanese",
         "friendlyName": "Japanese",
-        "url": "https://s3.amazonaws.com/accents-alexa-skill/people/ja-JP-female.jpg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/ja-JP-female.jpg",
         "female": [
           "Mizuki"
         ],
@@ -166,7 +166,7 @@
         "locale": "pt-BR",
         "name": "Portuguese, Brazilian",
         "friendlyName": "Brazilian Portuguese",
-        "url": "https://i.imgur.com/Ll0Qfo5.jpeg",
+        "url": "https://accents-alexa-skill.s3.amazonaws.com/people/pt-BR-female.jpg",
         "female": [
           "Camila",
           "Vitoria"
