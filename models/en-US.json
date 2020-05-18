@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "accents",
+      "invocationName": "fake accents",
       "modelConfiguration": {
         "fallbackIntentSensitivity": {
           "level": "LOW"
@@ -41,27 +41,39 @@
             }
           ],
           "samples": [
+            "{Gender} {Language}",
+            "{Language} {Gender}",
+            "{Language}",
             "a {Gender} {Language}",
             "a {Language} {Gender}",
             "a {Language}",
             "an {Language} {Gender}",
             "an {Language}",
             "fake {Language} accent",
+            "fake a {Language} accent",
+            "fake an {Language} accent",
+            "fake {Gender} {Language} accent",
+            "fake a {Gender} {Language} accent",
+            "fake an {Language} {Gender} accent",
             "fake {Language} {Gender} accent",
-            "pretend to be {Language} {Gender}",
             "pretend to be {Language}",
+            "pretend to be an {Language}",
+            "pretend to be {Language} {Gender}",
+            "pretend to be a {Language} {Gender}",
+            "pretend to be an {Language} {Gender}",
+            "speak in {Gender} {Language}",
+            "speak in {Language}",
             "speak like a {Gender} {Language}",
             "speak like a {Language} {Gender}",
             "speak like an {Language} {Gender}",
             "speak your {Gender} {Language}",
             "speak your {Language}",
-            "talk like a {Language} {Gender}",
+            "talk in {Gender} {Language}",
+            "talk in {Language}",
             "talk like a {Language}",
-            "talk like an {Language} {Gender}",
+            "talk like a {Language} {Gender}",
             "talk like an {Language}",
-            "{Gender} {Language}",
-            "{Language} {Gender}",
-            "{Language}"
+            "talk like an {Language} {Gender}"
           ]
         }
       ],

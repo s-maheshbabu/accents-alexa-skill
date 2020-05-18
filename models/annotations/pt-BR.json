@@ -1,0 +1,460 @@
+{
+    "data": [
+        {
+            "inputs": {
+                "utterance": "brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "brazilian male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "brazilian female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "a brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "a brazilian male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "a brazilian female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake a brazilian accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake a brazilian male accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake a brazilian female accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be a brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be a brazilian male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be a brazilian female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in male brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in female brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like a brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like a brazilian male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like a brazilian female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in male brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in female brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like a brazilian"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like a brazilian male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like a brazilian female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "Brazilian"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}

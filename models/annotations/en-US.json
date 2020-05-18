@@ -1,0 +1,460 @@
+{
+    "data": [
+        {
+            "inputs": {
+                "utterance": "american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "american male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "american female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "an american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "an american male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "an american female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake an american accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake an american male accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "fake an american female accent"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be an american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be an american male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "pretend to be an american female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in male american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak in female american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like an american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like an american male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "speak like an american female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in male american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk in female american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like an american"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like an american male"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "male"
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "inputs": {
+                "utterance": "talk like an american female"
+            },
+            "expected": [
+                {
+                    "intent": {
+                        "name": "TalkLikeSomeoneIntent",
+                        "slots": {
+                            "Language": {
+                                "value": "American"
+                            },
+                            "Gender": {
+                                "value": "female"
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
