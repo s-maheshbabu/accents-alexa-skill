@@ -80,12 +80,12 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         }
         String intro = String.format(INTRO, userRequestedAccent);
 
-        String combinedUtterance = utterancesThatWillBeUsed.stream().map(utterance -> utterance + ". ")
-                .collect(Collectors.joining());
-        return intro + String.format("<voice name=\"%s\"><s>%s</s></voice>", voice, combinedUtterance);
+        String combinedUtterance = utterancesThatWillBeUsed.stream()
+                .map(utterance -> String.format("<s>%s. </s>", utterance)).collect(Collectors.joining());
+        return intro + String.format("<voice name=\"%s\">%s</voice>", voice, combinedUtterance);
     }
 
-    private static final String INTRO = "<amazon:emotion name=\"excited\"><s>Okay, here is my %s.</s></amazon:emotion>";
+    private static final String INTRO = "<amazon:emotion name=\"excited\" intensity=\"high\"><s>Okay, here is my %s.</s></amazon:emotion>";
     private final int MAX_CHARS = 300;
 
     private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);

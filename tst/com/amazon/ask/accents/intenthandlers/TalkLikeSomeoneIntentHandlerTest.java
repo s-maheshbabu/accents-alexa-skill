@@ -121,10 +121,11 @@ public class TalkLikeSomeoneIntentHandlerTest {
         String combinedUtterance = "";
         // We only expect tthe first six utterances given the max character limit.
         for (int i = 0; i < 6; i++) {
-            combinedUtterance += utterances.get(i) + ". ";
+            combinedUtterance += "<s>" + utterances.get(i) + ". " + "</s>";
         }
 
-        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\"><s>" + combinedUtterance + "</s></voice>"),
+        System.out.println(((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -161,9 +162,10 @@ public class TalkLikeSomeoneIntentHandlerTest {
         String intro = String.format(INTRO, languageSlotRawValue);
         String combinedUtterance = "";
         for (String utterance : utterances) {
-            combinedUtterance += utterance + ". ";
+            combinedUtterance += "<s>" + utterance + ". " + "</s>";
         }
-        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\"><s>" + combinedUtterance + "</s></voice>"),
+
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -301,7 +303,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         return "<speak>" + input + "</speak>";
     }
 
-    private static final String INTRO = "<amazon:emotion name=\"excited\"><s>Okay, here is my %s.</s></amazon:emotion>";
+    private static final String INTRO = "<amazon:emotion name=\"excited\" intensity=\"high\"><s>Okay, here is my %s.</s></amazon:emotion>";
 
     @InjectMocks
     private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
