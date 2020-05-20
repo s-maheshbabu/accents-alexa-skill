@@ -299,7 +299,7 @@
           ]
         }
       ],
-      "delegationStrategy": "SKILL_RESPONSE"
+      "delegationStrategy": "ALWAYS"
     },
     "prompts": [
       {
