@@ -117,7 +117,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
             combinedUtterance += utterance + ". ";
         }
 
-        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\"><s>" + combinedUtterance + "</s></voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -156,7 +156,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         for (String utterance : utterances) {
             combinedUtterance += utterance + ". ";
         }
-        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\"><s>" + combinedUtterance + "</s></voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -294,7 +294,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         return "<speak>" + input + "</speak>";
     }
 
-    private static final String INTRO = "Okay, here is my %s. ";
+    private static final String INTRO = "<amazon:emotion name=\"excited\"><s>Okay, here is my %s.</s></amazon:emotion>";
 
     @InjectMocks
     private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
