@@ -37,7 +37,7 @@ public class UtterancesRepo {
      * @param language The language for which utterances are needed. This field is
      *                 required.
      * @return a set of utterances for the given language. There will always be at
-     *         least one utterances and atmost three utterances returned.
+     *         least one utterances and atmost five utterances returned.
      */
     public List<String> getUtterances(String language) {
         Validate.notEmpty(language, "Language cannot be empty");

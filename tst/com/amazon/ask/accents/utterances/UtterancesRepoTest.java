@@ -58,7 +58,7 @@ public class UtterancesRepoTest {
     @Test
     public void getUtterances_TooFewUtterances() {
         // Arrange
-        String language = "de-DE";
+        String language = "default";
 
         // Act
         List<String> actualUtternaces = unitUnderTest.getUtterances(language);
@@ -107,19 +107,18 @@ public class UtterancesRepoTest {
         Map<String, List<String>> map = new HashMap<>();
 
         map.put("en-IN",
-                Arrays.asList("Indian English sentence - 1", "Indian English sentence - 2",
-                        "Indian English sentence - 3", "Indian English sentence - 4", "Indian English sentence - 5",
-                        "Indian English sentence - 6"));
+                Arrays.asList("Please do the needful.", "Lakhs and lakhs of people.", "I want pin-drop silence",
+                        "He is out of station", "My son just passed out of college", "My neighbour is foreign-returned",
+                        "My daughter is convent-educated", "Where is the nearest departmental store?",
+                        "My teacher is sitting on my head.", "My friend is eating my brain.", "Why This Kolaveri Di?"));
 
         map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
                 "Italian sentence - 4", "Italian sentence - 5"));
 
         map.put("de-DE", Arrays.asList("German sentence - 1", "German sentence - 2", "German sentence - 3"));
 
-        map.put(UtterancesRepo.DEFAULT_LANGUAGE_KEY,
-                Arrays.asList("Default Language sentence - 1", "Default Language sentence - 2",
-                        "Default Language sentence - 3", "Default Language sentence - 4",
-                        "Default Language sentence - 5", "Default Language sentence - 6"));
+        map.put(UtterancesRepo.DEFAULT_LANGUAGE_KEY, Arrays.asList("Default Language sentence - 1",
+                "Default Language sentence - 2", "Default Language sentence - 3"));
 
         utterancesMap = Collections.unmodifiableMap(map);
     }
