@@ -60,17 +60,21 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         Directive documentDirective = documentRenderer.buildDirective(languageSlotId);
         List<String> utterances = utterancesRepo.getUtterances(languageSlotId);
 
-        String speechText = wrapUtternacesInVoiceTag(voice, utterances);
+        String speechText = buildSpeechText(intentUtils.getRawSlotValue(languageSlot), voice, utterances);
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();
 
         return input.getResponseBuilder().addDirective(documentDirective).withSpeech(speechText).withCard(card)
                 .withShouldEndSession(true).build();
     }
 
-    private String wrapUtternacesInVoiceTag(String voice, List<String> utterances) {
+    private String buildSpeechText(String userRequestedAccent, String voice, List<String> utterances) {
+        String intro = String.format(INTRO, userRequestedAccent);
+
         String combinedUtterance = utterances.stream().map(utterance -> utterance + ". ").collect(Collectors.joining());
-        return String.format("<voice name=\"%s\">%s</voice>", voice, combinedUtterance);
+        return intro + String.format("<voice name=\"%s\">%s</voice>", voice, combinedUtterance);
     }
+
+    private static final String INTRO = "Okay, here is my %s. ";
 
     private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
     private VoicesRepo voicesRepo = VoicesRepo.getInstance();

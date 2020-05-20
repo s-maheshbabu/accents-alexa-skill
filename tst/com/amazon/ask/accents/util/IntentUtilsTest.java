@@ -251,6 +251,45 @@ public final class IntentUtilsTest {
     }
 
     /**
+     * Test that the slot raw value can be obtained in the happy case.
+     */
+    @Test
+    public void testGetRawSlotValue() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/ValidSlot.json");
+
+        // Act
+        String slotValue = unitUnderTest.getRawSlotValue(slot);
+
+        // Assert
+        assertEquals("Indian", slotValue);
+    }
+
+    /**
+     * Test that the slot raw value can be obtained even when it is null.
+     */
+    @Test
+    public void testGetRawSlotValue_SlotValueIsNull() {
+        // Arrange
+        Slot slot = buildSlot("/testdata/slots/SlotWithoutValue.json");
+
+        // Act
+        String slotValue = unitUnderTest.getRawSlotValue(slot);
+
+        // Assert
+        assertNull(slotValue);
+    }
+
+    /**
+     * Test that an exception is raised if the input is null.
+     */
+    @Test(expected = NullPointerException.class)
+    public void testGetRawSlotValue_NullInput() {
+        // Act && Assert
+        unitUnderTest.getRawSlotValue(null);
+    }
+
+    /**
      * Test that the slot name can be obtained in the happy case.
      */
     @Test

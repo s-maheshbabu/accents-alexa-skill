@@ -70,6 +70,17 @@ public final class IntentUtils {
         return slotName.orElse(null);
     }
 
+    /**
+     * @param slot The slot from which the raw slot value is to be extracted. This
+     *             is the value that the user actually uttered.
+     * @return the raw slot value if found and null otherwise.
+     */
+    public String getRawSlotValue(Slot slot) {
+        Validate.notNull(slot);
+
+        return slot.getValue();
+    }
+
     public static IntentUtils getInstance() {
         if (instance == null)
             instance = new IntentUtils();

@@ -111,11 +111,13 @@ public class TalkLikeSomeoneIntentHandlerTest {
         Optional<Response> actualResponse = unitUnderTest.handle(input);
 
         // Assert
+        String intro = String.format(INTRO, languageSlotRawValue);
         String combinedUtterance = "";
         for (String utterance : utterances) {
             combinedUtterance += utterance + ". ";
         }
-        assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
+
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -149,11 +151,12 @@ public class TalkLikeSomeoneIntentHandlerTest {
         Optional<Response> actualResponse = unitUnderTest.handle(input);
 
         // Assert
+        String intro = String.format(INTRO, languageSlotRawValue);
         String combinedUtterance = "";
         for (String utterance : utterances) {
             combinedUtterance += utterance + ". ";
         }
-        assertEquals(ssmlize("<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
+        assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
                 ((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
 
         assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
@@ -290,6 +293,8 @@ public class TalkLikeSomeoneIntentHandlerTest {
     private String ssmlize(String input) {
         return "<speak>" + input + "</speak>";
     }
+
+    private static final String INTRO = "Okay, here is my %s. ";
 
     @InjectMocks
     private static final TalkLikeSomeoneIntentHandler unitUnderTest = new TalkLikeSomeoneIntentHandler();
