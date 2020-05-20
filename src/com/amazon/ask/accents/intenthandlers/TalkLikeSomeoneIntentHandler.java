@@ -2,6 +2,7 @@ package com.amazon.ask.accents.intenthandlers;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -68,13 +69,24 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
     }
 
     private String buildSpeechText(String userRequestedAccent, String voice, List<String> utterances) {
+        List<String> utterancesThatWillBeUsed = new ArrayList<>();
+        for (int i = 0, characters = 0; i < utterances.size(); i++) {
+            String utterance = utterances.get(i);
+            if (characters < MAX_CHARS)
+                utterancesThatWillBeUsed.add(utterance);
+            else
+                break;
+            characters += utterance.length();
+        }
         String intro = String.format(INTRO, userRequestedAccent);
 
-        String combinedUtterance = utterances.stream().map(utterance -> utterance + ". ").collect(Collectors.joining());
+        String combinedUtterance = utterancesThatWillBeUsed.stream().map(utterance -> utterance + ". ")
+                .collect(Collectors.joining());
         return intro + String.format("<voice name=\"%s\"><s>%s</s></voice>", voice, combinedUtterance);
     }
 
     private static final String INTRO = "<amazon:emotion name=\"excited\"><s>Okay, here is my %s.</s></amazon:emotion>";
+    private final int MAX_CHARS = 300;
 
     private static final Logger logger = LogManager.getLogger(TalkLikeSomeoneIntentHandler.class);
     private VoicesRepo voicesRepo = VoicesRepo.getInstance();

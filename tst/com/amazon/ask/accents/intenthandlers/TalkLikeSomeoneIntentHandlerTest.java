@@ -104,7 +104,13 @@ public class TalkLikeSomeoneIntentHandlerTest {
 
         when(voicesRepo.getVoice(languageSlotId, genderSlotId)).thenReturn(voice);
 
-        List<String> utterances = Arrays.asList("utterance-1", "utterance-2");
+        List<String> utterances = Arrays.asList("This is an utterance created for testing purposes only - 1",
+                "This is an utterance created for testing purposes only - 2",
+                "This is an utterance created for testing purposes only - 3",
+                "This is an utterance created for testing purposes only - 4",
+                "This is an utterance created for testing purposes only - 5",
+                "This is an utterance created for testing purposes only - 6",
+                "This is an utterance created for testing purposes only - 7");
         when(utterancesRepo.getUtterances(languageSlotId)).thenReturn(utterances);
 
         // Act
@@ -113,8 +119,9 @@ public class TalkLikeSomeoneIntentHandlerTest {
         // Assert
         String intro = String.format(INTRO, languageSlotRawValue);
         String combinedUtterance = "";
-        for (String utterance : utterances) {
-            combinedUtterance += utterance + ". ";
+        // We only expect tthe first six utterances given the max character limit.
+        for (int i = 0; i < 6; i++) {
+            combinedUtterance += utterances.get(i) + ". ";
         }
 
         assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\"><s>" + combinedUtterance + "</s></voice>"),
