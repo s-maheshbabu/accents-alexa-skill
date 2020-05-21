@@ -1,0 +1,316 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "fake accents",
+      "modelConfiguration": {
+        "fallbackIntentSensitivity": {
+          "level": "LOW"
+        }
+      },
+      "intents": [
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "TalkLikeSomeoneIntent",
+          "slots": [
+            {
+              "name": "Language",
+              "type": "AMAZON.Language"
+            },
+            {
+              "name": "Gender",
+              "type": "Gender_SlotType"
+            }
+          ],
+          "samples": [
+            "{Gender} {Language}",
+            "{Language} {Gender}",
+            "{Language}",
+            "a {Gender} {Language}",
+            "a {Language} {Gender}",
+            "a {Language}",
+            "an {Language} {Gender}",
+            "an {Language}",
+            "fake {Language} accent",
+            "fake a {Language} accent",
+            "fake an {Language} accent",
+            "fake {Gender} {Language} accent",
+            "fake a {Gender} {Language} accent",
+            "fake an {Language} {Gender} accent",
+            "fake {Language} {Gender} accent",
+            "pretend to be {Language}",
+            "pretend to be an {Language}",
+            "pretend to be {Language} {Gender}",
+            "pretend to be a {Language} {Gender}",
+            "pretend to be an {Language} {Gender}",
+            "speak in {Gender} {Language}",
+            "speak in {Language}",
+            "speak like a {Gender} {Language}",
+            "speak like a {Language} {Gender}",
+            "speak like an {Language} {Gender}",
+            "speak your {Gender} {Language}",
+            "speak your {Language}",
+            "talk in {Gender} {Language}",
+            "talk in {Language}",
+            "talk like a {Language}",
+            "talk like a {Language} {Gender}",
+            "talk like an {Language}",
+            "talk like an {Language} {Gender}"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "name": "AMAZON.Language",
+          "values": [
+            {
+              "id": "de-DE",
+              "name": {
+                "value": "German"
+              }
+            },
+            {
+              "id": "en-AU",
+              "name": {
+                "value": "English, Australian",
+                "synonyms": [
+                  "Australia",
+                  "Australian",
+                  "Australian English",
+                  "English Australian"
+                ]
+              }
+            },
+            {
+              "id": "en-GB",
+              "name": {
+                "value": "English, British",
+                "synonyms": [
+                  "Brit",
+                  "British",
+                  "British English",
+                  "England",
+                  "England English",
+                  "English"
+                ]
+              }
+            },
+            {
+              "id": "en-IN",
+              "name": {
+                "value": "English, Indian",
+                "synonyms": [
+                  "Desi",
+                  "Desi English",
+                  "English Indian",
+                  "Indian",
+                  "Indian English"
+                ]
+              }
+            },
+            {
+              "id": "en-US",
+              "name": {
+                "value": "English, American",
+                "synonyms": [
+                  "American",
+                  "American English",
+                  "English American",
+                  "North American English"
+                ]
+              }
+            },
+            {
+              "id": "es-ES",
+              "name": {
+                "value": "Spanish, Castilian",
+                "synonyms": [
+                  "Castilian",
+                  "Castilian Spanish",
+                  "Spanish",
+                  "Spanish Castilian"
+                ]
+              }
+            },
+            {
+              "id": "es-MX",
+              "name": {
+                "value": "Spanish, Mexican",
+                "synonyms": [
+                  "Mexican",
+                  "Mexican Spanish",
+                  "Spanish",
+                  "Spanish Mexican"
+                ]
+              }
+            },
+            {
+              "id": "es-US",
+              "name": {
+                "value": "Spanish, American",
+                "synonyms": [
+                  "American Spanish",
+                  "Spanish American"
+                ]
+              }
+            },
+            {
+              "id": "fr-CA",
+              "name": {
+                "value": "French, Canadian",
+                "synonyms": [
+                  "Canada",
+                  "Canadian",
+                  "Canadian French",
+                  "French"
+                ]
+              }
+            },
+            {
+              "id": "fr-FR",
+              "name": {
+                "value": "French",
+                "synonyms": [
+                  "France",
+                  "French",
+                  "France French"
+                ]
+              }
+            },
+            {
+              "id": "hi-IN",
+              "name": {
+                "value": "Hindi",
+                "synonyms": [
+                  "Desi Hindi",
+                  "Hindi",
+                  "Indian Hindi"
+                ]
+              }
+            },
+            {
+              "id": "it-IT",
+              "name": {
+                "value": "Italian",
+                "synonyms": [
+                  "Italy"
+                ]
+              }
+            },
+            {
+              "id": "ja-JP",
+              "name": {
+                "value": "Japanese",
+                "synonyms": [
+                  "Japan"
+                ]
+              }
+            },
+            {
+              "id": "pt-BR",
+              "name": {
+                "value": "Portuguese, Brazilian",
+                "synonyms": [
+                  "Brazilian",
+                  "Brazilian Portuguese",
+                  "Portuguese",
+                  "Portuguese Brazilian"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Gender_SlotType",
+          "values": [
+            {
+              "id": "Male",
+              "name": {
+                "value": "Male",
+                "synonyms": [
+                  "Boys",
+                  "Boy",
+                  "Gentle Man",
+                  "Gentle Men",
+                  "Man",
+                  "Men"
+                ]
+              }
+            },
+            {
+              "id": "Female",
+              "name": {
+                "value": "Female",
+                "synonyms": [
+                  "Girls",
+                  "Girl",
+                  "Lady",
+                  "Ladies",
+                  "Woman",
+                  "Women"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "TalkLikeSomeoneIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "Language",
+              "type": "AMAZON.Language",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1237418331118.1406199311523"
+              }
+            },
+            {
+              "name": "Gender",
+              "type": "Gender_SlotType",
+              "confirmationRequired": false,
+              "elicitationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1237418331118.1406199311523",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Who do you want me to speak like?"
+          }
+        ]
+      }
+    ]
+  }
+}
