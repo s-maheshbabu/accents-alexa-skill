@@ -326,7 +326,7 @@
         "type": "ListTemplate",
         "currentAccent": "${visualSkillMetadata.properties.currentAccent}",
         "currentAccentUrl": "${visualSkillMetadata.properties.currentAccentUrl}",
-        "backgroundImage": "${visualSkillMetadata.backgroundImage.sources[0].url}",
+        "backgroundImage": "${visualSkillMetadata.backgroundImageUrl}",
         "title": "${visualSkillMetadata.title}",
         "hint": "${visualSkillMetadata.properties.hint}",
         "logo": "${visualSkillMetadata.logoUrl}",

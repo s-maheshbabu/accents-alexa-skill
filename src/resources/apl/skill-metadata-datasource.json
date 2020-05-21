@@ -1,6 +1,6 @@
 {
   "visualSkillMetadata": {
-    "backgroundImageUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/LT1_Background.png",
+    "backgroundImageUrl": "https://accents-alexa-skill.s3.amazonaws.com/background-image.png",
     "properties": {
       "currentAccent": null,
       "currentAccentUrl": null,
@@ -12,7 +12,7 @@
         "transformer": "textToHint"
       }
     ],
-    "title": "Accents",
-    "logoUrl": "https://d2o906d8ln7ui1.cloudfront.net/images/cheeseskillicon.png"
+    "title": "Fake Accents",
+    "logoUrl": "https://accents-alexa-skill.s3.amazonaws.com/fake-accents-logo.png"
   }
 }
