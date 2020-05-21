@@ -107,10 +107,11 @@ public class UtterancesRepoTest {
         Map<String, List<String>> map = new HashMap<>();
 
         map.put("en-IN",
-                Arrays.asList("Please do the needful.", "Lakhs and lakhs of people.", "I want pin-drop silence",
-                        "He is out of station", "My son just passed out of college", "My neighbour is foreign-returned",
-                        "My daughter is convent-educated", "Where is the nearest departmental store?",
-                        "My teacher is sitting on my head.", "My friend is eating my brain.", "Why This Kolaveri Di?"));
+                Arrays.asList("Please do the needful.", "Lakhs and lakhs of people.", "I want pin-drop silence.",
+                        "He is out of station.", "My son just passed out of college.",
+                        "My neighbour is foreign-returned.", "My daughter is convent-educated.",
+                        "Where is the nearest departmental store?", "My teacher is sitting on my head.",
+                        "My friend is eating my brain.", "Why This Kolaveri Di?"));
 
         map.put("it-IT", Arrays.asList("Italian sentence - 1", "Italian sentence - 2", "Italian sentence - 3",
                 "Italian sentence - 4", "Italian sentence - 5"));

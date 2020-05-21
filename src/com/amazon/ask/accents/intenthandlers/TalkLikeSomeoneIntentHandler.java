@@ -81,7 +81,7 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
         String intro = String.format(INTRO, userRequestedAccent);
 
         String combinedUtterance = utterancesThatWillBeUsed.stream()
-                .map(utterance -> String.format("<s>%s. </s>", utterance)).collect(Collectors.joining());
+                .map(utterance -> String.format("<s>%s </s>", utterance)).collect(Collectors.joining());
         return intro + String.format("<voice name=\"%s\">%s</voice>", voice, combinedUtterance);
     }
 

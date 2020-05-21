@@ -121,7 +121,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         String combinedUtterance = "";
         // We only expect tthe first six utterances given the max character limit.
         for (int i = 0; i < 6; i++) {
-            combinedUtterance += "<s>" + utterances.get(i) + ". " + "</s>";
+            combinedUtterance += "<s>" + utterances.get(i) + " " + "</s>";
         }
 
         System.out.println(((SsmlOutputSpeech) actualResponse.get().getOutputSpeech()).getSsml());
@@ -162,7 +162,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
         String intro = String.format(INTRO, languageSlotRawValue);
         String combinedUtterance = "";
         for (String utterance : utterances) {
-            combinedUtterance += "<s>" + utterance + ". " + "</s>";
+            combinedUtterance += "<s>" + utterance + " " + "</s>";
         }
 
         assertEquals(ssmlize(intro + "<voice name=\"" + voice + "\">" + combinedUtterance + "</voice>"),
