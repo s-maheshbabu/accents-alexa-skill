@@ -8,6 +8,7 @@ import com.amazon.ask.accents.intenthandlers.HelpIntentHandler;
 import com.amazon.ask.accents.intenthandlers.StopIntentHandler;
 import com.amazon.ask.accents.intenthandlers.TalkLikeSomeoneIntentHandler;
 import com.amazon.ask.accents.requesthandlers.LaunchRequestHandler;
+import com.amazon.ask.accents.requesthandlers.SessionEndedRequestHandler;
 
 public class AccentsStreamHandler extends SkillStreamHandler {
     public AccentsStreamHandler() {
@@ -15,9 +16,10 @@ public class AccentsStreamHandler extends SkillStreamHandler {
     }
 
     private static Skill getSkill() {
-        return Skills
-                .custom().addRequestHandlers(new StopIntentHandler(), new CancelIntentHandler(),
-                        new HelpIntentHandler(), new LaunchRequestHandler(), new TalkLikeSomeoneIntentHandler())
+        return Skills.custom()
+                .addRequestHandlers(new StopIntentHandler(), new CancelIntentHandler(), new HelpIntentHandler(),
+                        new SessionEndedRequestHandler(), new LaunchRequestHandler(),
+                        new TalkLikeSomeoneIntentHandler())
                 .withSkillId(SKILl_ID).build();
     }
 

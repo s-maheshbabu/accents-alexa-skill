@@ -64,7 +64,7 @@ public class LaunchRequestHandlerTest {
     }
 
     /**
-     * Placeholder testing.
+     * Test that the correct response is returned while handling the launch request.
      */
     @Test
     public void handle() throws Exception {
