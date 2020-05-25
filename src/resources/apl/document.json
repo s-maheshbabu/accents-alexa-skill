@@ -177,7 +177,7 @@
               "items": [
                 {
                   "type": "Image",
-                  "source": "${logo}",
+                  "source": "${currentAccentUrl}",
                   "scale": "best-fill",
                   "width": "100vh",
                   "height": "70vw",
