@@ -23,6 +23,7 @@ import com.amazon.ask.model.Response;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.ui.Card;
 import com.amazon.ask.model.ui.SimpleCard;
+import com.amazon.ask.request.RequestHelper;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -58,7 +59,11 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
             return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
         }
 
-        Directive documentDirective = documentRenderer.buildDirective(languageSlotId);
+        Directive documentDirective = null;
+        // Check for APL support on the user's device
+        if (RequestHelper.forHandlerInput(input).getSupportedInterfaces().getAlexaPresentationAPL() != null) {
+            documentDirective = documentRenderer.buildDirective(languageSlotId);
+        }
         List<String> utterances = utterancesRepo.getUtterances(languageSlotId);
 
         String speechText = buildSpeechText(intentUtils.getRawSlotValue(languageSlot), voice, utterances);
