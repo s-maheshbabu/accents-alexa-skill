@@ -24,6 +24,7 @@ import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.ui.Card;
 import com.amazon.ask.model.ui.SimpleCard;
 import com.amazon.ask.request.RequestHelper;
+import com.amazon.ask.response.ResponseBuilder;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -58,19 +59,20 @@ public class TalkLikeSomeoneIntentHandler implements RequestHandler {
             // ever decide to add one.
             return input.getResponseBuilder().withSpeech(Prompts.NO_VOICE_FOUND).withShouldEndSession(true).build();
         }
-
-        Directive documentDirective = null;
-        // Check for APL support on the user's device
-        if (RequestHelper.forHandlerInput(input).getSupportedInterfaces().getAlexaPresentationAPL() != null) {
-            documentDirective = documentRenderer.buildDirective(languageSlotId);
-        }
         List<String> utterances = utterancesRepo.getUtterances(languageSlotId);
 
         String speechText = buildSpeechText(intentUtils.getRawSlotValue(languageSlot), voice, utterances);
         Card card = SimpleCard.builder().withTitle(Cards.CARD_TITLE).withContent(Cards.TALK_LIKE_SOMEONE_INFO).build();
 
-        return input.getResponseBuilder().addDirective(documentDirective).withSpeech(speechText).withCard(card)
-                .withShouldEndSession(true).build();
+        ResponseBuilder response = input.getResponseBuilder().withSpeech(speechText).withCard(card)
+                .withShouldEndSession(true);
+
+        if (RequestHelper.forHandlerInput(input).getSupportedInterfaces().getAlexaPresentationAPL() != null) {
+            Directive documentDirective = documentRenderer.buildDirective(languageSlotId);
+            response.addDirective(documentDirective);
+        }
+
+        return response.build();
     }
 
     private String buildSpeechText(String userRequestedAccent, String voice, List<String> utterances) {

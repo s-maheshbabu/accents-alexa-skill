@@ -192,7 +192,7 @@ public class TalkLikeSomeoneIntentHandlerTest {
                 assertEquals(Cards.CARD_TITLE, ((SimpleCard) actualResponse.get().getCard()).getTitle());
                 assertEquals(Cards.TALK_LIKE_SOMEONE_INFO, ((SimpleCard) actualResponse.get().getCard()).getContent());
 
-                assertNull(actualResponse.get().getDirectives().get(0));
+                assertEquals(0, actualResponse.get().getDirectives().size());
 
                 assertTrue("The session should be ended", actualResponse.get().getShouldEndSession());
         }
